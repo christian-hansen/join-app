@@ -187,7 +187,7 @@ async function login() {
         activeUser.push(user);
         checkForCheckbox(checkbox, rememberlogin);
         save();
-        window.location.href = "../html/summary.html"
+        window.location.href = "../join/html/summary.html"
     }
 }
 
@@ -223,7 +223,7 @@ async function guestLogin() {
         activeUser = [];
         activeUser.push(user);
         save();
-        window.location.href = "../html/summary.html";
+        window.location.href = "../join/html/summary.html";
     }
 }
 
