@@ -40,7 +40,7 @@ async function includeHTML() {
 function selectGuestIcon() {
     let usersicon = document.getElementById('click-new');
     let usersIconName = document.getElementById('click-new-name');
-    if(activeUser[0].email == 'Guest@guestemail.com') {
+    if(activeUser[0].email == 'guest@guestemail.com') {
        usersicon.innerHTML = `<img style="width: 40px; height: 40px;" src="../assets/img/Group 13person-icon.svg">`;
     } else {
         let firstletterAU = activeUser[0].userName;

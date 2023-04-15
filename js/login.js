@@ -59,7 +59,7 @@ function showPopUpPw() {
     let inputmail = document.getElementById('forgot-email');
     let popup = document.getElementById('popup');
     let user = users.find(u => u.email == inputmail.value);
-    let guest = users.find(u => u.email == 'Guest@guestemail.com');
+    let guest = users.find(u => u.email == 'guest@guestemail.com');
     if (user) {
         if (user == guest) {showPopupNotFound();} else {
             popup.classList.remove('d-none');
@@ -122,8 +122,6 @@ async function registNewAccount() {
             email: email,
             password: password,
             color: color,
-            contacts: [],
-            tasks: [],
             animationCounter: 0
         };
         users.push(account);
@@ -217,7 +215,7 @@ function checkForCheckbox(checkbox, rememberlogin) {
  */
 async function guestLogin() {
     let email = document.getElementById('login-email');
-    email.value = 'Guest@guestemail.com';
+    email.value = 'guest@guestemail.com';
     let password = document.getElementById('login-password');
     password.value = 'guest1234';
     let user = users.find(u => u.email == email.value && u.password == password.value);

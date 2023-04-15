@@ -497,7 +497,7 @@ body {
     }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1200px) {
     
     .summary-content-header {
         margin-top: 0;
