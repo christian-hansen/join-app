@@ -1,0 +1,28 @@
+<div class="header">
+    <div class="headerSections">
+        <div class="logoMobile">
+            <a href="../html/summary.html">
+                <img src="../assets/img/Logo/Capa-small.png" class="logoSize">
+            </a>
+        </div>
+        <div class="headerName">Kanban Project Management Tool</div>
+        <div id="create-btn-top" class="d-none hide" onclick="getTask()">Create<img class="btn-icon" src="../assets/img/checked.png"></div>
+        <div id="selection" class="selectedElement">
+            <a href="../html/help.html">
+                <div class="helpIcon">
+                    <img src="../assets/img/help.png">
+                </div>
+            </a>
+            <div>
+                <div id="click-new" class="contact circleLayoutHeaderIcon" onclick="subMenu()"><div id="click-new-name" class="circleNameHeaderIcon"></div></div>
+            </div>
+        </div>
+    </div>
+    <div id="logMenue" class="logMenue d-none">
+        <ul>
+            <li class="d-none"><a href="../html/help.html">Help</a></li>
+            <li class="d-none"><a href="../html/legal_notice.html">Legal notice</a></li>
+            <li onclick="logOut(); return false">Logout</li>
+        </ul>
+    </div>
+</div>

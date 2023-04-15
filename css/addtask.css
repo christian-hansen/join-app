@@ -1,0 +1,59 @@
+body {
+  background-color: #F5F5F5;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 47px;
+  margin-top: 19px;
+  margin-bottom: 14px;
+}
+
+.joinheadline {
+  margin-top: 35px;
+}
+
+
+.navSelectedSidebarTask,
+.navSelectedSidebarTask:active,
+.navSelectedSidebarTask:focus,
+.navSelectedSidebarTask:focus-within {
+  color: #fff;
+  margin-bottom: 10px;
+  background: #091931;
+}
+
+
+.navSelectedFooterTasks {
+  background: #091931;
+  color: #fff;
+  padding: 10px;
+}
+
+.contentContainer {
+  padding-bottom: 90px;
+}
+
+
+@media (min-width: 767px) {
+
+  h1 {
+    font-size: 61px;
+  }
+
+  .contentContainer {
+    padding: 100px 100px 20px 280px;
+  }
+  
+    .centralContainer {
+      max-width: none;
+  }
+}
+
+.validation-errormsg {
+  font-family: 'Poppins';
+  font-size: 12px;
+  color: #FF8190;
+}

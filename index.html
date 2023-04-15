@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/Logo/Join-logo-white.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <script src="./js/script.js"></script>
+    <script src="./mini_backend.js"></script>
+    <script src="./js/login.js"></script>
+    <script>setURL('https://gruppenarbeit-join-465.developerakademie.net/smallest_backend_ever-master')</script>
+
+
+</head>
+
+<body onload="init_login()">
+    <input class="d-none" type="checkbox" id="check-for-sign-up">
+    <input class="d-none" type="checkbox" id="check-for-forgotten-password">
+    <input class="d-none" type="checkbox" id="check-for-password-icon">
+
+
+    <div class="start" id="start">
+        <img class="logo-desktop" src="./assets/img/Capa 2.png">
+        <img class="logo-mobile" id="logo-mobile" src="./assets/img/Logo/Join-logo-white.png">
+    </div>
+
+    <div class="d-flex-row sign-up-container" id="sign-up">
+        <p>Not a Join user?</p>
+        <label for="check-for-sign-up" autocomplete="off">Sign up</label>
+    </div>
+
+    <div class="login-container">
+        <div class="login" id="login">
+            <h1 class="headline">Log in</h1>
+            <div class="underline"></div>
+            <form onsubmit="login(); return false">
+                <div class="login-input"><input id="login-email" type="email" placeholder="Email" required onclick="rememberMe()"><img
+                        src="assets/img/Vector.png"></div>
+                <div class="login-input"><input id="login-password" type="password" placeholder="Password" required onkeydown="changeIcon()">
+                    <img id="lock" src="assets/img/Vectorcls.png">
+                    <label class="d-none" for="check-for-password-icon" id="label-unvisible"><img class="d-none" id="unvisible" src="assets/img/password_nonvisible.png" style="width: 21px; height:18px;" onclick="showPw()"></label>
+                    <label for="check-for-password-icon" id="label-visibile" ><img id="visible" src="assets/img/password_visible.png" style="width: 21px; height:18px; display: none;" onclick="showPw()"></label>
+                </div>
+                <button id="btn-login">Log in</button>
+            </form>
+            <span class="wpw d-none" id="wpw">wrong password or email</span>
+            <div class="checkbox">
+                <div class="d-flex-row center">
+                    <input id="remember-me" type="checkbox" checked style="cursor: pointer;">
+                    <p>Remember me</p>
+                </div>
+                <div id="checkbox-checklabel">
+                    <a href="#"><label for="check-for-forgotten-password">Forgot my password</label></a>
+                </div>
+            </div>
+            <a onclick="guestLogin(); return false" href="#" id="btn-guest-login">Guest Log in</a>
+        </div>
+
+
+        <div class="sign-up-area">
+            <label for="check-for-sign-up"><img id="back-arrow" src="assets/img/Vectorarrow-left.svg"></label>
+            <h1 class="headline">Sign up</h1>
+            <div class="underline"></div>
+            <form id="form-signup" action="https://gruppenarbeit-join-465.developerakademie.net/signup-send_mail.php" onsubmit="return registNewAccount(); return false"  method="post">
+                <div class="login-input"><input type="text" id="name" placeholder="Name" required><img
+                        src="assets/img/VectornameIcon.svg"></div>
+                <div class="login-input"><input type="email" name="email" id="email" placeholder="Email" required><img
+                        src="assets/img/Vector.png"></div>
+                <div class="login-input"><input type="password" name="password" id="password" placeholder="Password"
+                        required><img src="assets/img/Vectorcls.png"></div>
+                <button type="submit" id="btn-sign-up">Sign up</button>
+            </form>
+        </div>
+
+        <div class="forgotten-password-area">
+            <label for="check-for-forgotten-password"><img id="back-arrow"
+                    src="assets/img/Vectorarrow-left.svg"></label>
+            <h1 class="headline">I forgot my password</h1>
+            <div class="underline"></div>
+            <p>Don't worry! We will send you an email with the instructions to reset your password.</p>
+            <form id="form" onsubmit="showPopUpPw(); return false" action="https://gruppenarbeit-join-465.developerakademie.net/reset-password-mail.php" method="post">
+                <div class="login-input"><input name="email" type="email" id="forgot-email" placeholder="Email"
+                        required><img src="assets/img/Vector.png"></div>
+                <button type="submit" id="btn-email">Send me the email</button>
+            </form>
+        </div>
+
+        <div class="popup-background d-none" id="popup">
+            <div class="popup">
+                <img src="./assets/img/SendCheck.svg">
+                <p>An E-Mail has been sent to you</p>
+            </div>
+        </div>
+
+        <div class="popup-background d-none" id="popup-signup">
+            <div class="popup-signup">
+                <div style="display:flex;padding-top: 10px;align-items: center;"> 
+                    <img src="./assets/img/error-4-256.ico">
+                    <p>Email already exist, if you forgot your password, use the "Forgot my password" on starter Page</p>
+                </div>
+                
+                <button onclick="closePopupSignUpExist()" class="btn-popup-ok">OK</button>
+
+            </div>
+        </div>
+
+        <div class="popup-background d-none" id="popup-notfound">
+            <div class="popup-signup">
+                <div style="display:flex;padding-top: 10px;align-items: center;"> 
+                    <img src="./assets/img/error-4-256.ico">
+                    <p>Email not found, be sure you hit the right Email-adress or register a new account on "Sign Up"</p>
+                </div>
+
+                <button onclick="closePopupNotFound()" class="btn-popup-ok">OK</button>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+body {
+    margin: 0;
+    font-family: 'Inter', Lato, Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    background-color: #F5F5F5;
+}
+
+h1 {
+    font-size: 47px;
+    line-height: 100%;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.centralContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidbarNav {
+    display: none;
+}
+
+.mainContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 80px;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+
+}
+
+.headerSections {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.helpIcon {
+    display: none;
+}
+
+.logoSize {
+    width: 30px;
+}
+
+.headerName {
+    display: none;
+}
+
+.contact {
+    position: relative;
+    top: -2px;
+    border-radius: 100%;
+    border: 2px solid #2A3647;
+    padding: 2px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.sidebar {
+    display: none;
+}
+
+.menue {
+    width: 100%;
+}
+
+.logMenue {
+    background-color: #2A3647;
+    border-radius: 20px 0 20px 20px;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    width: 140px;
+    height: 130px;
+    line-height: 200%;
+}
+
+div.logMenue ul li {
+    list-style-type: none;
+    color: #CDCDCD;
+    margin-left: -20px;
+    cursor: pointer;
+}
+
+div.logMenue ul li.d-none {
+    display: list-item!important;
+}
+
+.content {
+    width: 100%;
+} 
+
+.contentContainer {
+    padding-top:90px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 100px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    font-size: 16px;
+    background-color: #2A3647;
+    z-index: 2;
+}
+
+.footerNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    color: #CDCDCD;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.navSelectedFooter {
+    background: #091931;
+    color: #fff;
+    padding: 10px;
+}
+
+div.logMenue ul a {
+    text-decoration: none;
+    color: #CDCDCD;
+} 
+
+@media (min-width: 428px) {}
+
+/* For desktop: */
+@media only screen and (min-width: 768px) {
+
+    .centralContainer {
+        display: flex;
+        flex-direction: row;
+        max-width: 1440px;
+    }
+
+    h1 {
+        font-size: 61px;
+      }
+
+    .sidbarNav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #CDCDCD;
+        background-color: #2A3647;
+        position: fixed;
+        width: 200px;
+        height: 100vh;
+        left: 0px;
+        top: 0px;
+        z-index: 10;
+    }
+
+    .logoPosition {
+        display: flex;
+        justify-content: center;
+        margin-top: 57px;
+    }
+
+    .nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: -70px;
+    }
+
+    .navItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 18px 0 18px 40px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .navItem:hover {
+        background: #091931;
+        color: #fff;
+    }
+
+    .iconWidth {
+        max-width: 28px;
+    }
+
+    .infos {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .infoSites {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 18px 0 18px 40px;
+        margin-bottom: 180px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .logoSizeDesk {
+        width: 100px;
+    }
+
+    .logoMobile {
+        display: none;
+    }
+
+    .headerSections {
+
+        padding-left: 110px;
+    }
+
+    .selectedElement {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .helpIcon {
+        display: inline;
+    }
+
+    .headerName {
+        display: inline;
+        padding-left: 168px;
+    }
+
+    .logMenue {
+        height: 55px;
+    }
+
+    div.logMenue ul li {
+        margin-top: -4px;
+        margin-left: -10px;
+        padding-top: 0px;
+    }
+
+    div.logMenue ul li.d-none {
+        display: none !important;
+    }
+
+    .contentContainer {
+        padding: 100px 50px 20px 280px;
+    }
+
+    .content {
+        height: auto;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    div.nav a,
+    div.infos a,
+    div.selectedElement a,
+    div.logMenue ul a {
+        text-decoration: none;
+        color: #CDCDCD;
+    } 
+}
+
+.circleLayoutHeaderIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    margin-right: 35px;
+}
+
+.circleNameHeaderIcon {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.pink {background-color: #FC71FF;}
+.mintgreen {background-color: #1FD7C1;}
+.orange {background-color: #FF8A00;}
+.lightblue {background-color: #8AA4FF;}
+.red {background-color: #FF0000;}
+.applegreen {background-color: #2AD300;}
+.magenta {background-color: #E200BE;}
+.brightblue {background-color: #0038FF;}

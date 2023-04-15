@@ -1,0 +1,416 @@
+.dialogModal {
+    z-index: 101;
+}
+
+.editContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 380px;
+    max-height: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.editHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    border-radius: 20px 20px 0 0;
+    background-color: #2A3647;
+    padding: 0 45px;
+    min-height: 250px;
+    max-height: 350px;
+}
+
+.closeButton {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    top: 8px;
+    right: -19px;
+}
+
+.logoJoinContact {
+    display: none;
+}
+
+.borderBlueEdit {
+    border: solid 1px #2BAAE2;
+    width: 90px;
+    margin-bottom: 30px;
+}
+
+.editContactName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.editFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 0 0 20px 20px;
+    background-color: #fff;
+}
+
+.circlePerson {
+    position: absolute;
+    top: 210px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.personSize {
+    width: 35px;
+    height: auto;
+}
+
+.blackgray {
+    background-color: #D1D1D1;
+}
+
+.subeadNewContact {
+    margin-bottom: 10px;
+}
+
+form.contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 55px 0 30px;
+}
+
+.deleteContactMobile {
+    padding: 0;
+}
+
+.closeButtonDesktop {
+    display: none;
+}
+
+input.contactForms {
+    width: 240px;
+    height: 10px;
+    font-size: 17px;
+    padding: 13px 21px;
+    border-radius: 5px;
+    border: solid 1px #D1D1D1;
+
+}
+
+input.editFormName {
+    background-image: url("../assets/img/contact-name.png");
+    background-repeat: no-repeat;
+    background-position: 255px 8px;
+    background-size: 5%;
+
+}
+
+input.editFormMail {
+    background-image: url("../assets/img/contact-mail.png");
+    background-repeat: no-repeat;
+    background-position: 255px 11px;
+    background-size: 5%;
+}
+
+input.editFormPhone {
+    background-image: url("../assets/img/contact-phone.png");
+    background-repeat: no-repeat;
+    background-position: 255px 10px;
+    background-size: 6%;
+}
+
+.deleteDesktop {
+    display: none;
+}
+
+.buttonsMobile {
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    height: 45px;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.editButtonMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+}
+
+.trashIconButton {
+    background: none;
+}
+
+.trashButtonMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border: none;
+    border-radius: 5px;
+    width: 47px;
+    height: 47px;
+}
+
+button.editButtonSave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    background-color: #2A3647;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    margin-top: 20px;
+    padding: 10px 15px;
+}
+
+button.editButtonCancel {
+    display: none;
+}
+
+button.editButtonCreate {
+    display: flex;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    background-color: #2A3647;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    margin-top: 20px;
+    padding: 10px;
+    width: 175px;
+    background-image: url("../assets/img/contact-check.png");
+    background-repeat: no-repeat;
+    background-position: 146px 15px;
+}
+
+.sucessInfoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.successInfoText {
+    color:#fff;
+    background-color: #2A3647;
+    border-radius: 10px;
+    padding:20px;
+    z-index: 500;
+    width: 230px;
+    background-image: url("../assets/img/close-white.png");
+    background-repeat: no-repeat;
+    background-position: 242px 5px;
+    background-size: 8%;
+}
+
+/* start Modal */
+.dialog-bg {
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+    .editContainer {
+        display: flex;
+        flex-direction: row;
+        min-width: 690px;
+        max-width: 960px;
+        min-height: 500px;
+        max-height: 650px;
+        margin: auto;
+    }
+
+    .buttonsMobile {
+        display: none;
+    }
+
+    .closeButton {
+        display: none !important;
+    }
+
+    .editHeaderContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+        border-radius: 20px 0px 0 20px;
+        background-color: #2A3647;
+        padding: 0 45px;
+        min-height: 500px;
+        max-height: 650px;
+        min-width: 220px;
+        max-width: 320px;
+    }
+
+    .logoJoinContact {
+        display: inherit;
+    }
+
+    .logoJoinContactSize {
+        width: 55px;
+        height: auto;
+    }
+
+    .borderBlueEdit {
+        display: inherit;
+    }
+
+    .imgContact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 160px;
+        max-width: 200px;
+        background-color: #fff;
+        flex: 1;
+    }
+
+    .circlePerson {
+        position: relative;
+        top: -28px;
+        left: 0;
+    }
+
+    .editFormContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 0 20px 20px 0px;
+        background-color: #fff;
+        max-width: 400px;
+        margin-left: -40px;
+        padding: 0 40px;
+        flex: 3;
+    }
+
+    .closeButtonDesktop {
+        display: block;
+        position: relative;
+        top: -48px;
+        right: -150px;
+    }
+
+    .deleteDesktop {
+        display: contents;
+    }
+
+    form.contactForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 0 30px;
+    }
+
+    form.delete {
+        padding: 0;
+    }
+
+    input.contactForms {
+        width: 280px;
+        font-size: 16px;
+    }
+
+    input.editFormName {
+        background-position: 295px 6px;
+        background-size: 5%;
+    }
+
+    input.editFormMail {
+        background-position: 295px 10px;
+        background-size: 5%;
+    }
+
+    input.editFormPhone {
+        background-position: 295px 8px;
+        background-size: 6%;
+    }
+
+    .buttonArrange {
+        display: flex;
+        align-items: center;
+        gap: 45px;
+    }
+
+    button.editButtonCancel {
+        display: flex;
+        color: #2A3647;
+        border-radius: 5px;
+        border: 1px solid #2A3647;
+        background-color: #fff;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+        margin-top: 20px;
+        width: 100px;
+        padding: 10px;
+        background-image: url("../assets/img/contact-cancel.png");
+        background-size: 13%;
+        background-repeat: no-repeat;
+        background-position: 78px 15px;
+    }
+
+    button.editButtonCancel:hover,
+    button.editButtonCancel:active {
+        color: #29ABE2;
+        border: 1px solid #29ABE2;
+        box-shadow: 0px 3px 2px 0px lightgrey;
+        background-image: url("../assets/img/close-blue.png");
+        background-size: 13%;
+    }
+
+    button.editButtonCreate:hover,
+    button.editButtonCreateSelected {
+        background-color: #2BAAE2;
+        box-shadow: 0px 3px 2px 0px lightgrey;
+    }
+
+    button.editButtonSave:hover {
+        background-color: #2BAAE2;
+        box-shadow: 0px 3px 2px 0px lightgrey;
+    }
+
+    button {
+        border: none;
+    }
+
+
+    input[type="submit"],
+    input[type="reset"],
+    input[type="number"],
+    input[type="text"] {
+        color: #000;
+    }
+}

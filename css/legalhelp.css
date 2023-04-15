@@ -1,0 +1,79 @@
+main {
+    margin-bottom: 100px;
+}
+
+
+.centralContainer {
+    max-width: none;
+}
+
+.navSelectedSidebarImpressum {
+    color: #fff;
+    padding: 8px 0 8px 40px;
+    margin-bottom: 10px;
+    background: #091931;
+}
+
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 19px;
+}
+
+
+.imprint h1 {
+    font-weight: 700;
+    font-size: 47px;
+    margin-bottom: 15px;
+}
+
+.languageswitch {
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.languageswitch img {
+    height: 21px;
+}
+
+.languageswitch>span:hover {
+    text-decoration: underline;
+}
+
+.imprint h3 {
+    font-size: 27px;
+    line-height: 100%;
+    margin-bottom: 20px;
+}
+
+.taskexplain {
+    padding-left: 30px;
+    padding-right: 20px;
+    line-height: 150%;
+}
+
+.taskexplain>li>span {
+    margin-left: 5px;
+}
+
+.joinheadline {
+    margin-top: 35px;
+}
+
+@media (min-width: 766px) {
+    .joinheadline {
+        display: none !important;
+    }
+
+    .imprint h1 {
+        font-size: 61px;
+    }
+
+    .imprint h3 {
+        font-size: 36px;
+    }
+}

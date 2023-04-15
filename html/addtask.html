@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - AddTask</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/Logo/Join-logo-white.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/style_temp.css">
+    <link rel="stylesheet" href="../css/addtask.css">
+    <link rel="stylesheet" href="../css/addtaskform.css">
+    <script src="../js/templates.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/addtaskHTML.js"></script>
+    <script src="../js/addtaskform.js"></script>
+    <script src="../js/addtask.js"></script>
+    <script src="../js/validate.js"></script>
+    <script src="../mini_backend.js"></script>
+    <script>setURL('https://gruppenarbeit-join-465.developerakademie.net/smallest_backend_ever-master');</script>
+
+</head>
+
+<body onload="initAddTask()">
+
+    <div class="centralContainer">
+        <!-- Sidebar -->
+        <div w3-include-html="../templates/sidebar.html"> </div>
+
+        <div class="mainContainer">
+            <!-- Header -->
+            <div w3-include-html="../templates/header.html"> </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="contentContainer">
+
+                    <!-- Hier den Seiteninhalt eingeben -->
+                    <div class="joinheadline hide">Kanban Project Management Tool</div>
+                    <h1>Add Task</h1>
+
+                    <!-- Form starts here -->
+
+                    <form id="addTaskForm" onsubmit="logCurrentTask();return false;">
+                        
+
+                        <!-- Title area -->
+                        <div class="item1">
+                        <div class="inputhead">
+                            <div class="inputtitle">Title</div>
+                            <div class="validation-errormsg d-none" id="error-title">This field is required</div>
+                        </div>
+                        <input class="round-border" required type="text" id="title" placeholder="Enter a title"
+                            onkeyup="getTitle(); validateTextField('Title')">
+                        </div>
+
+                        <!-- Description area -->
+                        <div class="item2">
+                        <div class="inputhead">
+                            <div class="inputtitle">Description</div>
+                            <div class="validation-errormsg d-none" id="error-description">This field is required</div>
+                        </div>
+                        <textarea class="round-border inputscroll" rows="5" required type="text" id="description"
+                            placeholder="Enter a Description" onkeyup="getDescription(); validateTextField('Description')"></textarea>
+                        </div>
+                        <!-- Priorities selection -->
+                        <div class="item3">
+                        <div class="inputhead">
+                            <div class="inputtitle">Prio</div>
+                            <div class="validation-errormsg d-none" id="error-prios">This selection is required</div>
+                        </div>
+                        <div class="prio-buttons">
+                            <div class="prio-btn" id="prioBtn1" onclick="setPrio(1)">
+                                <div>Urgent<img id="prioBtn1Icon" class="prio-icon" src="../assets/img/prioBtn1.png">
+                                </div>
+                            </div>
+                            <div class="prio-btn" id="prioBtn2" onclick="setPrio(2)">
+                                <div>Medium<img id="prioBtn2Icon" class="prio-icon" src="../assets/img/prioBtn2.png">
+                                </div>
+                            </div>
+                            <div class="prio-btn" id="prioBtn3" onclick="setPrio(3)">
+                                <div>Low<img id="prioBtn3Icon" class="prio-icon" src="../assets/img/prioBtn3.png">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- Due date selection -->
+                        <div class="item4">
+                        <div class="inputhead">
+                            <div class="inputtitle">Due Date</div>
+                            <div class="validation-errormsg d-none" id="error-date">This field is required</div>
+                        </div>
+                        <input class="round-border" required type="date" id="date" placeholder="" onchange="setDate()" onfocus="validateDateField()">
+                            </div>
+                        <!-- Category selection -->
+                    <div class="item5">
+                        <div class="inputhead">
+                            <div class="inputtitle">Category</div>
+                            <div class="validation-errormsg d-none" id="newcategoryerror"></div>
+                        </div>
+                        
+                        <div id="categories-dropdown" class="dropdown-check-list" tabindex="100">
+                            <div class="anchor round-border" id="categoryAnchor"
+                                onclick="openDropdownList('categories-dropdown')">
+                                <div id="categoryselection">
+                                    <div>Select task category</div><img class="arrow" src="../assets/img/dropdown.png">
+                                </div>
+                                <div class="dropdown-items" id="categorySelect">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="category-input" class="round-border d-none"><input id="category-inputbox" type="text"
+                                value="" placeholder="New category name"
+                                onkeydown="openCloseInput(event, setNewCategoryName, closeNewCategoryInput)">
+                            <div class="category-icons">
+                                <div onclick="closeNewCategoryInput()"><img class="icon" src="../assets/img/close.png">
+                                </div>
+                                <div onclick="setNewCategoryName()"><img class="icon" src="../assets/img/accept.png">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="category-preview-box" class="round-border d-none">
+                            <div id="category-preview"></div>
+                            <div class="category-icons">
+                                <div onclick="closeNewCategoryInput()"><img class="icon" src="../assets/img/close.png">
+                                </div>
+                                <div onclick="addCategory()"><img class="icon" src="../assets/img/accept.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="category-color-btn" class="hide d-none" onclick="openCategoryColorSelector()">Select category color</div>
+
+                        <div id="category-color-selector" class="hide d-none">
+                            <div class="color-selector-item" onclick="setNewCategoryColor('orange')">Orange<div class="dot orange"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('lightblue')">Light blue<div class="dot lightblue"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('red')">Red<div class="dot red"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('applegreen')">Apple green<div class="dot applegreen"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('magenta')">Magenta<div class="dot magenta"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('brightblue')">Bright blue<div class="dot brightblue"></div>
+                            </div>
+                        </div>
+
+                        <div id="category-color-select-desktop" class="d-none hidemobile">
+                            <div class="color-selector-item" onclick="setNewCategoryColor('orange')"><div class="dot orange"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('lightblue')"><div class="dot lightblue"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('red')"><div class="dot red"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('applegreen')"><div class="dot applegreen"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('magenta')"><div class="dot magenta"></div>
+                            </div>
+                            <div class="color-selector-item" onclick="setNewCategoryColor('brightblue')"><div class="dot brightblue"></div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Assignee selection -->
+                        <div class="item6">
+                        <div class="inputhead">
+                            <div class="inputtitle">Assigned to</div>
+                            <div class="validation-errormsg d-none" id="error-assignees">This selection is required</div>
+                        </div>
+                        <div id="assignees-dropdown" class="dropdown-check-list" tabindex="100">
+                            <div class="anchor round-border" id="assigneeAnchor"
+                                onclick="openDropdownList('assignees-dropdown')">
+                                <div id="assigneesdefault">
+                                    <div>Select contacts to assign</div><img class="arrow" src="../assets/img/dropdown.png">
+                                </div>
+                                <div class="dropdown-items" id="assigneeSelect">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="assigneesList" class="d-none"></div>
+                        </div>
+                        <!-- Subtasks section -->
+                        <div class="item7">
+                        <div class="inputhead">
+                            <div class="inputtitle">Subtasks</div>
+                        </div>
+                        <div id="subtask-placeholder" class="round-border" onclick="openSubtaskInput()">
+                            <div>Add new subtask</div>
+                            <div class="subtask-icons">
+                                <div><img class="plus" src="../assets/img/plus.png"></div>
+                            </div>
+                        </div>
+
+                        <div id="subtask-input" class="round-border d-none"><input id="subtask-inputbox" type="text" placeholder="Add subtask description" onkeydown="openCloseInput(event, addNewCurrentSubtask, closeSubtaskInput)" autofocus>
+                            <div class="subtask-icons">
+                                <div onclick="closeSubtaskInput()"><img class="icon" src="../assets/img/close.png">
+                                </div>
+                                <div onclick="addNewCurrentSubtask()"><img class="icon" src="../assets/img/accept.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="subtasks-list">
+                        </div>
+                        </div>
+                        <!-- Submit button -->
+                        <div class="formline hidemobile"></div>
+                    </form>
+
+
+                    <!-- Clear button -->
+                    <div id="formbuttons">
+                        <div class="clear-button" onclick="resetForm()">Clear<img class="btn-icon"
+                            src="../assets/img/close.png"></div><div id="create-btn-btm" class="create-button hidemobile" onclick="getTask()">Create<img class="btn-icon" src="../assets/img/checked.png"></div>
+                        </div>
+
+                    <div id="popupMsg" class="d-none"></div>
+
+                    <!-- Container close -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div w3-include-html="../templates/footer.html"> </div>
+    </div>
+
+</body>
+
+</html>

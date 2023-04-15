@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join-Summary</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/Logo/Join-logo-white.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/style_temp.css">
+    <link rel="stylesheet" href="../css/summary.css">
+    
+    <script src="../js/script.js"></script>
+    <script src="../js/summary.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../mini_backend.js"></script>
+    <script>setURL('https://gruppenarbeit-join-465.developerakademie.net/smallest_backend_ever-master')</script>
+</head>
+
+<body onload="init_summary()">
+
+    <div class="centralContainer">
+        <!-- Sidebar -->
+        <div w3-include-html="../templates/sidebar.html"> </div>
+
+        <div class="mainContainer">
+            <!-- Header -->
+            <div w3-include-html="../templates/header.html"> </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="contentContainer">
+
+                    <!-- Hier den Seiteninhalt eingeben -->
+                    <div class="greet-animation d-none" id="greet-animation-mobile"><span id="greet-time-mobile"></span><span id="greeting-name-mobile"></span></div>
+
+                    <div class="summary-content d-none" id="summary-content">
+                        <p id="summary-content-head-helper">Kanban Project Managment Tool</p>
+                        <div class="summary-content-header">
+                            <h1>Summary</h1>
+                            <p>Everything in a nutshell!</p>
+                            <div class="underline"></div>
+                        </div>
+                        
+                        
+                        <div class="summary-content-area">
+
+                            <div class="summary-content-area-top">
+                                <a href="./board.html" class="link-to">
+                                    <div class="box-top">
+                                        <span id="summary-board-counter">0</span>
+                                        <p>Tasks in Board</p>
+                                    </div>
+                                </a>
+                                <a href="./board.html" class="link-to">
+                                    <div class="box-top">
+                                        <span id="summary-progress-counter">0</span>
+                                        <p>Tasks in Progress</p>
+                                    </div>
+                                </a>
+                                <a href="./board.html" class="link-to">
+                                    <div class="box-top">
+                                        <span id="summary-feedback-counter">0</span>
+                                        <p>Awaiting feedback</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="summary-content-area-center-center">
+                                <a href="./board.html" class="link-to">
+                                    <div class="summary-content-area-center">
+                                        <div class="summary-content-area-center-left">
+                                            <img src="../assets/img/Group 7urgent60x60.png">
+                                            <div>
+                                                <span id="summary-urgent-counter">0</span>
+                                                <p>Urgent</p>
+                                            </div>
+                                        </div>
+                                        <div class="summary-content-area-center-right">
+                                            <span id="summary-date-deadline">October 16, 2022</span>
+                                            <p>Upcoming Deadline</p>
+                                        </div>      
+                                    </div>
+                                </a>
+
+                                <div class="greet">
+                                    <span id="greet-time">Good morning,</span> 
+                                    <span id="greet-name"></span>
+                                </div>
+                            </div>
+                            
+
+
+                            <div class="summary-content-area-bottom">
+                                <a href="./board.html" class="link-to">
+                                    <div class="box-bottom">
+                                        <div class="box-bottom-img-left"></div>
+                                        <div>
+                                            <span id="summary-todo-counter">0</span>
+                                            <p>To-do</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="./board.html" class="link-to">
+                                    <div class="box-bottom">
+                                        <div class="box-bottom-img-right"></div>
+                                        <div>
+                                            <span id="summary-done-counter">0</span>
+                                            <p>Done</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                   
+
+                </div>
+            </div>
+        </div>
+        <div w3-include-html="../templates/footer.html"> </div>
+    </div>
+
+</body>
+
+</html>

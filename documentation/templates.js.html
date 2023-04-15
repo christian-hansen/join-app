@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: templates.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: templates.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * If the login menu has the class 'd-none', remove it. Otherwise, add it
+ */
+function subMenu() {
+    let menu = document.getElementById('logMenue');
+    
+    if (menu.classList.contains('d-none')) {
+        menu.classList.remove('d-none');
+    } else {
+        menu.classList.add('d-none');
+    }
+}
+
+/**
+ * It changes the location of the window to the contacts.html page, and adds the class
+ * 'navSelectedSidebar' to the element with the id 'linkContacts'
+ */
+function selectContacts() {
+    window.location.href="../html/contacts.html";
+    document.getElementById('linkContacts').classList.add('navSelectedSidebar');
+    document.getElementById('imgContacts').src="../assets/img/contact-active.png";
+
+    document.getElementById('linkDatenschutz').classList.remove('navSelectedSidebar');
+    document.getElementById('linkImpressum').classList.remove('navSelectedSidebar');
+    document.getElementById('linkTasks').classList.remove('navSelectedSidebar');
+    document.getElementById('linkBoard').classList.remove('navSelectedSidebar');
+    document.getElementById('linkSummary').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgTasks').src="../assets/img/add-task.png";
+    document.getElementById('imgBoard').src="../assets/img/board.png";
+    document.getElementById('imgSummary').src="../assets/img/summary.png";
+}
+
+/**
+ * It changes the location of the window to the summary.html page, and adds the class
+ * 'navSelectedSidebar' to the element with the id 'linkSummary'
+ */
+function selectSummary() {
+    window.location.href="../html/summary.html";
+    document.getElementById('linkSummary').classList.add('navSelectedSidebar');
+    document.getElementById('imgSummary').src="../assets/img/summary-active.png";
+
+    document.getElementById('linkDatenschutz').classList.remove('navSelectedSidebar');
+    document.getElementById('linkImpressum').classList.remove('navSelectedSidebar');
+    document.getElementById('linkTasks').classList.remove('navSelectedSidebar');
+    document.getElementById('linkBoard').classList.remove('navSelectedSidebar');
+    document.getElementById('linkContacts').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgTasks').src="../assets/img/add-task.png";
+    document.getElementById('imgBoard').src="../assets/img/board.png";
+    document.getElementById('imgContacts').src="../assets/img/contacts.png";
+}
+
+/**
+ * It changes the location of the window to the board.html page, and it changes the class of the
+ * linkBoard element to navSelectedSidebar
+ */
+function selectBoard() {
+    window.location.href="../html/board.html";
+    document.getElementById('linkBoard').classList.add('navSelectedSidebar');
+    document.getElementById('imgBoard').src="../assets/img/board-active.png";
+
+    document.getElementById('linkDatenschutz').classList.remove('navSelectedSidebar');
+    document.getElementById('linkImpressum').classList.remove('navSelectedSidebar');
+    document.getElementById('linkTasks').classList.remove('navSelectedSidebar');
+    document.getElementById('linkSummary').classList.remove('navSelectedSidebar');
+    document.getElementById('linkContacts').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgTasks').src="../assets/img/add-task.png";
+    document.getElementById('imgSummary').src="../assets/img/summary.png";
+    document.getElementById('imgContacts').src="../assets/img/contacts.png";    
+}
+
+/**
+ * It changes the URL to the addtask.html page, and changes the image and class of the selected sidebar
+ * item
+ */
+function selectTasks() {
+    window.location.href="../html/addtask.html";
+    document.getElementById('linkTasks').classList.add('navSelectedSidebar');
+    document.getElementById('imgTasks').src="../assets/img/add-task-active.png";
+
+    document.getElementById('linkDatenschutz').classList.remove('navSelectedSidebar');
+    document.getElementById('linkImpressum').classList.remove('navSelectedSidebar');
+    document.getElementById('linkBoard').classList.remove('navSelectedSidebar');
+    document.getElementById('linkSummary').classList.remove('navSelectedSidebar');
+    document.getElementById('linkContacts').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgBoard').src="../assets/img/add-task.png";
+    document.getElementById('imgSummary').src="../assets/img/summary.png";
+    document.getElementById('imgContacts').src="../assets/img/contacts.png";    
+}
+
+/**
+ * It changes the location of the window to the legal notice page and adds the class
+ * 'navSelectedSidebar' to the link 'linkImpressum'
+ */
+function selectLegalNotice() {
+    window.location.href="../html/legal_notice.html";
+    document.getElementById('linkImpressum').classList.add('navSelectedSidebar');
+
+    document.getElementById('linkDatenschutz').classList.remove('navSelectedSidebar');
+    document.getElementById('linkTasks').classList.remove('navSelectedSidebar');
+    document.getElementById('linkBoard').classList.remove('navSelectedSidebar');
+    document.getElementById('linkSummary').classList.remove('navSelectedSidebar');
+    document.getElementById('linkContacts').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgTasks').src="../assets/img/add-task.png";
+    document.getElementById('imgBoard').src="../assets/img/add-task.png";
+    document.getElementById('imgSummary').src="../assets/img/summary.png";
+    document.getElementById('imgContacts').src="../assets/img/contacts.png";    
+}
+
+/**
+ * It changes the location of the window to the datenschutz.html page and adds the class
+ * navSelectedSidebar to the linkDatenschutz element
+ */
+function selectDatenschutz() {
+    window.location.href="../html/datenschutz.html";
+    document.getElementById('linkDatenschutz').classList.add('navSelectedSidebar');
+
+    document.getElementById('linkImpressum').classList.remove('navSelectedSidebar');
+    document.getElementById('linkTasks').classList.remove('navSelectedSidebar');
+    document.getElementById('linkBoard').classList.remove('navSelectedSidebar');
+    document.getElementById('linkSummary').classList.remove('navSelectedSidebar');
+    document.getElementById('linkContacts').classList.remove('navSelectedSidebar');
+
+    document.getElementById('imgTasks').src="../assets/img/add-task.png";
+    document.getElementById('imgBoard').src="../assets/img/add-task.png";
+    document.getElementById('imgSummary').src="../assets/img/summary.png";
+    document.getElementById('imgContacts').src="../assets/img/contacts.png";    
+}
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateScrolling">activateScrolling</a></li><li><a href="global.html#addCategory">addCategory</a></li><li><a href="global.html#addNewCategoryHTML">addNewCategoryHTML</a></li><li><a href="global.html#addNewCurrentSubtask">addNewCurrentSubtask</a></li><li><a href="global.html#addNewSubTaskHTML">addNewSubTaskHTML</a></li><li><a href="global.html#addTaskOnBoard">addTaskOnBoard</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#alphabetLettersTemp">alphabetLettersTemp</a></li><li><a href="global.html#assignIconsGreaterHTML">assignIconsGreaterHTML</a></li><li><a href="global.html#assignIconsHTML">assignIconsHTML</a></li><li><a href="global.html#assignViewIcons">assignViewIcons</a></li><li><a href="global.html#assigneeListItemHTML">assigneeListItemHTML</a></li><li><a href="global.html#assigneeTaskviewHTML">assigneeTaskviewHTML</a></li><li><a href="global.html#backToList">backToList</a></li><li><a href="global.html#cancelTaskDeletion">cancelTaskDeletion</a></li><li><a href="global.html#categoryListItemHTML">categoryListItemHTML</a></li><li><a href="global.html#categorySelectionHTML">categorySelectionHTML</a></li><li><a href="global.html#changeIcon">changeIcon</a></li><li><a href="global.html#changePw">changePw</a></li><li><a href="global.html#changeTaskStatus">changeTaskStatus</a></li><li><a href="global.html#checkBox">checkBox</a></li><li><a href="global.html#checkForCheckbox">checkForCheckbox</a></li><li><a href="global.html#checkNewCategoryNameAvailability">checkNewCategoryNameAvailability</a></li><li><a href="global.html#clearBoardColumns">clearBoardColumns</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#closeMoveMenu">closeMoveMenu</a></li><li><a href="global.html#closeNewCategoryInput">closeNewCategoryInput</a></li><li><a href="global.html#closePopupNotFound">closePopupNotFound</a></li><li><a href="global.html#closePopupSignUpExist">closePopupSignUpExist</a></li><li><a href="global.html#closeSubtaskInput">closeSubtaskInput</a></li><li><a href="global.html#closeTaskview">closeTaskview</a></li><li><a href="global.html#compareStrings">compareStrings</a></li><li><a href="global.html#contactDetailsBox">contactDetailsBox</a></li><li><a href="global.html#contactListBox">contactListBox</a></li><li><a href="global.html#contactShowDetails">contactShowDetails</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDateFormatted">currentDateFormatted</a></li><li><a href="global.html#deactivateScrolling">deactivateScrolling</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubTask">deleteSubTask</a></li><li><a href="global.html#deleteSubTaskEdit">deleteSubTaskEdit</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#displayCreateBtnHeader">displayCreateBtnHeader</a></li><li><a href="global.html#displayCurrentTaskInEditForm">displayCurrentTaskInEditForm</a></li><li><a href="global.html#displayPopupMsg">displayPopupMsg</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editBtnContainerHTML">editBtnContainerHTML</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#findTask">findTask</a></li><li><a href="global.html#findTaskForLoop">findTaskForLoop</a></li><li><a href="global.html#findTaskIf">findTaskIf</a></li><li><a href="global.html#focusInput">focusInput</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getAFTasks">getAFTasks</a></li><li><a href="global.html#getAssigneeObjIndex">getAssigneeObjIndex</a></li><li><a href="global.html#getDescription">getDescription</a></li><li><a href="global.html#getDoneTasks">getDoneTasks</a></li><li><a href="global.html#getIPTasks">getIPTasks</a></li><li><a href="global.html#getIndexOfUserInCurrentAssignees">getIndexOfUserInCurrentAssignees</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getPrioText">getPrioText</a></li><li><a href="global.html#getTask">getTask</a></li><li><a href="global.html#getTitle">getTitle</a></li><li><a href="global.html#getToDoTasks">getToDoTasks</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#goToBoard">goToBoard</a></li><li><a href="global.html#greetAnimationMobile">greetAnimationMobile</a></li><li><a href="global.html#greetTime">greetTime</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#handleKeqUpCreate">handleKeqUpCreate</a></li><li><a href="global.html#handleKeqUpMail">handleKeqUpMail</a></li><li><a href="global.html#handleKeqUpName">handleKeqUpName</a></li><li><a href="global.html#handleKeqUpPhone">handleKeqUpPhone</a></li><li><a href="global.html#hideCreateBtnHeader">hideCreateBtnHeader</a></li><li><a href="global.html#hideDeleteMsgContainer">hideDeleteMsgContainer</a></li><li><a href="global.html#hidePopupMsg">hidePopupMsg</a></li><li><a href="global.html#highlightDragArea">highlightDragArea</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initForm">initForm</a></li><li><a href="global.html#init_login">init_login</a></li><li><a href="global.html#init_summary">init_summary</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#markSelectedContact">markSelectedContact</a></li><li><a href="global.html#modalEditContact">modalEditContact</a></li><li><a href="global.html#modalNewContact">modalNewContact</a></li><li><a href="global.html#moveMenuHTML">moveMenuHTML</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newCategoryNameErrorMsg">newCategoryNameErrorMsg</a></li><li><a href="global.html#newContact">newContact</a></li><li><a href="global.html#newContactRender">newContactRender</a></li><li><a href="global.html#newDateFormat">newDateFormat</a></li><li><a href="global.html#nonCheckSubsNew">nonCheckSubsNew</a></li><li><a href="global.html#okBtnContainerHTML">okBtnContainerHTML</a></li><li><a href="global.html#openAddTaskForm">openAddTaskForm</a></li><li><a href="global.html#openCategoryColorSelector">openCategoryColorSelector</a></li><li><a href="global.html#openCloseInput">openCloseInput</a></li><li><a href="global.html#openDeleteForm">openDeleteForm</a></li><li><a href="global.html#openDropdownList">openDropdownList</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openMoveMenu">openMoveMenu</a></li><li><a href="global.html#openNewCategoryColorBtn">openNewCategoryColorBtn</a></li><li><a href="global.html#openNewCategoryInput">openNewCategoryInput</a></li><li><a href="global.html#openSubtaskInput">openSubtaskInput</a></li><li><a href="global.html#openTaskSubMenu">openTaskSubMenu</a></li><li><a href="global.html#openTaskview">openTaskview</a></li><li><a href="global.html#prioTaskviewHTML">prioTaskviewHTML</a></li><li><a href="global.html#rememberClear">rememberClear</a></li><li><a href="global.html#rememberMe">rememberMe</a></li><li><a href="global.html#rememberload">rememberload</a></li><li><a href="global.html#remembersave">remembersave</a></li><li><a href="global.html#remove">remove</a></li><li><a href="global.html#removehighlightDragArea">removehighlightDragArea</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#renderAssignees">renderAssignees</a></li><li><a href="global.html#renderCategoriesToForm">renderCategoriesToForm</a></li><li><a href="global.html#renderCategory">renderCategory</a></li><li><a href="global.html#renderContactDetails">renderContactDetails</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContactListItems">renderContactListItems</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsToForm">renderContactsToForm</a></li><li><a href="global.html#renderCurrentAssigneesList">renderCurrentAssigneesList</a></li><li><a href="global.html#renderDeleteBtns">renderDeleteBtns</a></li><li><a href="global.html#renderDueDate">renderDueDate</a></li><li><a href="global.html#renderEditBtnContainer">renderEditBtnContainer</a></li><li><a href="global.html#renderEditFormElements">renderEditFormElements</a></li><li><a href="global.html#renderMoveMenu">renderMoveMenu</a></li><li><a href="global.html#renderNewCategory">renderNewCategory</a></li><li><a href="global.html#renderOkBtnContainer">renderOkBtnContainer</a></li><li><a href="global.html#renderPrio">renderPrio</a></li><li><a href="global.html#renderSelectedDate">renderSelectedDate</a></li><li><a href="global.html#renderSubTasksList">renderSubTasksList</a></li><li><a href="global.html#renderSubTasksTaskview">renderSubTasksTaskview</a></li><li><a href="global.html#renderSubtaskDeletedMsg">renderSubtaskDeletedMsg</a></li><li><a href="global.html#renderTaskAddedMsg">renderTaskAddedMsg</a></li><li><a href="global.html#renderTaskDeletedMsg">renderTaskDeletedMsg</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#renderTaskTitle">renderTaskTitle</a></li><li><a href="global.html#renderTaskToBoardHTML">renderTaskToBoardHTML</a></li><li><a href="global.html#renderTaskUpdatedMsg">renderTaskUpdatedMsg</a></li><li><a href="global.html#renderTasksToBoard">renderTasksToBoard</a></li><li><a href="global.html#renderTaskview">renderTaskview</a></li><li><a href="global.html#renderTaskviewError">renderTaskviewError</a></li><li><a href="global.html#renderTodayDueDate">renderTodayDueDate</a></li><li><a href="global.html#replacePrioIcon">replacePrioIcon</a></li><li><a href="global.html#resetCurrentAssignees">resetCurrentAssignees</a></li><li><a href="global.html#resetCurrentCategories">resetCurrentCategories</a></li><li><a href="global.html#resetCurrentSubtasks">resetCurrentSubtasks</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#resetFormHTML">resetFormHTML</a></li><li><a href="global.html#resetFormValidation">resetFormValidation</a></li><li><a href="global.html#resetNewCategory">resetNewCategory</a></li><li><a href="global.html#resetPrio">resetPrio</a></li><li><a href="global.html#resetPrioIcon">resetPrioIcon</a></li><li><a href="global.html#resetVariables">resetVariables</a></li><li><a href="global.html#save">save</a></li><li><a href="global.html#saveContactData">saveContactData</a></li><li><a href="global.html#screenWidthCheck">screenWidthCheck</a></li><li><a href="global.html#secondForLoopForAssignViewIcons">secondForLoopForAssignViewIcons</a></li><li><a href="global.html#secondForLoopForCheckSubs">secondForLoopForCheckSubs</a></li><li><a href="global.html#selectBoard">selectBoard</a></li><li><a href="global.html#selectContacts">selectContacts</a></li><li><a href="global.html#selectDatenschutz">selectDatenschutz</a></li><li><a href="global.html#selectGuestIcon">selectGuestIcon</a></li><li><a href="global.html#selectLegalNotice">selectLegalNotice</a></li><li><a href="global.html#selectPrioBtn">selectPrioBtn</a></li><li><a href="global.html#selectSummary">selectSummary</a></li><li><a href="global.html#selectTasks">selectTasks</a></li><li><a href="global.html#setAssignee">setAssignee</a></li><li><a href="global.html#setCategory">setCategory</a></li><li><a href="global.html#setCurrentTaskForEditForm">setCurrentTaskForEditForm</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setNewCategoryColor">setNewCategoryColor</a></li><li><a href="global.html#setNewCategoryName">setNewCategoryName</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#showLegalDE">showLegalDE</a></li><li><a href="global.html#showLegalEN">showLegalEN</a></li><li><a href="global.html#showPopUpChangedPw">showPopUpChangedPw</a></li><li><a href="global.html#showPopUpPw">showPopUpPw</a></li><li><a href="global.html#showPopUpSignUpExist">showPopUpSignUpExist</a></li><li><a href="global.html#showPopupNotFound">showPopupNotFound</a></li><li><a href="global.html#showPrioToTaskViewBoard">showPrioToTaskViewBoard</a></li><li><a href="global.html#showPw">showPw</a></li><li><a href="global.html#showScroll">showScroll</a></li><li><a href="global.html#showSuccess">showSuccess</a></li><li><a href="global.html#showSuccessBlock">showSuccessBlock</a></li><li><a href="global.html#showSumTasks">showSumTasks</a></li><li><a href="global.html#showSummaryOverlay">showSummaryOverlay</a></li><li><a href="global.html#sortDates">sortDates</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#subMenu">subMenu</a></li><li><a href="global.html#subTaskListTaskViewHTML">subTaskListTaskViewHTML</a></li><li><a href="global.html#toggleSubtaskCheckbox">toggleSubtaskCheckbox</a></li><li><a href="global.html#toggleSubtaskCheckboxEdit">toggleSubtaskCheckboxEdit</a></li><li><a href="global.html#uncheckBox">uncheckBox</a></li><li><a href="global.html#updateTask">updateTask</a></li><li><a href="global.html#validateAssigneeField">validateAssigneeField</a></li><li><a href="global.html#validateCategoryField">validateCategoryField</a></li><li><a href="global.html#validateDateField">validateDateField</a></li><li><a href="global.html#validateInput">validateInput</a></li><li><a href="global.html#validateNewCategoryCreation">validateNewCategoryCreation</a></li><li><a href="global.html#validatePriosField">validatePriosField</a></li><li><a href="global.html#validateTask">validateTask</a></li><li><a href="global.html#validateTextField">validateTextField</a></li><li><a href="global.html#wrongPw">wrongPw</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 14:36:20 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

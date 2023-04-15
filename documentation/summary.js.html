@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: summary.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: summary.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let urgentTasks = [];
+let currentUserUrgentTasks = [];
+let dates = [];
+let sortedDates = [];
+let todoTasks = [];
+let feedback = [];
+let InProgress = [];
+let dones = [];
+
+/**
+ * It's a function that waits for the init() function to finish, then it gets the prios and tasks from
+ * the backend, then it renders the page.
+ */
+async function init_summary() {
+    await init();
+    prios = JSON.parse(backend.getItem('prios')) || [];
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    render();
+}
+
+/**
+ * The render function calls the greeting function, the greetAnimationMobile function, and the
+ * showSummaryOverlay function.
+ */
+function render() {
+    greeting();
+    greetAnimationMobile();
+    showSummaryOverlay();
+}
+
+/**
+ * It takes the user's name from the activeUser array and displays it on the page.
+ * 
+ */
+function greeting() {
+    greetTime();
+    let greet = document.getElementById('greet-name');
+    let greetMobile = document.getElementById('greeting-name-mobile');
+    for (let i = 0; i &lt; activeUser.length; i++) {
+        const element = activeUser[i].userName;
+        greet.innerHTML = element;
+        greetMobile.innerHTML = element;
+    }
+}
+
+/**
+ * It gets the time of day and displays a greeting based on the time of day.
+ */
+function greetTime() {
+    let greetTime = document.getElementById('greet-time');
+    let greetTimeMobile = document.getElementById('greet-time-mobile');
+    let date = new Date();
+    let time = date.getHours();
+    if (time &lt; 11 &amp;&amp; time > 0) {
+        greetTime.innerHTML = 'Good Morning,'
+        greetTimeMobile.innerHTML = 'Good Morning,'
+    } else if (time >= 11 &amp;&amp; time &lt; 17) {
+        greetTime.innerHTML = 'Hello,'
+        greetTimeMobile.innerHTML = 'Hello,'
+    } else {
+        greetTime.innerHTML = 'Good Evening,'
+        greetTimeMobile.innerHTML = 'Good Evening,'
+    }
+}
+
+/**
+ * It removes the class 'd-none' from the element with the id 'greet-animation-mobile' and adds the
+ * class 'd-none' to the same element after 2 seconds.
+ */
+function greetAnimationMobile() {
+    let count = activeUser[0].animationCounter;
+    let greet = document.getElementById('greet-animation-mobile');
+    let summary = document.getElementById('summary-content');
+    if (count == 0) {
+        greet.classList.remove('d-none');
+        setTimeout(() => greet.classList.add("d-none"), 2000);
+        summary.classList.remove('d-none');
+    } else { summary.classList.remove('d-none'); }
+    activeUser[0].animationCounter = 1;
+    save();
+}
+
+/**
+ * "showSummaryOverlay()" is a function that calls other functions to get data from a database and
+ * display it on a webpage.
+ */
+function showSummaryOverlay() {
+    showSumTasks();
+    getIPTasks();
+    getAFTasks();
+    getUrgentTasks();
+    sortDates();
+    getToDoTasks();
+    getDoneTasks();
+}
+
+/**
+ * It loops through the tasks array, and if the status of the task is not 4, it pushes the task to the
+ * tasksactive array, and then sets the innerHTML of the tasksinBoard element to the length of the
+ * tasksactive array.
+ */
+function showSumTasks() {
+    let tasksactive = [];
+    let tasksinBoard = document.getElementById('summary-board-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        if (tasks[i].status != 4) {
+            tasksactive.push(tasks);
+            tasksinBoard.innerHTML = tasksactive.length;
+        }
+    }
+}
+
+/**
+ * It loops through the tasks array, checks if the status is not 4, and if the priority is 1, it pushes
+ * the task to the urgentTasks array and updates the counter.
+ */
+function getUrgentTasks() {
+    let prio = document.getElementById('summary-urgent-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        const element = tasks[i].prio;
+        if (tasks[i].status != 4) {
+            if (element == 1) {
+                urgentTasks.push(tasks[i]);
+                prio.innerHTML = urgentTasks.length;
+            }
+        }
+    }
+}
+
+/**
+ * It takes the due dates from the urgentTasks array, pushes them into the dates array, sorts the dates
+ * array, and then formats the dates array into a new format.
+ * @returns The date is being returned in the format of YYYY-MM-DD.
+ */
+function sortDates() {
+    let deadline = document.getElementById('summary-date-deadline');
+    for (let i = 0; i &lt; urgentTasks.length; i++) {
+        const element = urgentTasks[i].dueDate;
+        dates.push(element)
+    }
+    dates.sort((a, b) => {
+        const num1 = Number(a.split("-").map((num) => (`000${num}`).slice(-2)).join(""));
+        const num2 = Number(b.split("-").map((num) => (`000${num}`).slice(-2)).join(""));
+        return num1 - num2;
+    });
+    if(dates == '') {
+        currentDateFormatted();        
+        return false
+    } else {
+        newDateFormat();
+    }
+}
+
+/**
+ * It takes the first date in the array, splits it into an array of three elements, then uses the first
+ * element as the year, the second as the month, and the third as the day. Then it creates a new date
+ * object with the new date format, and uses the toLocaleString method to get the month and year in
+ * long format. Then it replaces the innerHTML of the deadline element with the new date format.
+ */
+function newDateFormat() {
+    let deadline = document.getElementById('summary-date-deadline');
+    let dateSplit = dates[0].split("-");
+    let newDate = new Date(`${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`);
+    let monthL = new Date(newDate).toLocaleString('en-US', { month: 'long' });
+    let year = new Date(newDate).toLocaleString('en-US', { year: 'numeric' });
+    deadline.innerHTML = monthL + ` ${dateSplit[2]}, ` + year;
+}
+
+/**
+ * It takes the current date and formats it to the following format: "January 1, 2020"
+ */
+function currentDateFormatted() {
+    let deadline = document.getElementById('summary-date-deadline');
+    let newDate = new Date();
+    let monthL = new Date(newDate).toLocaleString('en-US', { month: 'long' });
+    let year = new Date(newDate).toLocaleString('en-US', { year: 'numeric' });
+    let day = new Date(newDate).toLocaleString('en-US', { day: 'numeric' });
+    deadline.innerHTML = ` ${monthL} ${day}, ${year} `;
+}
+
+/**
+ * It loops through the tasks array, and if the status of the task is not 4, it pushes the task to the
+ * todoTasks array, and updates the innerHTML of the todo element.
+ */
+function getToDoTasks() {
+    let todo = document.getElementById('summary-todo-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        const element = tasks[i].status;
+        if (element != 4) {
+            if (element == 0) {
+                todoTasks.push(tasks[i]);
+                todo.innerHTML = todoTasks.length;
+            }
+        }
+    }
+}
+
+/**
+ * This function loops through the tasks array and pushes the tasks with a status of 1 to the
+ * InProgress array and then displays the length of the InProgress array in the HTML element with the
+ * id of summary-progress-counter.
+ */
+function getIPTasks() {
+    let ip = document.getElementById('summary-progress-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        const element = tasks[i].status;
+        if (element != 4) {
+            if (element == 1) {
+                InProgress.push(tasks[i]);
+                ip.innerHTML = InProgress.length;
+            }
+        }
+    }
+}
+
+/**
+ * It loops through the tasks array and pushes the tasks with a status of 2 into the feedback array. 
+ * Then it updates the innerHTML of the summary-feedback-counter element with the length of the
+ * feedback array.
+ */
+function getAFTasks() {
+    let af = document.getElementById('summary-feedback-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        const element = tasks[i].status;
+        if (element != 4) {
+            if (element == 2) {
+                feedback.push(tasks[i]);
+                af.innerHTML = feedback.length;
+            }
+        }
+    }
+}
+
+/**
+ * It loops through the tasks array and pushes the tasks with a status of 3 into the dones array. 
+ * Then it updates the innerHTML of the summary-done-counter element with the length of the
+ * feedback array.
+ */
+function getDoneTasks() {
+    let doned = document.getElementById('summary-done-counter');
+    for (let i = 0; i &lt; tasks.length; i++) {
+        const element = tasks[i].status;
+        if (element != 4) {
+            if (element == 3) {
+                dones.push(tasks[i]);
+                doned.innerHTML = dones.length;
+            }
+        }
+    }
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateScrolling">activateScrolling</a></li><li><a href="global.html#addCategory">addCategory</a></li><li><a href="global.html#addNewCategoryHTML">addNewCategoryHTML</a></li><li><a href="global.html#addNewCurrentSubtask">addNewCurrentSubtask</a></li><li><a href="global.html#addNewSubTaskHTML">addNewSubTaskHTML</a></li><li><a href="global.html#addTaskOnBoard">addTaskOnBoard</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#alphabetLettersTemp">alphabetLettersTemp</a></li><li><a href="global.html#assignIconsGreaterHTML">assignIconsGreaterHTML</a></li><li><a href="global.html#assignIconsHTML">assignIconsHTML</a></li><li><a href="global.html#assignViewIcons">assignViewIcons</a></li><li><a href="global.html#assigneeListItemHTML">assigneeListItemHTML</a></li><li><a href="global.html#assigneeTaskviewHTML">assigneeTaskviewHTML</a></li><li><a href="global.html#backToList">backToList</a></li><li><a href="global.html#cancelTaskDeletion">cancelTaskDeletion</a></li><li><a href="global.html#categoryListItemHTML">categoryListItemHTML</a></li><li><a href="global.html#categorySelectionHTML">categorySelectionHTML</a></li><li><a href="global.html#changeIcon">changeIcon</a></li><li><a href="global.html#changePw">changePw</a></li><li><a href="global.html#changeTaskStatus">changeTaskStatus</a></li><li><a href="global.html#checkBox">checkBox</a></li><li><a href="global.html#checkForCheckbox">checkForCheckbox</a></li><li><a href="global.html#checkNewCategoryNameAvailability">checkNewCategoryNameAvailability</a></li><li><a href="global.html#clearBoardColumns">clearBoardColumns</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#closeMoveMenu">closeMoveMenu</a></li><li><a href="global.html#closeNewCategoryInput">closeNewCategoryInput</a></li><li><a href="global.html#closePopupNotFound">closePopupNotFound</a></li><li><a href="global.html#closePopupSignUpExist">closePopupSignUpExist</a></li><li><a href="global.html#closeSubtaskInput">closeSubtaskInput</a></li><li><a href="global.html#closeTaskview">closeTaskview</a></li><li><a href="global.html#compareStrings">compareStrings</a></li><li><a href="global.html#contactDetailsBox">contactDetailsBox</a></li><li><a href="global.html#contactListBox">contactListBox</a></li><li><a href="global.html#contactShowDetails">contactShowDetails</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDateFormatted">currentDateFormatted</a></li><li><a href="global.html#deactivateScrolling">deactivateScrolling</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubTask">deleteSubTask</a></li><li><a href="global.html#deleteSubTaskEdit">deleteSubTaskEdit</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#displayCreateBtnHeader">displayCreateBtnHeader</a></li><li><a href="global.html#displayCurrentTaskInEditForm">displayCurrentTaskInEditForm</a></li><li><a href="global.html#displayPopupMsg">displayPopupMsg</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editBtnContainerHTML">editBtnContainerHTML</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#findTask">findTask</a></li><li><a href="global.html#findTaskForLoop">findTaskForLoop</a></li><li><a href="global.html#findTaskIf">findTaskIf</a></li><li><a href="global.html#focusInput">focusInput</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getAFTasks">getAFTasks</a></li><li><a href="global.html#getAssigneeObjIndex">getAssigneeObjIndex</a></li><li><a href="global.html#getDescription">getDescription</a></li><li><a href="global.html#getDoneTasks">getDoneTasks</a></li><li><a href="global.html#getIPTasks">getIPTasks</a></li><li><a href="global.html#getIndexOfUserInCurrentAssignees">getIndexOfUserInCurrentAssignees</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getPrioText">getPrioText</a></li><li><a href="global.html#getTask">getTask</a></li><li><a href="global.html#getTitle">getTitle</a></li><li><a href="global.html#getToDoTasks">getToDoTasks</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#goToBoard">goToBoard</a></li><li><a href="global.html#greetAnimationMobile">greetAnimationMobile</a></li><li><a href="global.html#greetTime">greetTime</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#handleKeqUpCreate">handleKeqUpCreate</a></li><li><a href="global.html#handleKeqUpMail">handleKeqUpMail</a></li><li><a href="global.html#handleKeqUpName">handleKeqUpName</a></li><li><a href="global.html#handleKeqUpPhone">handleKeqUpPhone</a></li><li><a href="global.html#hideCreateBtnHeader">hideCreateBtnHeader</a></li><li><a href="global.html#hideDeleteMsgContainer">hideDeleteMsgContainer</a></li><li><a href="global.html#hidePopupMsg">hidePopupMsg</a></li><li><a href="global.html#highlightDragArea">highlightDragArea</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initForm">initForm</a></li><li><a href="global.html#init_login">init_login</a></li><li><a href="global.html#init_summary">init_summary</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#markSelectedContact">markSelectedContact</a></li><li><a href="global.html#modalEditContact">modalEditContact</a></li><li><a href="global.html#modalNewContact">modalNewContact</a></li><li><a href="global.html#moveMenuHTML">moveMenuHTML</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newCategoryNameErrorMsg">newCategoryNameErrorMsg</a></li><li><a href="global.html#newContact">newContact</a></li><li><a href="global.html#newContactRender">newContactRender</a></li><li><a href="global.html#newDateFormat">newDateFormat</a></li><li><a href="global.html#nonCheckSubsNew">nonCheckSubsNew</a></li><li><a href="global.html#okBtnContainerHTML">okBtnContainerHTML</a></li><li><a href="global.html#openAddTaskForm">openAddTaskForm</a></li><li><a href="global.html#openCategoryColorSelector">openCategoryColorSelector</a></li><li><a href="global.html#openCloseInput">openCloseInput</a></li><li><a href="global.html#openDeleteForm">openDeleteForm</a></li><li><a href="global.html#openDropdownList">openDropdownList</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openMoveMenu">openMoveMenu</a></li><li><a href="global.html#openNewCategoryColorBtn">openNewCategoryColorBtn</a></li><li><a href="global.html#openNewCategoryInput">openNewCategoryInput</a></li><li><a href="global.html#openSubtaskInput">openSubtaskInput</a></li><li><a href="global.html#openTaskSubMenu">openTaskSubMenu</a></li><li><a href="global.html#openTaskview">openTaskview</a></li><li><a href="global.html#prioTaskviewHTML">prioTaskviewHTML</a></li><li><a href="global.html#rememberClear">rememberClear</a></li><li><a href="global.html#rememberMe">rememberMe</a></li><li><a href="global.html#rememberload">rememberload</a></li><li><a href="global.html#remembersave">remembersave</a></li><li><a href="global.html#remove">remove</a></li><li><a href="global.html#removehighlightDragArea">removehighlightDragArea</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#renderAssignees">renderAssignees</a></li><li><a href="global.html#renderCategoriesToForm">renderCategoriesToForm</a></li><li><a href="global.html#renderCategory">renderCategory</a></li><li><a href="global.html#renderContactDetails">renderContactDetails</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContactListItems">renderContactListItems</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsToForm">renderContactsToForm</a></li><li><a href="global.html#renderCurrentAssigneesList">renderCurrentAssigneesList</a></li><li><a href="global.html#renderDeleteBtns">renderDeleteBtns</a></li><li><a href="global.html#renderDueDate">renderDueDate</a></li><li><a href="global.html#renderEditBtnContainer">renderEditBtnContainer</a></li><li><a href="global.html#renderEditFormElements">renderEditFormElements</a></li><li><a href="global.html#renderMoveMenu">renderMoveMenu</a></li><li><a href="global.html#renderNewCategory">renderNewCategory</a></li><li><a href="global.html#renderOkBtnContainer">renderOkBtnContainer</a></li><li><a href="global.html#renderPrio">renderPrio</a></li><li><a href="global.html#renderSelectedDate">renderSelectedDate</a></li><li><a href="global.html#renderSubTasksList">renderSubTasksList</a></li><li><a href="global.html#renderSubTasksTaskview">renderSubTasksTaskview</a></li><li><a href="global.html#renderSubtaskDeletedMsg">renderSubtaskDeletedMsg</a></li><li><a href="global.html#renderTaskAddedMsg">renderTaskAddedMsg</a></li><li><a href="global.html#renderTaskDeletedMsg">renderTaskDeletedMsg</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#renderTaskTitle">renderTaskTitle</a></li><li><a href="global.html#renderTaskToBoardHTML">renderTaskToBoardHTML</a></li><li><a href="global.html#renderTaskUpdatedMsg">renderTaskUpdatedMsg</a></li><li><a href="global.html#renderTasksToBoard">renderTasksToBoard</a></li><li><a href="global.html#renderTaskview">renderTaskview</a></li><li><a href="global.html#renderTaskviewError">renderTaskviewError</a></li><li><a href="global.html#renderTodayDueDate">renderTodayDueDate</a></li><li><a href="global.html#replacePrioIcon">replacePrioIcon</a></li><li><a href="global.html#resetCurrentAssignees">resetCurrentAssignees</a></li><li><a href="global.html#resetCurrentCategories">resetCurrentCategories</a></li><li><a href="global.html#resetCurrentSubtasks">resetCurrentSubtasks</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#resetFormHTML">resetFormHTML</a></li><li><a href="global.html#resetFormValidation">resetFormValidation</a></li><li><a href="global.html#resetNewCategory">resetNewCategory</a></li><li><a href="global.html#resetPrio">resetPrio</a></li><li><a href="global.html#resetPrioIcon">resetPrioIcon</a></li><li><a href="global.html#resetVariables">resetVariables</a></li><li><a href="global.html#save">save</a></li><li><a href="global.html#saveContactData">saveContactData</a></li><li><a href="global.html#screenWidthCheck">screenWidthCheck</a></li><li><a href="global.html#secondForLoopForAssignViewIcons">secondForLoopForAssignViewIcons</a></li><li><a href="global.html#secondForLoopForCheckSubs">secondForLoopForCheckSubs</a></li><li><a href="global.html#selectBoard">selectBoard</a></li><li><a href="global.html#selectContacts">selectContacts</a></li><li><a href="global.html#selectDatenschutz">selectDatenschutz</a></li><li><a href="global.html#selectGuestIcon">selectGuestIcon</a></li><li><a href="global.html#selectLegalNotice">selectLegalNotice</a></li><li><a href="global.html#selectPrioBtn">selectPrioBtn</a></li><li><a href="global.html#selectSummary">selectSummary</a></li><li><a href="global.html#selectTasks">selectTasks</a></li><li><a href="global.html#setAssignee">setAssignee</a></li><li><a href="global.html#setCategory">setCategory</a></li><li><a href="global.html#setCurrentTaskForEditForm">setCurrentTaskForEditForm</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setNewCategoryColor">setNewCategoryColor</a></li><li><a href="global.html#setNewCategoryName">setNewCategoryName</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#showLegalDE">showLegalDE</a></li><li><a href="global.html#showLegalEN">showLegalEN</a></li><li><a href="global.html#showPopUpChangedPw">showPopUpChangedPw</a></li><li><a href="global.html#showPopUpPw">showPopUpPw</a></li><li><a href="global.html#showPopUpSignUpExist">showPopUpSignUpExist</a></li><li><a href="global.html#showPopupNotFound">showPopupNotFound</a></li><li><a href="global.html#showPrioToTaskViewBoard">showPrioToTaskViewBoard</a></li><li><a href="global.html#showPw">showPw</a></li><li><a href="global.html#showScroll">showScroll</a></li><li><a href="global.html#showSuccess">showSuccess</a></li><li><a href="global.html#showSuccessBlock">showSuccessBlock</a></li><li><a href="global.html#showSumTasks">showSumTasks</a></li><li><a href="global.html#showSummaryOverlay">showSummaryOverlay</a></li><li><a href="global.html#sortDates">sortDates</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#subMenu">subMenu</a></li><li><a href="global.html#subTaskListTaskViewHTML">subTaskListTaskViewHTML</a></li><li><a href="global.html#toggleSubtaskCheckbox">toggleSubtaskCheckbox</a></li><li><a href="global.html#toggleSubtaskCheckboxEdit">toggleSubtaskCheckboxEdit</a></li><li><a href="global.html#uncheckBox">uncheckBox</a></li><li><a href="global.html#updateTask">updateTask</a></li><li><a href="global.html#validateAssigneeField">validateAssigneeField</a></li><li><a href="global.html#validateCategoryField">validateCategoryField</a></li><li><a href="global.html#validateDateField">validateDateField</a></li><li><a href="global.html#validateInput">validateInput</a></li><li><a href="global.html#validateNewCategoryCreation">validateNewCategoryCreation</a></li><li><a href="global.html#validatePriosField">validatePriosField</a></li><li><a href="global.html#validateTask">validateTask</a></li><li><a href="global.html#validateTextField">validateTextField</a></li><li><a href="global.html#wrongPw">wrongPw</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 14:36:20 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

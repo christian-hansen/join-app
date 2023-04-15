@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Help</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/Logo/Join-logo-white.png">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/style_temp.css">
+    <link rel="stylesheet" href="../css/help.css">
+    <script src="../js/script.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../mini_backend.js"></script> 
+    <script>setURL('https://gruppenarbeit-join-465.developerakademie.net/smallest_backend_ever-master');</script>
+</head>
+
+<body onload="init()">
+
+    <div class="centralContainer">
+        <!-- Sidebar -->
+        <div w3-include-html="../templates/sidebar.html"> </div>
+
+        <div class="mainContainer">
+            <!-- Header -->
+            <div w3-include-html="../templates/header.html"> </div>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="contentContainer">
+
+                    <!-- Hier den Seiteninhalt eingeben -->
+                    <div class="joinheadline">Kanban Project Management Tool</div>
+                    <main><h1>What is JOIN?</h1>
+  
+        <div>JOIN is a simple Customer Relationship Management (CRM) tool. Registered users will have a shared contact list and a shared Kanban board that includes all created tasks assigned to specific contacts.</div>
+
+        <h3>Summary</h3>
+        <p>This is JOIN's entry screen. You will find anything related to the tasks on the Kanban board at a glance. In the middle section you will get urgent tasks with its first upcoming deadline displayed.</p>
+
+        <h3>Board</h3>
+        <p>The Kanban board is a tool for workflow visualization, designed to help you bring clarity to your work process and enhance efficiency by limiting work in progress. With this new level of transparency, you will quickly identify problematic work stages, and by improving those, your team will soon work more efficiently.</p>
+        <p>On the board you will find all created tasks separated into four sections. They are flagged as "To Do", "In progress", "Awaiting feedback" and "Done". To change the task state you can drag and drop a task card to another section. You can filter the tasks displayed on the board by searching for its specific task title or its description in the search field on top.</p>
+        <p>By clicking on a task card you will get a more detailed view that also includes the due date and each subtask's details. You will also have the option to edit the task. </p>
+        
+        <h3>Add Task</h3>
+        <p>On this page you can create a new task. You need to enter a title, a description and a due date. Also you need to select a category, a priority and at least one contact. Subtasks are optional.</p>
+
+        <ul class="taskexplain">
+            <li><b>Title:</b><span>A short task title</span></li>
+            <li><b>Description:</b><span>A detailed description of the task</span></li>
+            <li><b>Category:</b><span>Select or add a new category. When adding a new category you need to choose a name that is not taken yet and select a color.</span></li>
+            <li><b>Assigned to:</b><span>Choose at least one contact to assign the task</span></li>
+            <li><b>Due date:</b><span>Set a due date for the task</span></li>
+            <li><b>Priority:</b><span>Select the priority from low to urgent</span></li>
+            <li><b>Subtasks:</b><span>Add subtasks to break the task down in single steps. The progress of subtask will also be shown on the board.</span></li>
+        </ul>
+
+        <h3>Contacts</h3>
+        <p>Here you will find an alphabetically sorted list of all contacts. For each contact detailed information can be stored. The contact data can also be edited and task related to the specific contacts can also directly be created from this page.</p>
+    </main>
+        
+        <div w3-include-html="../templates/footer.html"> </div>
+                </div></div></div></div>
+</body>
+
+</html>

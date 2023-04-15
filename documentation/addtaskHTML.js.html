@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: addtaskHTML.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: addtaskHTML.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * It takes a category object and returns a string of HTML that represents a category list item
+ * @param category - the category object
+ * @returns A string of HTML.
+ */
+function categoryListItemHTML(category) {
+  return `&lt;div class="category-item" onclick="setCategory('${category.categoryName}', '${category.categoryColor}')">&lt;div>${category.categoryName}&lt;/div>&lt;div class="dot ${category.categoryColor}"&lt;/div>&lt;/div>`;
+}
+
+
+/**
+ * It takes in a category name and a category color, and returns a string of HTML that contains the
+ * category name and a colored dot.
+ * @param categoryName - The name of the category
+ * @param categoryColor - The color of the dot that will be displayed next to the category name.
+ * @returns A string of HTML.
+ */
+function categorySelectionHTML(categoryName, categoryColor) {
+  return `&lt;div>${categoryName}&lt;div class="dot ${categoryColor}"&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains a div that contains an assignee name for the assignees list. 
+ * @param contact - the contact object
+ * @returns A string of HTML.
+ */
+function assigneeListItemHTML(contact) {
+  return `&lt;div id="assignee-${contact.id}" onclick="setAssignee('${contact.contactName}', '${contact.color}', ${contact.id})">${contact.contactName}&lt;img id="assigneebox${contact.id}"src="../assets/img/checkbutton-inactive.png">&lt;/div>
+  `;
+}
+
+
+/**
+ * It returns a string of HTML that contains a div displaying the "New category" creation option.
+ * @returns A string of HTML.
+ */
+function addNewCategoryHTML() {
+  return `&lt;div class="category-item" onclick="openNewCategoryInput()">&lt;div>New Category&lt;/div>&lt;/div>`;
+}
+
+
+/**
+ * When the user clicks on a priority icon, replace the icon with a white version of the icon.
+ * @param id - the id of the element that was clicked
+ */
+function replacePrioIcon(id) {
+  let iconElement = document.getElementById(id + "Icon");
+  iconElement.src = `../assets/img/${id}w.png`;
+}
+
+
+/**
+ * Reset the priority icon to the default icon.
+ * @param id - the id of the element that was clicked
+ */
+function resetPrioIcon(id) {
+  let iconElement = document.getElementById(id + "Icon");
+  iconElement.src = `../assets/img/${id}.png`;
+}
+
+
+/**
+ * It takes a subtask object and an index number, and returns a string of HTML that represents that
+ * subtask.
+ * @param subtask - the subtask object
+ * @param i - the index of the subtask in the subtasks array
+ * @returns A string of HTML code.
+ */
+function addNewSubTaskHTML(subtask, i) {
+  if (subtask.checked) {
+    return `&lt;div class="subtask" id="subtask-${i}">&lt;img id="subtaskbox${i}" src="../assets/img/checkbox-checked.png" onclick="toggleSubtaskCheckbox(${i})">&lt;span>${subtask.description}&lt;/span>&lt;img class="icon" src="../assets/img/trash.png" onclick="deleteSubTask(${i})">&lt;/div>`;
+  } else {
+  return `&lt;div class="subtask" id="subtask-${i}">&lt;img id="subtaskbox${i}" src="../assets/img/checkbutton-inactive.png" onclick="toggleSubtaskCheckbox(${i})">&lt;span>${subtask.description}&lt;/span>&lt;img class="icon" src="../assets/img/trash.png" onclick="deleteSubTask(${i})">&lt;/div>`;}
+}
+
+
+/**
+ * It takes a string and a number, and returns a string.
+ * @param prioText - The text of the priority button
+ * @param prio - 1, 2, 3, 4, 5
+ * @returns a string with the prioText and the image.
+ */
+function prioTaskviewHTML(prioText, prio) {
+  return `${prioText}&lt;img src="../assets/img/prioBtn${prio}w.png">&lt;/div>`;
+}
+
+
+/**
+ * It takes in three parameters to display an assignee in the taskview.
+ * @param assignee - The name of the assignee
+ * @param assigneeInitials - The initials of the assignee
+ * @param color - the backgroundcolor of the initials
+ * @returns A string of HTML.
+ */
+function assigneeTaskviewHTML(assignee, assigneeInitials, color) {
+  return `&lt;div class="assignee">&lt;div class="intials ${color}">${assigneeInitials}&lt;/div>${assignee}&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML code that is used to display a subtask in the task view either with a checked checkbox or with an unchecked checkbox.
+ * @param subtask - the subtask object
+ * @param i - the index of the subtask in the array
+ * @param selectedTask - the index of the task in the tasks array
+ * @returns A string of HTML code.
+ */
+function subTaskListTaskViewHTML(subtask, i, selectedTask) {
+  if (subtask.checked) {
+    return `&lt;div class="subtask" id="subtask-${i}">&lt;img id="subtaskbox${i}" src="../assets/img/checkbox-checked.png" onclick="toggleSubtaskCheckboxEdit(${i}, ${selectedTask})">&lt;span>${subtask.description}&lt;/span>&lt;img class="icon" src="../assets/img/trash.png" onclick="deleteSubTaskEdit(${i}, ${selectedTask})">&lt;/div>`;
+  } else {
+  return `&lt;div class="subtask" id="subtask-${i}">&lt;img id="subtaskbox${i}" src="../assets/img/checkbutton-inactive.png" onclick="toggleSubtaskCheckboxEdit(${i}, ${selectedTask})">&lt;span>${subtask.description}&lt;/span>&lt;img class="icon" src="../assets/img/trash.png" onclick="deleteSubTaskEdit(${i}, ${selectedTask})">&lt;/div>`;}
+}
+
+
+/**
+ * It returns a string of HTML that contains the elements of the by default hidden "taskmenu" and a Edit button that is displayed by default.
+ * @param i - the index of the task in the tasks array
+ * @returns A string of HTML.
+ */
+function editBtnContainerHTML(i) {
+  return `&lt;div id="movemenu" class="d-none">&lt;/div>
+&lt;div id="taskmenu" class="d-none">
+  &lt;div class="buttonwhite" onclick="openMoveMenu(${i})">Move&lt;/div>
+  &lt;div class="buttonwhite" onclick="openEditForm(${i})">Edit&lt;/div>
+  &lt;div class="buttonwhite" onclick="openDeleteForm(${i})">Delete&lt;/div>  
+  &lt;div class="buttonwhite" onclick="closeTaskview()">To Board&lt;/div>
+&lt;/div>
+&lt;div id="edit-btn" class="edit-btn" onclick="openTaskSubMenu()">&lt;img src="../assets/img/edit.png" alt="">&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains an eleement of the Move task menu. It contains a div with an id, class, and onclick event.
+ * @param taskid - the index of the task in the tasks array
+ * @param moveId - the id of the div
+ * @param className - the class name of the div
+ * @param statusName - The name of the status that the task is being moved to.
+ * @param i - the index of the element in the move menu that is required for the onclick function.
+ * @returns A string of HTML.
+ */
+function moveMenuHTML(taskid, moveId, className, statusName, i) {
+  return `&lt;div id="${moveId}" class="${className}" onclick="changeTaskStatus(${taskid}, ${i})">${statusName}&lt;/div>`
+}
+
+
+/**
+ * It returns a string of HTML that contains "Delete" and "Ok" buttons in the Edit Task form.
+ * @returns A string.
+ */
+function okBtnContainerHTML(i) {
+  return `&lt;div class="delete-btn" onclick="openDeleteForm(${i})">Delete&lt;img class="btn-icon"
+  src="../assets/img/close.png">&lt;/div>&lt;div class="ok-button" onclick="updateTask(${i})">OK&lt;img class="btn-icon" src="../assets/img/checked.png">&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains the "Task added" message.
+ * @returns A string.
+ */
+function renderTaskAddedMsg() {
+  return `&lt;div class="message">Task added to board&lt;img src="../assets/img/board.png">&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains the "Task updated" message.
+ * @returns A string.
+ */
+function renderTaskUpdatedMsg() {
+  return `&lt;div class="message">Task updated&lt;img src="../assets/img/board.png">&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains the "Task deleted" message.
+ * @returns A string.
+ */
+function renderTaskDeletedMsg() {
+  return `&lt;div class="message">Task deleted&lt;img src="../assets/img/board.png">&lt;/div>`;
+}
+
+
+/**
+ * It returns a string of HTML that contains the "Subtask deleted" message.
+ * @returns A string.
+ */
+function renderSubtaskDeletedMsg() {
+  return `&lt;div class="message">Subtask deleted&lt;img src="../assets/img/trash-icon-white.png">&lt;/div>`;
+}
+
+
+/**
+ * It resets the categoryselection dropdown head to its default value.
+ */
+function resetCurrentCategories() {
+  document.getElementById("categoryselection").innerHTML = `&lt;div>Select Task Category&lt;/div>&lt;img class="arrow" src="../assets/img/dropdown.png">`;
+}
+
+
+/**
+ * It takes a task object and an index, and returns a string of HTML that represents the task
+ * @param task - the task object
+ * @param i - the index of the task in the array
+ * @returns A string of HTML.
+ */
+function renderTaskToBoardHTML(task, i) {
+  return `&lt;div class="boardtask" ondragstart="startDragging(${task.id})" draggable="true" onclick="openTaskview(${i})">
+              &lt;div class="boardtask-taskcategory ${task.category.categoryColor}">
+                  ${task.category.categoryName}
+              &lt;/div>
+              &lt;div style="width: 100%;">&lt;b>&lt;div class="boardtask-task-titel">${task.title}&lt;/div>&lt;/b>&lt;/div>
+              &lt;div style="width: 100%;">
+                  &lt;p class="boardtask-description">${task.description}&lt;/p>
+                  &lt;div class="progressbar-subtasks-container" id="progressbar-subtasks-container${i}">
+                    &lt;progress id="prog${i}" max="${task.subtasks.length}" value="">&lt;/progress>
+                    &lt;div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                      &lt;span class="subtask-progress-span" id="truth${i}">&lt;/span>&lt;span class="subtask-progress-span">/${task.subtasks.length} Done&lt;/span>
+                    &lt;/div>
+                  &lt;/div>
+                  &lt;div style="display: flex; margin-top: 23px;">
+                      &lt;div id="assign-view-icons${i}" class="assign-view-icons">&lt;/div>
+                      &lt;div id="assign-view-icons-greater${i}" class="assign-view-icons">&lt;/div>
+                      &lt;div style="width: 100%; display: flex; justify-content: flex-end;">
+                        &lt;div class="task-view-icon-priority">&lt;img id="task-view-icon-priority${i}" src="">&lt;/div>
+                      &lt;/div>
+                  &lt;/div>
+              &lt;/div>
+          &lt;/div>`;
+}
+
+
+/**
+ * It renders an error message to the taskview page if the task could not be found.
+ */
+function renderTaskviewError() {
+  document.getElementById('taskview').innerHTML = `The task could not be found.&lt;br>Please go back to the &lt;a href="../html/board.html">Board&lt;/a>.`;
+}
+
+
+/**
+ * It returns a string of HTML that contains two buttons, one that cancels the deletion of a task, and one that deletes the task.
+ * @param i - the index of the task in the array
+ * @returns A string of HTML.
+ */
+function renderDeleteBtns(i) {
+  return `&lt;div>Are you sure you want to delete this task?&lt;/div>
+  &lt;div class="deletemsgbtns">&lt;div onclick="cancelTaskDeletion()">No&lt;/div>&lt;div class="alerthover" onclick="deleteTask(${i})">Yes&lt;/div>&lt;/div>`
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateScrolling">activateScrolling</a></li><li><a href="global.html#addCategory">addCategory</a></li><li><a href="global.html#addNewCategoryHTML">addNewCategoryHTML</a></li><li><a href="global.html#addNewCurrentSubtask">addNewCurrentSubtask</a></li><li><a href="global.html#addNewSubTaskHTML">addNewSubTaskHTML</a></li><li><a href="global.html#addTaskOnBoard">addTaskOnBoard</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#alphabetLettersTemp">alphabetLettersTemp</a></li><li><a href="global.html#assignIconsGreaterHTML">assignIconsGreaterHTML</a></li><li><a href="global.html#assignIconsHTML">assignIconsHTML</a></li><li><a href="global.html#assignViewIcons">assignViewIcons</a></li><li><a href="global.html#assigneeListItemHTML">assigneeListItemHTML</a></li><li><a href="global.html#assigneeTaskviewHTML">assigneeTaskviewHTML</a></li><li><a href="global.html#backToList">backToList</a></li><li><a href="global.html#cancelTaskDeletion">cancelTaskDeletion</a></li><li><a href="global.html#categoryListItemHTML">categoryListItemHTML</a></li><li><a href="global.html#categorySelectionHTML">categorySelectionHTML</a></li><li><a href="global.html#changeIcon">changeIcon</a></li><li><a href="global.html#changePw">changePw</a></li><li><a href="global.html#changeTaskStatus">changeTaskStatus</a></li><li><a href="global.html#checkBox">checkBox</a></li><li><a href="global.html#checkForCheckbox">checkForCheckbox</a></li><li><a href="global.html#checkNewCategoryNameAvailability">checkNewCategoryNameAvailability</a></li><li><a href="global.html#clearBoardColumns">clearBoardColumns</a></li><li><a href="global.html#clearInput">clearInput</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#closeMoveMenu">closeMoveMenu</a></li><li><a href="global.html#closeNewCategoryInput">closeNewCategoryInput</a></li><li><a href="global.html#closePopupNotFound">closePopupNotFound</a></li><li><a href="global.html#closePopupSignUpExist">closePopupSignUpExist</a></li><li><a href="global.html#closeSubtaskInput">closeSubtaskInput</a></li><li><a href="global.html#closeTaskview">closeTaskview</a></li><li><a href="global.html#compareStrings">compareStrings</a></li><li><a href="global.html#contactDetailsBox">contactDetailsBox</a></li><li><a href="global.html#contactListBox">contactListBox</a></li><li><a href="global.html#contactShowDetails">contactShowDetails</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#currentDateFormatted">currentDateFormatted</a></li><li><a href="global.html#deactivateScrolling">deactivateScrolling</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubTask">deleteSubTask</a></li><li><a href="global.html#deleteSubTaskEdit">deleteSubTaskEdit</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#displayCreateBtnHeader">displayCreateBtnHeader</a></li><li><a href="global.html#displayCurrentTaskInEditForm">displayCurrentTaskInEditForm</a></li><li><a href="global.html#displayPopupMsg">displayPopupMsg</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editBtnContainerHTML">editBtnContainerHTML</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#findTask">findTask</a></li><li><a href="global.html#findTaskForLoop">findTaskForLoop</a></li><li><a href="global.html#findTaskIf">findTaskIf</a></li><li><a href="global.html#focusInput">focusInput</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#getAFTasks">getAFTasks</a></li><li><a href="global.html#getAssigneeObjIndex">getAssigneeObjIndex</a></li><li><a href="global.html#getDescription">getDescription</a></li><li><a href="global.html#getDoneTasks">getDoneTasks</a></li><li><a href="global.html#getIPTasks">getIPTasks</a></li><li><a href="global.html#getIndexOfUserInCurrentAssignees">getIndexOfUserInCurrentAssignees</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getPrioText">getPrioText</a></li><li><a href="global.html#getTask">getTask</a></li><li><a href="global.html#getTitle">getTitle</a></li><li><a href="global.html#getToDoTasks">getToDoTasks</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#goToBoard">goToBoard</a></li><li><a href="global.html#greetAnimationMobile">greetAnimationMobile</a></li><li><a href="global.html#greetTime">greetTime</a></li><li><a href="global.html#greeting">greeting</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#handleKeqUpCreate">handleKeqUpCreate</a></li><li><a href="global.html#handleKeqUpMail">handleKeqUpMail</a></li><li><a href="global.html#handleKeqUpName">handleKeqUpName</a></li><li><a href="global.html#handleKeqUpPhone">handleKeqUpPhone</a></li><li><a href="global.html#hideCreateBtnHeader">hideCreateBtnHeader</a></li><li><a href="global.html#hideDeleteMsgContainer">hideDeleteMsgContainer</a></li><li><a href="global.html#hidePopupMsg">hidePopupMsg</a></li><li><a href="global.html#highlightDragArea">highlightDragArea</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#initForm">initForm</a></li><li><a href="global.html#init_login">init_login</a></li><li><a href="global.html#init_summary">init_summary</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#markSelectedContact">markSelectedContact</a></li><li><a href="global.html#modalEditContact">modalEditContact</a></li><li><a href="global.html#modalNewContact">modalNewContact</a></li><li><a href="global.html#moveMenuHTML">moveMenuHTML</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newCategoryNameErrorMsg">newCategoryNameErrorMsg</a></li><li><a href="global.html#newContact">newContact</a></li><li><a href="global.html#newContactRender">newContactRender</a></li><li><a href="global.html#newDateFormat">newDateFormat</a></li><li><a href="global.html#nonCheckSubsNew">nonCheckSubsNew</a></li><li><a href="global.html#okBtnContainerHTML">okBtnContainerHTML</a></li><li><a href="global.html#openAddTaskForm">openAddTaskForm</a></li><li><a href="global.html#openCategoryColorSelector">openCategoryColorSelector</a></li><li><a href="global.html#openCloseInput">openCloseInput</a></li><li><a href="global.html#openDeleteForm">openDeleteForm</a></li><li><a href="global.html#openDropdownList">openDropdownList</a></li><li><a href="global.html#openEditContact">openEditContact</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openMoveMenu">openMoveMenu</a></li><li><a href="global.html#openNewCategoryColorBtn">openNewCategoryColorBtn</a></li><li><a href="global.html#openNewCategoryInput">openNewCategoryInput</a></li><li><a href="global.html#openSubtaskInput">openSubtaskInput</a></li><li><a href="global.html#openTaskSubMenu">openTaskSubMenu</a></li><li><a href="global.html#openTaskview">openTaskview</a></li><li><a href="global.html#prioTaskviewHTML">prioTaskviewHTML</a></li><li><a href="global.html#rememberClear">rememberClear</a></li><li><a href="global.html#rememberMe">rememberMe</a></li><li><a href="global.html#rememberload">rememberload</a></li><li><a href="global.html#remembersave">remembersave</a></li><li><a href="global.html#remove">remove</a></li><li><a href="global.html#removehighlightDragArea">removehighlightDragArea</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#renderAssignees">renderAssignees</a></li><li><a href="global.html#renderCategoriesToForm">renderCategoriesToForm</a></li><li><a href="global.html#renderCategory">renderCategory</a></li><li><a href="global.html#renderContactDetails">renderContactDetails</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContactListItems">renderContactListItems</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsToForm">renderContactsToForm</a></li><li><a href="global.html#renderCurrentAssigneesList">renderCurrentAssigneesList</a></li><li><a href="global.html#renderDeleteBtns">renderDeleteBtns</a></li><li><a href="global.html#renderDueDate">renderDueDate</a></li><li><a href="global.html#renderEditBtnContainer">renderEditBtnContainer</a></li><li><a href="global.html#renderEditFormElements">renderEditFormElements</a></li><li><a href="global.html#renderMoveMenu">renderMoveMenu</a></li><li><a href="global.html#renderNewCategory">renderNewCategory</a></li><li><a href="global.html#renderOkBtnContainer">renderOkBtnContainer</a></li><li><a href="global.html#renderPrio">renderPrio</a></li><li><a href="global.html#renderSelectedDate">renderSelectedDate</a></li><li><a href="global.html#renderSubTasksList">renderSubTasksList</a></li><li><a href="global.html#renderSubTasksTaskview">renderSubTasksTaskview</a></li><li><a href="global.html#renderSubtaskDeletedMsg">renderSubtaskDeletedMsg</a></li><li><a href="global.html#renderTaskAddedMsg">renderTaskAddedMsg</a></li><li><a href="global.html#renderTaskDeletedMsg">renderTaskDeletedMsg</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#renderTaskTitle">renderTaskTitle</a></li><li><a href="global.html#renderTaskToBoardHTML">renderTaskToBoardHTML</a></li><li><a href="global.html#renderTaskUpdatedMsg">renderTaskUpdatedMsg</a></li><li><a href="global.html#renderTasksToBoard">renderTasksToBoard</a></li><li><a href="global.html#renderTaskview">renderTaskview</a></li><li><a href="global.html#renderTaskviewError">renderTaskviewError</a></li><li><a href="global.html#renderTodayDueDate">renderTodayDueDate</a></li><li><a href="global.html#replacePrioIcon">replacePrioIcon</a></li><li><a href="global.html#resetCurrentAssignees">resetCurrentAssignees</a></li><li><a href="global.html#resetCurrentCategories">resetCurrentCategories</a></li><li><a href="global.html#resetCurrentSubtasks">resetCurrentSubtasks</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#resetFormHTML">resetFormHTML</a></li><li><a href="global.html#resetFormValidation">resetFormValidation</a></li><li><a href="global.html#resetNewCategory">resetNewCategory</a></li><li><a href="global.html#resetPrio">resetPrio</a></li><li><a href="global.html#resetPrioIcon">resetPrioIcon</a></li><li><a href="global.html#resetVariables">resetVariables</a></li><li><a href="global.html#save">save</a></li><li><a href="global.html#saveContactData">saveContactData</a></li><li><a href="global.html#screenWidthCheck">screenWidthCheck</a></li><li><a href="global.html#secondForLoopForAssignViewIcons">secondForLoopForAssignViewIcons</a></li><li><a href="global.html#secondForLoopForCheckSubs">secondForLoopForCheckSubs</a></li><li><a href="global.html#selectBoard">selectBoard</a></li><li><a href="global.html#selectContacts">selectContacts</a></li><li><a href="global.html#selectDatenschutz">selectDatenschutz</a></li><li><a href="global.html#selectGuestIcon">selectGuestIcon</a></li><li><a href="global.html#selectLegalNotice">selectLegalNotice</a></li><li><a href="global.html#selectPrioBtn">selectPrioBtn</a></li><li><a href="global.html#selectSummary">selectSummary</a></li><li><a href="global.html#selectTasks">selectTasks</a></li><li><a href="global.html#setAssignee">setAssignee</a></li><li><a href="global.html#setCategory">setCategory</a></li><li><a href="global.html#setCurrentTaskForEditForm">setCurrentTaskForEditForm</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setNewCategoryColor">setNewCategoryColor</a></li><li><a href="global.html#setNewCategoryName">setNewCategoryName</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#showLegalDE">showLegalDE</a></li><li><a href="global.html#showLegalEN">showLegalEN</a></li><li><a href="global.html#showPopUpChangedPw">showPopUpChangedPw</a></li><li><a href="global.html#showPopUpPw">showPopUpPw</a></li><li><a href="global.html#showPopUpSignUpExist">showPopUpSignUpExist</a></li><li><a href="global.html#showPopupNotFound">showPopupNotFound</a></li><li><a href="global.html#showPrioToTaskViewBoard">showPrioToTaskViewBoard</a></li><li><a href="global.html#showPw">showPw</a></li><li><a href="global.html#showScroll">showScroll</a></li><li><a href="global.html#showSuccess">showSuccess</a></li><li><a href="global.html#showSuccessBlock">showSuccessBlock</a></li><li><a href="global.html#showSumTasks">showSumTasks</a></li><li><a href="global.html#showSummaryOverlay">showSummaryOverlay</a></li><li><a href="global.html#sortDates">sortDates</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#subMenu">subMenu</a></li><li><a href="global.html#subTaskListTaskViewHTML">subTaskListTaskViewHTML</a></li><li><a href="global.html#toggleSubtaskCheckbox">toggleSubtaskCheckbox</a></li><li><a href="global.html#toggleSubtaskCheckboxEdit">toggleSubtaskCheckboxEdit</a></li><li><a href="global.html#uncheckBox">uncheckBox</a></li><li><a href="global.html#updateTask">updateTask</a></li><li><a href="global.html#validateAssigneeField">validateAssigneeField</a></li><li><a href="global.html#validateCategoryField">validateCategoryField</a></li><li><a href="global.html#validateDateField">validateDateField</a></li><li><a href="global.html#validateInput">validateInput</a></li><li><a href="global.html#validateNewCategoryCreation">validateNewCategoryCreation</a></li><li><a href="global.html#validatePriosField">validatePriosField</a></li><li><a href="global.html#validateTask">validateTask</a></li><li><a href="global.html#validateTextField">validateTextField</a></li><li><a href="global.html#wrongPw">wrongPw</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Mar 27 2023 14:36:20 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
