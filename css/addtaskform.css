@@ -638,6 +638,10 @@
         padding-right: 15px;
         font-size: 21px;
       }
+
+      .category-item .dot {
+        margin-bottom: 7px;
+      }
       
       .item1, .item2, .item3, .item4, .item5, .item6, .item7 {
         min-width: 275px;

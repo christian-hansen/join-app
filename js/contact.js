@@ -34,6 +34,7 @@ async function renderContacts() {
         return compareStrings(a.contactName, b.contactName);
     })
     renderContactList();
+    contactShowDetails(0);
 }
 
 
@@ -50,12 +51,15 @@ function renderContactList() {
 
     for (let i = 0; i < contacts.length; i++) {
         let singleContact = contacts[i];
+
+        if (singleContact.isActive) {
+
         let firstLetter = singleContact['contactName'].charAt(0).toUpperCase();
 
         if (!alphabet.includes(firstLetter)) {
             alphabet.push(firstLetter);
         }
-    }
+    }}
     renderContactListItems(contactListItem);
 }
 
@@ -73,6 +77,7 @@ function renderContactListItems(contactListItem) {
 
         for (let i = 0; i < contacts.length; i++) {
             let singleContact = contacts[i];
+            if (singleContact.isActive) {
             let firstLetters = singleContact['contactName'];
             let firstLetter = firstLetters[0].toUpperCase();
             let letters = firstLetters.split(/\s/).reduce((response, word) => response += word.slice(0, 1), '');
@@ -81,6 +86,7 @@ function renderContactListItems(contactListItem) {
             if (firstLetter === alphabetLetter) {
                 contactListItem.innerHTML += contactListBox(i, singleContact, acronym);
             }
+        }
         }
     }
 }
@@ -134,7 +140,7 @@ function newContact() {
         'contactName': fullName.value,
         'email': mail.value,
         'phone': mobile.value,
-        'tasks': [],
+        'isActive': true,
         'color': `${randomColor}`
     };
     newContactRender(singleContact);
@@ -170,8 +176,8 @@ async function editContact(i) {
  * @param i - The index of the contact to delete.
  */
 async function deleteContact(i) {
-    contacts.splice(i, 1);
-    document.getElementById('singleData').innerHTML = '';
+    contacts[i].isActive = false;
+    await backend.setItem('contacts', JSON.stringify(contacts));
     renderContactList();
 }
 
@@ -201,6 +207,7 @@ function backToList() {
  */
 function markSelectedContact(i) {
     for (let j = 0; j < contacts.length; j++) {
+        if (contacts[j].isActive)
         document.getElementById(`contactName${j}`).classList.remove('contactSelected');
     }
     document.getElementById(`contactName${i}`).classList.add('contactSelected');
@@ -247,7 +254,7 @@ function openEditContact(i) {
 }
 
 
-function openNewContact() { // TODO: Animation hinzufügen
+function openNewContact() {
     document.getElementById('dialog').classList.remove('d-none');
     document.getElementById('dialog').innerHTML = '';
     document.getElementById('dialog').innerHTML += modalNewContact();
