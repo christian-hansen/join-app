@@ -140,10 +140,12 @@ function renderAssignees(id) {
   list.innerHTML = "";
 
   for (let j = 0; j < assignees.length; j++) {
-    const assignee = assignees[j].userName;
-    const assigneeInitials = getInitials(assignee);
-    const color = assignees[j].color;
-    list.innerHTML += assigneeTaskviewHTML(assignee, assigneeInitials, color);
+    const contactID = getContactsObjIndex(assignees[j])
+    if (contacts[contactID].isActive){
+    const assigneeName = contacts[contactID].contactName;
+    const assigneeInitials = getInitials(assigneeName);
+    const assigneeColor = contacts[contactID].color;
+    list.innerHTML += assigneeTaskviewHTML(assigneeName, assigneeInitials, assigneeColor);}
   }
 }
 
@@ -253,7 +255,9 @@ function displayCurrentTaskInEditForm() {
   selectPrioBtn(currentPrio);
   setCategory(currentCategory.categoryName, currentCategory.categoryColor);
   for (let i = 0; i < currentAssignees.length; i++) {
-    checkBox("assigneebox", currentAssignees[i].id);
+    const contactID = getContactsObjIndex(currentAssignees[i])
+    if (contacts[contactID].isActive) {
+    checkBox("assigneebox", currentAssignees[i]);}
   }
 }
 

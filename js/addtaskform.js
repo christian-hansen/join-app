@@ -34,7 +34,9 @@ function renderContactsToForm() {
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
+    if (contact.isActive) {
     assigneeSelect.innerHTML += assigneeListItemHTML(contact);
+  }
   }
 }
 

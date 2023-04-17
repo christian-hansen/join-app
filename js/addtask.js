@@ -212,20 +212,18 @@ function setCategory(str, color) {
 
 
 /**
- * Function to update the currentAssignee array. If the username is not already part of the array the username is added. If the username is already in the array the username gets removed.
- *
- * @param {*} user - Name of the user taken from the "Assigned to" selection
+ * This function adds or removes an assignee from a list and updates the UI accordingly.
+ * @param id - The id parameter is a unique identifier for an assignee object. It is used to add or
+ * remove the assignee from the currentAssignees array and to update the UI by checking or unchecking
+ * the corresponding checkbox.
  */
-function setAssignee(user, color, id) {
-  if (getAssigneeObjIndex(user) === -1) {
-    let setUser = {};
-    setUser.userName = user;
-    setUser.color = color;
-    setUser.id = id;
+function setAssignee(id) {
+  if (getAssigneeIndex(id) === -1) {
+    let setUser = id;
     currentAssignees.push(setUser);
     checkBox("assigneebox", id);
   } else {
-    currentAssignees.splice(getAssigneeObjIndex(user), 1);
+    currentAssignees.splice(getAssigneeIndex(id), 1);
     uncheckBox("assigneebox", id);
   }
   renderCurrentAssigneesList();
@@ -243,13 +241,14 @@ function resetCurrentAssignees() {
 }
 
 
+
 /**
- * Function to check if the selected user in the "Assigned to" selection was already added to the currentAssignee array before. The sub-function maps the assigneelist that should be searched with the assigneelist element "name" and compares it with the input. If it matches the index number is returned, otherwise -1 is returned. *
- * @param {string} user - Name of the user taken from the "Assigned to" selection
- * @returns - index of the selected user in the currentAssignee array
+ * The function returns the index of an assignee object in an array based on its ID.
+ * @param id - The parameter "id" is a variable that represents the ID of an assignee object. The function "getAssigneeObjIndex" takes this ID as input and returns the index of the assignee object in the "currentAssignees" array.
+ * @returns The function `getAssigneeObjIndex` is returning the index of the `id` parameter in the `currentAssignees` array.
  */
-function getAssigneeObjIndex(user) {
-  return currentAssignees.map((assigneelist) => assigneelist.userName).indexOf(user);
+function getAssigneeIndex(id) {
+  return currentAssignees.indexOf(id);
 }
 
 
@@ -259,23 +258,45 @@ function getAssigneeObjIndex(user) {
  */
 function renderCurrentAssigneesList() {
   let assigneesList = document.getElementById("assigneesList");
-
   if (currentAssignees.length > 0) {
     assigneesList.classList.remove("d-none");
     assigneesList.innerHTML = "";
-
     for (let i = 0; i < currentAssignees.length; i++) {
-      const assignee = currentAssignees[i].userName;
-      const assigneeInitials = getInitials(assignee);
-      const assigneeColor = currentAssignees[i].color;
-
-      document.getElementById("assigneesList").innerHTML += `<div class="${assigneeColor}">${assigneeInitials}</div>`;
-      document.getElementById('error-assignees').classList.add("d-none");
+      const contactID = getContactsObjIndex(currentAssignees[i]);
+      if (contacts[contactID].isActive) {
+      renderCurrentAssigneeDot(i);}
     }
-  } else {
-    assigneesList.classList.add("d-none");
-    
   }
+    else {
+    assigneesList.classList.add("d-none");
+  }
+}
+
+
+/**
+ * The function renders a dot with the initials of a current assignee and their assigned color.
+ * @param i - The index of the current assignee being rendered.
+ */
+function renderCurrentAssigneeDot(i) {
+  const contactID = getContactsObjIndex(currentAssignees[i])
+  const assigneeName = contacts[contactID].contactName;
+  const assigneeInitials = getInitials(assigneeName);
+  const assigneeColor = contacts[contactID].color;
+
+  document.getElementById("assigneesList").innerHTML += `<div class="${assigneeColor}">${assigneeInitials}</div>`;
+  document.getElementById('error-assignees').classList.add("d-none");
+}
+
+/**
+ * The function returns the index of an object in an array of contacts based on its ID.
+ * @param id - The parameter `id` is a unique identifier for a contact object. The function
+ * `getContactsObjIndex` takes this `id` as input and returns the index of the contact object in the
+ * `contacts` array that has the same `id`.
+ * @returns The function `getContactsObjIndex` is returning the index of the object in the `contacts`
+ * array that has the specified `id`.
+ */
+function getContactsObjIndex(id) {
+  return contacts.map((contacts) => contacts.id).indexOf(id);
 }
 
 

@@ -166,9 +166,9 @@ function secondForLoopForCheckSubs(subs, truth, prog, counterFalse) {
  * @param acronymAU - The acronym of the assignee's name.
  * @returns A string of HTML.
  */
-function assignIconsHTML(assignes, acronymAU) {
+function assignIconsHTML(id, acronymAU) {
     return `
-    <div class="circleLayoutIcon ${assignes.color}">
+    <div class="circleLayoutIcon ${contacts[id].color}">
         <div class="circleNameIcon">
             ${acronymAU}
         </div>
@@ -219,17 +219,18 @@ function assignViewIcons() {
  */
 function secondForLoopForAssignViewIcons(task, assignIcons, assignGreat, i) {
     for (let j = 0; j < task.length; j++) {
-        const assignes = task[j];
-
-        let firstletterAU = assignes.userName;
+        const contactId = getContactsObjIndex(task[j]);
+        if (contacts[contactId].isActive) {
+        let firstletterAU = contacts[contactId].contactName;
         let acronymAU = firstletterAU.split(/\s/).reduce((response, word) => response += word.slice(0, 1), '');
         
         if(j <= 2){
-            assignIcons.innerHTML += assignIconsHTML(assignes, acronymAU);
+            assignIcons.innerHTML += assignIconsHTML(contactId, acronymAU);
         } else {
-            assignIcons.innerHTML = assignIconsHTML(assignes, acronymAU);
+            assignIcons.innerHTML = assignIconsHTML(contactId, acronymAU);
             assignGreat.innerHTML = assignIconsGreaterHTML(i); 
         }
+    }
     }
 }
 

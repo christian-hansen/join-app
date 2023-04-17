@@ -26,7 +26,7 @@ function categorySelectionHTML(categoryName, categoryColor) {
  * @returns A string of HTML.
  */
 function assigneeListItemHTML(contact) {
-  return `<div id="assignee-${contact.id}" onclick="setAssignee('${contact.contactName}', '${contact.color}', ${contact.id})">${contact.contactName}<img id="assigneebox${contact.id}"src="../assets/img/checkbutton-inactive.png"></div>
+  return `<div id="assignee-${contact.id}" onclick="setAssignee(${contact.id})">${contact.contactName}<img id="assigneebox${contact.id}"src="../assets/img/checkbutton-inactive.png"></div>
   `;
 }
 
