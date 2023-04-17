@@ -223,7 +223,7 @@ async function guestLogin() {
         activeUser = [];
         activeUser.push(user);
         save();
-        window.location.href = "../join/html/summary.html";
+        window.location.href = "../html/summary.html";
     }
 }
 

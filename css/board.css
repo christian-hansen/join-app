@@ -131,7 +131,7 @@ h1 {
 
 .boardcontainer {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #todo,
@@ -139,8 +139,7 @@ h1 {
 #awaitingfeedback,
 #done {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .boardsection {
@@ -154,7 +153,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
-    font-size: 17px;
+    font-size: 21px;
     font-weight: 700
 }
 
@@ -174,8 +173,7 @@ h1 {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
     cursor: pointer;
-    height: 250px;
-    width: 185px;
+    min-width: 250px;
     margin-bottom: 10px;
     margin-right: 10px;
 }
@@ -426,13 +424,6 @@ progress::-webkit-progress-value {
         display: none !important;
     }
 
-    #todo,
-    #inprogress,
-    #awaitingfeedback,
-    #done {
-        min-height: 300px;
-        height: auto;
-    }
 }
 
 @media (min-width: 451px) {
@@ -458,7 +449,7 @@ progress::-webkit-progress-value {
 
 @media (min-width: 900px) {
     .boardtask {
-        width: 230px;
+        width: 250px;
     }
 }
 
@@ -519,15 +510,22 @@ progress::-webkit-progress-value {
 
 @media (min-width: 1270px) {
     .boardtask {
-        width: 180px;
+        width: auto;
     }
     .boardcontainer {
-        display: grid;
-        grid-template-columns: 24.5% 24.5% 24.5% 24.5%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        /* grid-template-columns: 24.5% 24.5% 
+        24.5% 24.5%; */
         gap: 20px;
         padding-right: 30px;
         margin-top: 100px;
     }
+
+.boardsection {
+    width: 300px;
+}
     progress {
         width: 60%;
     }
@@ -539,8 +537,10 @@ progress::-webkit-progress-value {
 
 @media (min-width: 1490px) {
     .boardtask {
-        width: 230px;
+        width: auto;
     }
+
+
     progress::-webkit-progress-bar {
         width: 135px;
     }
