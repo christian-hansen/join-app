@@ -70,7 +70,8 @@ h1 {
 
 .listContainer {
     overflow-x: hidden;
-    margin-bottom: 150px;
+    margin-bottom: 115px;
+    padding-bottom: 35px;
     padding-right: 30px;
 }
 
@@ -267,6 +268,7 @@ line-height: 120%;
 .arrowSize {
     width: 15px;
     height: 15px;
+    cursor: pointer;
 }
 
 .contactNamesDetails {
@@ -392,8 +394,22 @@ line-height: 120%;
     to {top: 20px;}
 } 
 
+@media only screen and (min-width: 767px) {
+    .contentContainer {
+        padding: 80px 0px 10px 200px !important;
+    }
 
-@media only screen and (min-width: 768px) {
+    .listContainer {
+        margin-bottom: 30px;
+    }
+
+    .editContainer {
+        max-width: auto;
+    }
+}
+
+
+@media only screen and (min-width: 1040px) {
 
     h1.contacts {
         font-size: 61px;
@@ -502,7 +518,7 @@ line-height: 120%;
     .contactSelected,
     .contactSelected:hover {
         border-radius: 10px;
-        background-color: rgb(9, 25, 49);
+        background-color: #2A3647;
         color: #fff;
     }
 
@@ -675,9 +691,27 @@ line-height: 120%;
 }
 
 
-@media only screen and (min-width: 830px) {
+@media only screen and (min-width: 1040px) {
+
+    .contactInfo {
+        gap: 15px;
+    }
 
     h1.contacts {
         font-size: 67px;
+    }
+}
+
+@media only screen and (min-width: 1340px) {
+
+    .contactInfo {
+        gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+
+    .hidemobile {
+        display: none !important;
     }
 }

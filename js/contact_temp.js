@@ -172,7 +172,7 @@ function modalNewContact() {
                     <input required onkeydown="handleKeqUpMail(event)" id="newMail" class="contactForms editFormMail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
                     <input required onkeydown="handleKeqUpPhone(event)" id="newPhone" class="contactForms editFormPhone" type="tel" minlength="8" placeholder="Phone">
                     <div class="buttonArrange">
-                        <div class="editButtonCancel" onclick="closeModal()">Cancel<img src="../assets/img/contact-cancel.png"></div>
+                        <div class="editButtonCancel hidemobile" onclick="closeModal()">Cancel<img src="../assets/img/contact-cancel.png"></div>
                         <div id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate">Create contact<img src="../assets/img/contact-check.png"></div>
                     </div>
                 </form>

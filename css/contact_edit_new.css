@@ -24,6 +24,26 @@
     max-height: 350px;
 }
 
+.editButtonCancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    color: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: inherit;
+    line-height: 120%;
+    margin-top: 20px;
+}
+
+.editButtonCancel img {
+    height: 12px;
+}
+
+
 .closeButton {
     display: flex;
     justify-content: end;
@@ -243,7 +263,7 @@ button.editButtonCancel {
 }
 
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1040px) {
 
     .editContainer {
         display: flex;
@@ -274,7 +294,7 @@ button.editButtonCancel {
         min-height: 500px;
         max-height: 650px;
         min-width: 220px;
-        max-width: 320px;
+        max-width: 290px;
     }
 
     .logoJoinContact {
@@ -294,8 +314,8 @@ button.editButtonCancel {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 160px;
-        max-width: 200px;
+        min-width: 200px;
+        max-width: 240px;
         background-color: #fff;
         flex: 1;
  
@@ -324,8 +344,8 @@ button.editButtonCancel {
     .closeButtonDesktop {
         display: block;
         position: relative;
-        top: -48px;
-        right: -150px;
+        top: -20px;
+        right: -180px;
     }
 
     .deleteDesktop {
@@ -357,22 +377,24 @@ button.editButtonCancel {
     }
 
     input.contactForms {
-        width: 380px;
+        width: 300px;
         font-size: inherit;
+        padding: 12px 20px;
+        height: auto;
     }
 
     input.editFormName {
-        background-position: 295px 6px;
+        background-position: 300px 10px;
         background-size: 5%;
     }
 
     input.editFormMail {
-        background-position: 295px 10px;
-        background-size: 5%;
+        background-position: 298px 14px;
+        background-size: 6%;
     }
 
     input.editFormPhone {
-        background-position: 295px 8px;
+        background-position: 299px 14px;
         background-size: 6%;
     }
 
@@ -381,44 +403,25 @@ button.editButtonCancel {
         align-items: center;
         justify-content: flex-start;
         gap: 25px;
+        width: 100%;
+        cursor: pointer;
     }
 
-    .editButtonCancel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 18px 10px;
-        gap: 10px;
-        color: #2A3647;
-        border: 1px solid #2A3647;
-        border-radius: 10px;
-        background-color: #fff;
-        font-size: inherit;
-        line-height: 120%;
-        margin-top: 20px;
-        width: 136px;
-    }
 
     .editButtonCreate {
         padding: 18px 15px;
         gap: 10px;
     }
 
-    .editButtonCancel img {
-        height: 12px;
+    .editButtonCancel:hover,
+    .editButtonCancel:active {
+        background-color: #0000;
+        box-shadow: 0px 3px 2px 0px rgba(211, 211, 211, 0.1);
+        filter: invert(67%) sepia(24%) saturate(5054%) hue-rotate(165deg) brightness(93%) contrast(91%);
     }
-
-    button.editButtonCancel:hover,
-    button.editButtonCancel:active {
-        color: #29ABE2;
-        border: 1px solid #29ABE2;
-        box-shadow: 0px 3px 2px 0px lightgrey;
-        background-image: url("../assets/img/close-blue.png");
-        background-size: 13%;
-    }
-
-    button.editButtonCreate:hover,
-    button.editButtonCreateSelected {
+    
+    .editButtonCreate:hover,
+    .editButtonCreateSelected {
         background-color: #2BAAE2;
         box-shadow: 0px 3px 2px 0px lightgrey;
     }
