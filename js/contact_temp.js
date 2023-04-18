@@ -66,13 +66,11 @@ function contactDetailsBox(i, singleContact, acronym) {
             <div class="contactInfoHeader">Contact Information</div>
             <div class="editContacts klickable" onclick="openEditContact(${i})">
                 <img class="widthPen" src="../assets/img/pen-black.png">
-                <span class="editContactLayout">Edit Contact</span>
+                <span class="editContactLayout">Edit contact</span>
             </div>
-            <form class="deleteDesktop klickable" onclick="deleteContact(${i}); return false;">
-                <button class="trashIconButton" type="submit">
-                        <img class="trashIcon" src="../assets/img/trash-icon.png">
-                </button>
-            </form>
+                <div class="editContacts trashIconButton" onclick="deleteContact(${i})">
+                        <img src="../assets/img/trash-icon.png"><span class="editContactLayout">Delete contact</span>
+                </div>
         </div>
         <div class="fontContactDetails">Email</div>
         <div class="spaceBottom contactMailDetails">
@@ -84,12 +82,12 @@ function contactDetailsBox(i, singleContact, acronym) {
         </div>
         <div class="buttonsMobile">
             <form class="deleteContactMobile klickable" onclick="deleteContact(${i}); return false;">
-                    <button class="trashButtonMobile" type="submit">
-                            <img class="trashIcon" src="../assets/img/trash-icon-white.png">
-                    </button>
+                    <div class="trashButtonMobile" type="submit">
+                            <img src="../assets/img/trash-icon.png">
+                    </div>
             </form class="contactForm">
             <div class="editButtonMobile klickable" onclick="openEditContact(${i})">
-                <img class="editButtonSize" src="../assets/img/edit.png">
+                <img src="../assets/img/edit.png">
             </div> 
         </div>                      
     `;
@@ -174,8 +172,8 @@ function modalNewContact() {
                     <input required onkeydown="handleKeqUpMail(event)" id="newMail" class="contactForms editFormMail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
                     <input required onkeydown="handleKeqUpPhone(event)" id="newPhone" class="contactForms editFormPhone" type="tel" minlength="8" placeholder="Phone">
                     <div class="buttonArrange">
-                        <button class="editButtonCancel" onclick="closeModal()">Cancel</button>
-                        <button id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate">Create Contact</button>
+                        <div class="editButtonCancel" onclick="closeModal()">Cancel<img src="../assets/img/contact-cancel.png"></div>
+                        <div id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate">Create contact<img src="../assets/img/contact-check.png"></div>
                     </div>
                 </form>
             </div>

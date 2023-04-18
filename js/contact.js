@@ -34,7 +34,6 @@ async function renderContacts() {
         return compareStrings(a.contactName, b.contactName);
     })
     renderContactList();
-    contactShowDetails(0);
 }
 
 
@@ -176,9 +175,9 @@ async function editContact(i) {
  * @param i - The index of the contact to delete.
  */
 async function deleteContact(i) {
-    contacts[i].isActive = false;
-    await backend.setItem('contacts', JSON.stringify(contacts));
-    renderContactList();
+    // contacts[i].isActive = false;
+    // await backend.setItem('contacts', JSON.stringify(contacts));
+    // renderContactList();
 }
 
 

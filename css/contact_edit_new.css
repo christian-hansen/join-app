@@ -66,6 +66,7 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 .personSize {
@@ -103,7 +104,7 @@ input.contactForms {
     height: 10px;
     font-size: 17px;
     padding: 13px 21px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: solid 1px #D1D1D1;
 
 }
@@ -136,36 +137,43 @@ input.editFormPhone {
 
 .buttonsMobile {
     display: flex;
-    justify-content: end;
-    flex-direction: row;
-    height: 45px;
-    gap: 50px;
-    margin-top: 30px;
+    flex-direction: column;
+    align-items: end;
+    gap: 16px;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
 }
 
 .editButtonMobile {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: #2A3647;
-    border-radius: 5px;
-    width: 45px;
-    height: 45px;
+    border-radius: 10px;
+    padding: 8px;
+    width: 34px;
 }
 
-.trashIconButton {
-    background: none;
+.editButtonMobile img {
+    height: 34px;
 }
 
 .trashButtonMobile {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2A3647;
-    border: none;
-    border-radius: 5px;
-    width: 47px;
-    height: 47px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    padding: 2px;
+    width: 32px;
+    height: 32px;
+}
+
+.trashButtonMobile img {
+    height: 24px;
+    width: 20px;
 }
 
 button.editButtonSave {
@@ -173,7 +181,7 @@ button.editButtonSave {
     align-items: center;
     justify-content: center;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
     background-color: #2A3647;
     font-weight: 700;
@@ -187,21 +195,19 @@ button.editButtonCancel {
     display: none;
 }
 
-button.editButtonCreate {
+.editButtonCreate {
     display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
-    border-radius: 5px;
-    border: none;
+    border-radius: 10px;
     background-color: #2A3647;
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: inherit;
     line-height: 120%;
     margin-top: 20px;
-    padding: 10px;
-    width: 175px;
-    background-image: url("../assets/img/contact-check.png");
-    background-repeat: no-repeat;
-    background-position: 146px 15px;
+    padding: 18px 10px;
+    gap: 14px;
 }
 
 .sucessInfoContainer {
@@ -243,7 +249,7 @@ button.editButtonCreate {
         display: flex;
         flex-direction: row;
         min-width: 690px;
-        max-width: 960px;
+        max-width: 1200px;
         min-height: 500px;
         max-height: 650px;
         margin: auto;
@@ -292,6 +298,7 @@ button.editButtonCreate {
         max-width: 200px;
         background-color: #fff;
         flex: 1;
+ 
     }
 
     .circlePerson {
@@ -325,6 +332,17 @@ button.editButtonCreate {
         display: contents;
     }
 
+    .trashIconButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .trashIconButton img {
+        height: 21px;
+    }
+
     form.contactForm {
         display: flex;
         flex-direction: column;
@@ -339,8 +357,8 @@ button.editButtonCreate {
     }
 
     input.contactForms {
-        width: 280px;
-        font-size: 16px;
+        width: 380px;
+        font-size: inherit;
     }
 
     input.editFormName {
@@ -361,25 +379,33 @@ button.editButtonCreate {
     .buttonArrange {
         display: flex;
         align-items: center;
-        gap: 45px;
+        justify-content: flex-start;
+        gap: 25px;
     }
 
-    button.editButtonCancel {
+    .editButtonCancel {
         display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 10px;
+        gap: 10px;
         color: #2A3647;
-        border-radius: 5px;
         border: 1px solid #2A3647;
+        border-radius: 10px;
         background-color: #fff;
-        font-weight: 500;
-        font-size: 18px;
+        font-size: inherit;
         line-height: 120%;
         margin-top: 20px;
-        width: 100px;
-        padding: 10px;
-        background-image: url("../assets/img/contact-cancel.png");
-        background-size: 13%;
-        background-repeat: no-repeat;
-        background-position: 78px 15px;
+        width: 136px;
+    }
+
+    .editButtonCreate {
+        padding: 18px 15px;
+        gap: 10px;
+    }
+
+    .editButtonCancel img {
+        height: 12px;
     }
 
     button.editButtonCancel:hover,

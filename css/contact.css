@@ -1,5 +1,6 @@
 body {
     overflow-y: hidden;
+    font-size: 21px;
 }
 
 .contentContainer {
@@ -21,6 +22,10 @@ body {
     background: #091931;
 }
 
+h1 {
+    margin-top: 19px;
+    margin-bottom: 20px;
+}
 
 .xx {
     display: flex;
@@ -72,7 +77,8 @@ body {
 .contactButtonContainer {
     display: flex;
     justify-content: end;
-    margin-bottom: 20px;
+    margin-top: 17px;
+    margin-bottom: 17px;
 }
 
 .buttonStyle {
@@ -81,23 +87,27 @@ body {
 
 .newContactButton {
     display: flex;
+    font-family: inherit;
     align-items: center;
     background-color: #2A3647;
     color: #fff;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 700;
+    gap: 10px;
+    font-size: 21px;
     border-radius: 10px;
     border-style: none;
-    padding: 15px 20px;
+    padding: 18px 10px;
     cursor: pointer;
-    margin-right: 15px;
-    margin-top: 10px;
+    line-height: 120%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 193px;
+    height: 53px;
+    margin-right: 10px;
 }
 
 .newContactButtonImg {
-    width: 25px;
+    width: 33px;
     height: auto;
-    margin-left: 10px;
 }
 
 .listItem {
@@ -111,7 +121,7 @@ body {
 }
 
 .singleLetter {
-    padding-left: 20px;
+    padding: 10px;
 }
 
 .firstLetter {
@@ -125,6 +135,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     margin-left: 20px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -136,9 +147,8 @@ body {
     align-items: center;
     border-radius: 100%;
     border: 1px solid #fff;
-    width: 40px;
-    height: 40px;
-    aspect-ratio: 1 / 1;
+    width: 42px;
+    height: 42px;
     margin-right: 35px;
 }
 
@@ -175,19 +185,22 @@ body {
 }
 
 .circleName {
-    font-size: 12px;
+    font-weight: 400;
+font-size: 12px;
+line-height: 120%;
     color: #fff;
 }
 
 .nameLayout {
-    padding-bottom: 5px;
-    font-size: 16px;
+    font-size: inherit;
+    line-height: 120%;
 }
 
 .contactMail a {
     text-decoration: none;
     color: #2BAAE2;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 120%;
 }
 
 
@@ -206,8 +219,8 @@ body {
 }
 
 .subSubHead {
-    font-size: 21px;
-    margin: 4px 0 20px;
+    font-size: 27px;
+    margin-bottom: 32px;
 }
 
 
@@ -215,8 +228,8 @@ body {
 .contactSingleData {
     display: flex;
     flex-direction: column;
-    margin-top: -8px;
     display: none;
+    position: relative;
 }
 
 .singleContactsDetails {
@@ -224,9 +237,13 @@ body {
     padding-left: 20px;
 }
 
-.editContactLayout:hover {
-    color: #29ABE2;
+.editContactLayout {
+    font-size: 16px;
 }
+
+/* .editContactLayout:hover {
+    color: #29ABE2;
+} */
 
 .buttonContactContainerDesktop,
 .borderBlueDesktop,
@@ -237,7 +254,7 @@ body {
 .borderBlueMobile {
     border: solid 1px #2BAAE2;
     width: 90px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .contactsDetailsHead {
@@ -250,7 +267,6 @@ body {
 .arrowSize {
     width: 15px;
     height: 15px;
-    padding-right: 20px;
 }
 
 .contactNamesDetails {
@@ -258,7 +274,7 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 21px;
 }
 
 .addTaskContacts {
@@ -268,9 +284,16 @@ body {
     align-items: center;
 }
 
+.addTaskContacts img {
+    height: 15px;
+    width: 15px;
+}
+
 .addTaskLayout {
     color: #2BAAE2;
+    font-size: 16px;
     margin-left: 10px;
+    line-height: 120%;
 }
 
 .circleLayoutDetails {
@@ -279,53 +302,50 @@ body {
     align-items: center;
     border-radius: 100%;
     border: 2px solid #fff;
-    width: 90px;
-    height: 90px;
-    aspect-ratio: 1 / 1;
+    width: 80px;
+    height: 80px;
     margin-right: 15px;
 }
 
 .circleNameDetails {
-    font-size: 24px;
-    font-weight: 300;
+    font-size: 27px;
+    font-weight: 500;
     color: #fff;
 }
 
 .nameLayoutDetails {
-    padding-bottom: 5px;
-    font-size: 20px;
+    font-size: 36px;
+    font-weight: 400;
     margin-bottom: 15px;
-    line-height: 32px;
+    line-height: 120%;
 }
 
 .contactInfo {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: inherit;
+    margin-bottom: 21px;
 }
 
 .spaceBottom {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .fontContactDetails {
-    font-weight: bold;
-    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .contactMailDetails a {
     text-decoration: none;
     color: #2BAAE2;
     font-size: 16px;
+    line-height: 120%;
 }
 
 .editButton {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-}
-
-.editButtonSize {
-    height: 40px;
 }
 
 .trashIcon {
@@ -376,7 +396,7 @@ body {
 @media only screen and (min-width: 768px) {
 
     h1.contacts {
-        font-size: 47px;
+        font-size: 61px;
     }
 
     .contentContainer {
@@ -386,6 +406,39 @@ body {
     .contactContainer {
         flex-grow: 5;
     }
+
+    .nameLayoutDetails {
+        font-size: 47px;
+        font-weight: 500;
+    }
+
+    .contactInfo {
+        height: 74px;
+    }
+
+    .newContactButton {
+        padding: 18px 15px;
+        width: auto;
+    }
+
+    .circleLayoutDetails {
+        border: 3px solid #FFFFFF;     
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+        margin-right: 51px;
+        width: 120px;
+        height: 120px;
+        border-radius: 70px;
+    }
+
+    .circleNameDetails {
+        font-size: 47px;
+        font-weight: 500;
+    }
+
+    .fontContactDetails {
+        margin-bottom: 5px;
+    }
+
 
     /*List*/
     .contactListContainer {
@@ -543,7 +596,6 @@ body {
         gap: 20px;
         margin-bottom: 30px;
     }
-
     .borderBlueDesktop {
         display: flex;
         width: 2px;
@@ -567,16 +619,13 @@ body {
     .contactInfo {
         display: flex;
         flex-direction: row;
-        font-size: 16px;
-    }
-
-    .contactInfoHeader {
-        margin-right: 30px;
+        align-items: center;
+        gap: 50px;
+        font-size: inherit;
     }
 
     .widthPen {
         height: 25px;
-        margin-right: 10px;
     }
 
     .newContactButton:hover {
@@ -586,16 +635,19 @@ body {
 
     .editContacts {
         display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    .editContacts:hover {
+        filter: invert(67%) sepia(24%) saturate(5054%) hue-rotate(165deg) brightness(93%) contrast(91%);
     }
 
     .trashIcon {
-        width: 25px;
+        width: 22px;
         height: 25px;
-        margin-left: 50px;
-    }
 
-    .editButtonSize {
-        height: 40px;
     }
 
     .editContainer {
@@ -628,5 +680,4 @@ body {
     h1.contacts {
         font-size: 67px;
     }
-
 }
