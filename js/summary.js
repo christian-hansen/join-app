@@ -35,11 +35,13 @@ function render() {
 function greeting() {
     greetTime();
     let greet = document.getElementById('greet-name');
+    let greetBottom = document.getElementById('greet-name-bottom');
     let greetMobile = document.getElementById('greeting-name-mobile');
     for (let i = 0; i < activeUser.length; i++) {
         const element = activeUser[i].userName;
         greet.innerHTML = element;
         greetMobile.innerHTML = element;
+        greetBottom.innerHTML = element;
     }
 }
 
@@ -49,17 +51,23 @@ function greeting() {
 function greetTime() {
     let greetTime = document.getElementById('greet-time');
     let greetTimeMobile = document.getElementById('greet-time-mobile');
+    let greetTimeBottom = document.getElementById('greet-time-bottom');
     let date = new Date();
-    let time = date.getHours();
-    if (time < 11 && time > 0) {
-        greetTime.innerHTML = 'Good Morning,'
-        greetTimeMobile.innerHTML = 'Good Morning,'
+    // let time = date.getHours();
+    let time = 16;
+    console.log(time);
+    if (time < 11) {
+        greetTime.innerHTML = 'Good Morning,';
+        greetTimeBottom.innerHTML = 'Good Morning,';
+        greetTimeMobile.innerHTML = 'Good Morning,';
     } else if (time >= 11 && time < 17) {
-        greetTime.innerHTML = 'Hello,'
-        greetTimeMobile.innerHTML = 'Hello,'
+        greetTime.innerHTML = 'Hello,';
+        greetTimeBottom.innerHTML = 'Hello,';
+        greetTimeMobile.innerHTML = 'Hello,';
     } else {
-        greetTime.innerHTML = 'Good Evening,'
-        greetTimeMobile.innerHTML = 'Good Evening,'
+        greetTime.innerHTML = 'Good Evening,';
+        greetTimeBottom.innerHTML.innerHTML = 'Good Evening,';
+        greetTimeMobile.innerHTML = 'Good Evening,';
     }
 }
 
