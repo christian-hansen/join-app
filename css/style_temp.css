@@ -167,7 +167,7 @@ div.logMenue ul a {
     .centralContainer {
         display: flex;
         flex-direction: row;
-        max-width: 1440px;
+        /* max-width: 1440px; */
     }
 
     h1 {
@@ -314,8 +314,6 @@ div.logMenue ul a {
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    aspect-ratio: 1 / 1;
-    margin-right: 35px;
 }
 
 .circleNameHeaderIcon {

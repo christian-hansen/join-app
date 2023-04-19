@@ -173,7 +173,7 @@ function modalNewContact() {
                     <input required onkeydown="handleKeqUpPhone(event)" id="newPhone" class="contactForms editFormPhone" type="tel" minlength="8" placeholder="Phone">
                     <div class="buttonArrange">
                         <div class="editButtonCancel hidemobile" onclick="closeModal()">Cancel<img src="../assets/img/contact-cancel.png"></div>
-                        <div id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate">Create contact<img src="../assets/img/contact-check.png"></div>
+                        <div id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate" onclick="newContact()">Create contact<img src="../assets/img/contact-check.png"></div>
                     </div>
                 </form>
             </div>

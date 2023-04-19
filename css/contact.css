@@ -97,12 +97,11 @@ h1 {
     font-size: 21px;
     border-radius: 10px;
     border-style: none;
-    padding: 18px 10px;
+    padding: 14px 10px;
     cursor: pointer;
     line-height: 120%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 193px;
-    height: 53px;
     margin-right: 10px;
 }
 
@@ -433,7 +432,7 @@ line-height: 120%;
     }
 
     .newContactButton {
-        padding: 18px 15px;
+        padding: 14px 10px;
         width: auto;
     }
 
