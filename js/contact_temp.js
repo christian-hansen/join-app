@@ -68,7 +68,7 @@ function contactDetailsBox(i, singleContact, acronym) {
                 <img class="widthPen" src="../assets/img/pen-black.png">
                 <span class="editContactLayout">Edit contact</span>
             </div>
-                <div class="editContacts trashIconButton" onclick="deleteContact(${i})">
+                <div class="editContacts trashIconButton" onclick="openDeleteContactMsg(${i})">
                         <img src="../assets/img/trash-icon.png"><span class="editContactLayout">Delete contact</span>
                 </div>
         </div>
@@ -81,7 +81,7 @@ function contactDetailsBox(i, singleContact, acronym) {
             <a id="mobileContactDetails${i}" href="tel:${singleContact['phone']}">${singleContact['phone']}</a>
         </div>
         <div class="buttonsMobile">
-            <form class="deleteContactMobile klickable" onclick="deleteContact(${i}); return false;">
+            <form class="deleteContactMobile klickable" onclick="openDeleteContactMsg(${i}); return false;">
                     <div class="trashButtonMobile" type="submit">
                             <img src="../assets/img/trash-icon.png">
                     </div>

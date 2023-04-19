@@ -13,8 +13,8 @@ let dones = [];
  */
 async function init_summary() {
     await init();
-    prios = JSON.parse(backend.getItem('prios')) || [];
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    prios = await loadItem('prios');
+    tasks = await loadItem('tasks');
     render();
 }
 

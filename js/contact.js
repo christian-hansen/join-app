@@ -24,10 +24,10 @@ function compareStrings(a, b) {
  */
 async function renderContacts() {
     await downloadFromServer();
-    contacts = JSON.parse(backend.getItem('contacts')) || [];
-    categories = JSON.parse(backend.getItem('categories')) || [];
-    prios = JSON.parse(backend.getItem('prios')) || [];
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    categories = await loadItem('categories');
+    prios = await loadItem('prios');
+    tasks = await loadItem('tasks');
+    contacts = await loadItem('contacts');
     load();
     includeHTML();
     contacts.sort(function (a, b) {
@@ -36,6 +36,12 @@ async function renderContacts() {
     renderContactList();
 }
 
+/**
+ * It saves the contacts array to the browser's local storage
+ */
+async function saveContactData() {
+    await backend.setItem('contacts', JSON.stringify(contacts));
+}
 
 /**
  * We're looping through the contacts array, and for each contact, we're getting the first letter of
@@ -117,10 +123,13 @@ function renderContactDetails(i) {
  */
 async function newContactRender(singleContact) {
     contacts.push(singleContact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    await saveContactData();
     closeModal();
     renderContacts();
     showSuccess();
+    setTimeout(() => {
+       hideSuccess();
+    }, 2000);
 } 
 
 
@@ -162,7 +171,7 @@ async function editContact(i) {
     singleContact['email'] = mail.value;
     singleContact['phone'] = mobile.value;
 
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    await saveContactData();
     closeModal();
     renderContacts();
     renderContactDetails(i);
@@ -175,18 +184,16 @@ async function editContact(i) {
  * @param i - The index of the contact to delete.
  */
 async function deleteContact(i) {
-    // contacts[i].isActive = false;
-    // await backend.setItem('contacts', JSON.stringify(contacts));
-    // renderContactList();
+    contacts[i].isActive = false;
+    await saveContactData();
+    renderContactList();
+}
+
+function openDeleteContactMsg() {
+    //
 }
 
 
-/**
- * It saves the contacts array to the browser's local storage
- */
-async function saveContactData() {
-    await backend.setItem('contacts', JSON.stringify(contacts));
-}
 
 
 /**
@@ -279,6 +286,16 @@ function showSuccess() {
     document.getElementById('dialog').classList.remove('d-none');
     document.getElementById('dialog').innerHTML = '';
     document.getElementById('dialog').innerHTML += showSuccessBlock();
+}
+
+
+/**
+ * The function hides a success message by adding a 'd-none' class to the element with the ID 'dialog'
+ * and clearing its inner HTML.
+ */
+function hideSuccess() {
+    document.getElementById('dialog').classList.add('d-none');
+    document.getElementById('dialog').innerHTML = '';
 }
 
 

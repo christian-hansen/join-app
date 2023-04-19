@@ -13,11 +13,11 @@ let categoryCreationValidation = false;
  */
 async function initAddTask() {
   await downloadFromServer();
-  users = JSON.parse(backend.getItem("users")) || [];
-  categories = JSON.parse(backend.getItem("categories")) || [];
-  prios = JSON.parse(backend.getItem("prios")) || [];
-  tasks = JSON.parse(backend.getItem("tasks")) || [];
-  contacts = JSON.parse(backend.getItem("contacts")) || [];
+  users = await loadItem('users');
+  categories = await loadItem('categories');
+  prios = await loadItem('prios');
+  tasks = await loadItem('tasks');
+  contacts = await loadItem('contacts');
   initForm();
   load();
   await includeHTML();
@@ -39,8 +39,8 @@ async function createTask() {
   task.subtasks = currentSubTasks;
   task.status = currentStatus;
   tasks.push(task);
-  await backend.setItem("tasks", JSON.stringify(tasks));
-  await backend.setItem("users", JSON.stringify(users));
+  await saveItem('tasks');
+  await saveUsers();
 }
 
 
@@ -309,7 +309,7 @@ async function addCategory() {
     newCategory.categoryName = newCategoryName;
     newCategory.categoryColor = newCategoryColor;
     categories.push(newCategory);
-    await backend.setItem("categories", JSON.stringify(categories));
+    await saveItem('categories');;
     closeNewCategoryInput();
     renderCategoriesToForm();
   }

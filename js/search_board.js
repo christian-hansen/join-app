@@ -88,7 +88,7 @@ function allowDrop(ev) {
 async function moveTo(status) {
     tasks[currentDraggedElement]['status'] = status;
     renderTasksToBoard();
-    await backend.setItem('tasks', JSON.stringify(tasks));
+    await saveItem('tasks');
 }
 
 /**

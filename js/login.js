@@ -1,4 +1,5 @@
 let remember = [];
+let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', 'magenta', 'brightblue'];
 
 /**
  * This function is used to initializing / loading the Login-Area and load the users JSON from the Backend.
@@ -6,11 +7,13 @@ let remember = [];
  */
 async function init_login() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
+    users = await loadItem('users');
     load();
     rememberload();
     render();
 }
+
+
 
 /**
  * This function is used to initializing / loading the reset_password.html and load the users JSON from the Backend.
@@ -18,7 +21,7 @@ async function init_login() {
  */
 async function init_reset_passwordHTML() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
+    users = await loadItem('users');
 }
 
 /**
@@ -108,7 +111,6 @@ async function registNewAccount() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     let popup = document.getElementById('popup');
-    let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', 'magenta', 'brightblue'];
     let color = colors[Math.floor(Math.random() * colors.length)];
 
     let user = users.find(u => u.email == email);
@@ -125,7 +127,7 @@ async function registNewAccount() {
             animationCounter: 0
         };
         users.push(account);
-        await backend.setItem('users', JSON.stringify(users));
+        await saveUsers();
         setTimeout(() => popup.classList.add("d-none"), 3000);
         clearInput();
     }
@@ -246,7 +248,7 @@ async function changePw() {
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == currentUser) {users[i].password = activeUser[0].password;}
     }
-    await backend.setItem('users', JSON.stringify(users))
+    await saveUsers();
     remove();
 }
 

@@ -8,9 +8,23 @@ let activeUser = [];
  */
 async function init() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
+    await loadItem('users');
     load();
     includeHTML();
+}
+
+/**
+ * This function loads user data from local storage or initializes an empty array if no data is found.
+ */
+async function loadItem(item) {
+    return JSON.parse(backend.getItem(item)) || [];
+}
+
+/**
+ * This function loads user data from local storage or initializes an empty array if no data is found.
+ */
+async function saveItem(item) {
+    return JSON.parse(backend.setItem(item));
 }
 
 /**

@@ -3,11 +3,11 @@
  */
 async function initBoard() {
   await downloadFromServer();
-  users = JSON.parse(backend.getItem("users")) || [];
-  categories = JSON.parse(backend.getItem("categories")) || [];
-  prios = JSON.parse(backend.getItem("prios")) || [];
-  tasks = JSON.parse(backend.getItem("tasks")) || [];
-  contacts = JSON.parse(backend.getItem("contacts")) || [];
+  users = await loadItem('users');
+  categories = await loadItem('categories');
+  prios = await loadItem('prios');
+  tasks = await loadItem('tasks');
+  contacts = await loadItem('contacts');
   load();
   includeHTML();
   renderTasksToBoard();
@@ -73,7 +73,7 @@ function renderMoveMenu(taskid) {
  */
 async function changeTaskStatus(taskid, status) {
     tasks[taskid].status = status;
-    await backend.setItem("tasks", JSON.stringify(tasks));
+    await saveItem('tasks');
     renderMoveMenu(taskid);
   }
 
@@ -126,7 +126,7 @@ function cancelTaskDeletion() {
  */
 async function deleteTask(i) {
     tasks[i].status = 4;
-    await backend.setItem("tasks", JSON.stringify(tasks));
+    await saveItem('tasks');
     displayPopupMsg("taskdeleted");
     setTimeout(closeTaskview, 2000);
     renderTasksToBoard();
@@ -139,7 +139,7 @@ async function deleteTask(i) {
  */
 async function toggleSubtaskCheckboxEdit(i) {
     toggleSubtaskCheckbox(i);
-    await backend.setItem("tasks", JSON.stringify(tasks));
+    await saveItem('tasks');
     nonCheckSubsNew();
   }
 
@@ -151,7 +151,7 @@ async function toggleSubtaskCheckboxEdit(i) {
  */
 async function deleteSubTaskEdit(i, selectedTask) {
     deleteSubTask(i);
-    await backend.setItem("tasks", JSON.stringify(tasks));
+    await saveItem('tasks');
     displayPopupMsg("subtaskdeleted");
     renderSubTasksTaskview(selectedTask);
     setTimeout(hidePopupMsg, 2000);
