@@ -8,8 +8,8 @@ $recipient = $_POST['email'];
 $mailinput = $_POST['email'];
 $passwordinput = $_POST['password'];
 
-$_POST['message'] = "Dear new User, Wellcome to our JOIN-PROJECT-PLATTFORM! 
-That Project like a KANBAN PROJECT MANAGEMENT TOOL!
+$_POST['message'] = "Dear new User, Welcome to our JOIN project platform! 
+The project is like a KANBAN PROJECT MANAGEMENT TOOL!
 
 Thank you for your registration.
 

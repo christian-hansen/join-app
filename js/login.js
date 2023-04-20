@@ -6,7 +6,6 @@ let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', '
  * 
  */
 async function init_login() {
-    await downloadFromServer();
     users = await loadItem('users');
     load();
     rememberload();
@@ -14,13 +13,11 @@ async function init_login() {
 }
 
 
-
 /**
  * This function is used to initializing / loading the reset_password.html and load the users JSON from the Backend.
  * 
  */
 async function init_reset_passwordHTML() {
-    await downloadFromServer();
     users = await loadItem('users');
 }
 
@@ -63,14 +60,16 @@ function showPopUpPw() {
     let popup = document.getElementById('popup');
     let user = users.find(u => u.email == inputmail.value);
     let guest = users.find(u => u.email == 'guest@guestemail.com');
+    let action="https://christian-hansen.developerakademie.net/join/reset-password-mail.php"
     if (user) {
         if (user == guest) {showPopupNotFound();} else {
             popup.classList.remove('d-none');
             activeUser = [];
             activeUser.push(user);
+            form.action = action;
             save();
             setTimeout(() => popup.classList.add("d-none"), 3000);
-            form.action = action;
+            setTimeout(() => window.location.href = "../index.html", 3000)
         }
     } else {showPopupNotFound();}
     inputmail.value = '';
@@ -106,12 +105,13 @@ function showPopupNotFound() {
 
 
 /* This function is used to register a new account. */
-async function registNewAccount() {
+async function registerNewAccount() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     let popup = document.getElementById('popup');
     let color = colors[Math.floor(Math.random() * colors.length)];
+    let action="https://christian-hansen.developerakademie.net/join/signup-send_mail.php"
 
     let user = users.find(u => u.email == email);
     if (user) {
@@ -127,7 +127,8 @@ async function registNewAccount() {
             animationCounter: 0
         };
         users.push(account);
-        await saveUsers();
+        form.action = action;
+        await setItem('users', users);
         setTimeout(() => popup.classList.add("d-none"), 3000);
         clearInput();
     }
@@ -189,7 +190,7 @@ async function login() {
         activeUser.push(user);
         checkForCheckbox(checkbox, rememberlogin);
         save();
-        window.location.href = "../join/html/summary.html"
+        window.location.href = "../html/summary.html";
     }
 }
 
@@ -248,7 +249,7 @@ async function changePw() {
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == currentUser) {users[i].password = activeUser[0].password;}
     }
-    await saveUsers();
+    await setItem('users', JSON.stringify(users));
     remove();
 }
 
