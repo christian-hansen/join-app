@@ -23,7 +23,6 @@ function compareStrings(a, b) {
  * @returns the result of the function compareStrings.
  */
 async function renderContacts() {
-    await downloadFromServer();
     categories = await loadItem('categories');
     prios = await loadItem('prios');
     tasks = await loadItem('tasks');
@@ -40,7 +39,7 @@ async function renderContacts() {
  * It saves the contacts array to the browser's local storage
  */
 async function saveContactData() {
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    await setItem('contacts', contacts);
 }
 
 /**

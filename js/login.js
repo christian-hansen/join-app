@@ -72,7 +72,7 @@ function showPopUpPw() {
             activeUser.push(user);
             save();
             setTimeout(() => popup.classList.add("d-none"), 3000);
-            form.action = action;
+            // setTimeout(() => window.location.href = "../index.html", 3000)
         }
     } else {showPopupNotFound();}
     inputmail.value = '';
@@ -129,7 +129,7 @@ async function registNewAccount() {
             animationCounter: 0
         };
         users.push(account);
-        await setItem('users', JSON.stringify(users));
+        await setItem('users', users);
         setTimeout(() => popup.classList.add("d-none"), 3000);
         clearInput();
     }
@@ -191,7 +191,7 @@ async function login() {
         activeUser.push(user);
         checkForCheckbox(checkbox, rememberlogin);
         save();
-        window.location.href = "../join/html/summary.html"
+        window.location.href = "../html/summary.html"
     }
 }
 

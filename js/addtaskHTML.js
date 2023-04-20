@@ -4,7 +4,10 @@
  * @returns A string of HTML.
  */
 function categoryListItemHTML(category) {
-  return `<div class="category-item" onclick="setCategory('${category.categoryName}', '${category.categoryColor}')"><div>${category.categoryName}</div><div class="dot ${category.categoryColor}"</div></div>`;
+  if (category.categoryIsActive) {
+    return `<div class="category-item" onclick="setCategory('${category.categoryID}', '${category.categoryName}', '${category.categoryColor}')"><div>${category.categoryName}</div><div class="dot ${category.categoryColor}"</div></div>`;
+  }
+  
 }
 
 
@@ -15,8 +18,8 @@ function categoryListItemHTML(category) {
  * @param categoryColor - The color of the dot that will be displayed next to the category name.
  * @returns A string of HTML.
  */
-function categorySelectionHTML(categoryName, categoryColor) {
-  return `<div>${categoryName}<div class="dot ${categoryColor}"</div>`;
+function categorySelectionHTML(currentCategory) {
+  return `<div>${currentCategory.categoryName}<div class="dot ${currentCategory.categoryColor}"</div>`;
 }
 
 
@@ -205,9 +208,13 @@ function resetCurrentCategories() {
  * @returns A string of HTML.
  */
 function renderTaskToBoardHTML(task, i) {
+  let categoryID = task.category;
+  // console.log(categoryID);
+  let category = categories[categoryID];
+  // console.log(category);
   return `<div class="boardtask" ondragstart="startDragging(${task.id})" draggable="true" onclick="openTaskview(${i})">
-              <div class="boardtask-taskcategory ${task.category.categoryColor}">
-                  ${task.category.categoryName}
+              <div class="boardtask-taskcategory ${category.categoryColor}">
+                  ${category.categoryName}
               </div>
               <div style="width: 100%;"><b><div class="boardtask-task-titel">${task.title}</div></b></div>
               <div style="width: 100%;">

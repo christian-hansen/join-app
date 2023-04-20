@@ -12,7 +12,6 @@ let categoryCreationValidation = false;
  * It downloads data from the server, parses it, initializes the form, loads the data, includes the HTML, and displays the create button in the header.
  */
 async function initAddTask() {
-  await downloadFromServer();
   users = await loadItem('users');
   categories = await loadItem('categories');
   prios = await loadItem('prios');
@@ -34,13 +33,13 @@ async function createTask() {
   task.description = currentDescription;
   task.prio = currentPrio;
   task.dueDate = currentDate;
-  task.category = currentCategory;
+  task.category = currentCategory.categoryID;
   task.assignee = currentAssignees;
   task.subtasks = currentSubTasks;
   task.status = currentStatus;
   tasks.push(task);
-  await saveItem('tasks');
-  await setItem('users', JSON.stringify(users));
+  await setItem('tasks', tasks);
+  await setItem('users', users);
 }
 
 
@@ -202,11 +201,12 @@ function renderSelectedDate() {
  * @param str - the category name
  * @param color - the color of the category
  */
-function setCategory(str, color) {
-  currentCategory.categoryName = str;
-  currentCategory.categoryColor = color;
+function setCategory(id) {
+  currentCategory = categories[id];
+  // currentCategory.categoryName = str;
+  // currentCategory.categoryColor = color;
   document.getElementById("categoryselection").innerHTML =
-    categorySelectionHTML(currentCategory.categoryName,currentCategory.categoryColor);
+    categorySelectionHTML(currentCategory);
   document.getElementById("categoryselection").innerHTML += `<img class="arrow" src="../assets/img/dropdown.png">`;
 }
 
@@ -306,10 +306,12 @@ function getContactsObjIndex(id) {
 async function addCategory() {
   if (validateNewCategoryCreation()) {
     let newCategory = {};
+    newCategory.categoryID = categories.length;
     newCategory.categoryName = newCategoryName;
     newCategory.categoryColor = newCategoryColor;
+    newCategory.categoryIsActive = true;
     categories.push(newCategory);
-    await saveItem('categories');;
+    await setItem('categories', categories);;
     closeNewCategoryInput();
     renderCategoriesToForm();
   }

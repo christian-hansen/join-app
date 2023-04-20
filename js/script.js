@@ -1,28 +1,111 @@
 const STORAGE_TOKEN = '95EI500XAI6O6E54SZ91QWQF8312TGEEM3NXYY3N';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
-let users = [{
-id: 0,
-userName: 'Guest User',
-email: 'guest@guestemail.com',
-password: 'guest1234',
-color:'',
-animationCounter: 0
-}];
+let users = [];
 let activeUser = [];
 
+// let prios = [
+//     {
+//     id: 1,
+//     prioName: 'Urgent',
+//     icon: '../assets/img/prioBtn1.png'
+//     },
+//     {
+//     id: 1,
+//     prioName: 'Medium',
+//     icon: '../assets/img/prioBtn2.png'
+//     },
+//     {
+//     id: 2,
+//     prioName: 'Low',
+//     icon: '../assets/img/prioBtn3.png'
+//     },
+// ];
+// let categories = [
+//     {
+//     categoryID: 0,
+//     categoryName: 'Sales',
+//     categoryColor: 'pink',
+//     categoryIsActive: true
+//     },
+//     {
+//     categoryID: 1,
+//     categoryName: 'Backoffice',
+//     categoryColor: 'mintgreen',
+//     categoryIsActive: true
+//     },
+//     {
+//     categoryID: 2,
+//     categoryName: 'Design',
+//     categoryColor: 'orange',
+//     categoryIsActive: true
+//     },
+//     {
+//     categoryID: 3,
+//     categoryName: 'Support & Service',
+//     categoryColor: 'red',
+//     categoryIsActive: true
+//     }];
+// let contacts = [
+//     {
+//     id: 0, 
+//     contactName: 'George Steinbrenner', 
+//     email: 'george@yankees.com', 
+//     phone: '11178787878', 
+//     isActive: false, 
+//     color: "lightblue"
+//     },
+//     {
+//     id: 1, 
+//     contactName: "Paul O'Neill", 
+//     email: 'paul@21.com', 
+//     phone: '212 221313', 
+//     isActive: true, 
+//     color: "red"
+//     },
+//     {
+//     id: 2, 
+//     contactName: 'Derek Jeter', 
+//     email: 'derek@legend2.com', 
+//     phone: '222 2222', 
+//     isActive: true, 
+//     color: "lightblue"
+//     },
+// ];
+// let tasks = [
+//     {id: 0,
+//     title: 'Create new product brochure',
+//     description: 'The brochure should present our product in the best way with high quality photos',
+//     prio: 2, 
+//     dueDate: '2023-05-06',
+//     category: 2,
+//     assignee:[0,7],
+//     subtasks:[
+//         {
+//         checked: false,
+//         description: 'Print brochure'
+//         }
+//     ],
+//     status: 0
+//     }
+// ]
 
 /**
  * It downloads the users from the server, then it loads the users from the local storage, then it
  * includes the HTML.
  */
 async function init() {
-    // await downloadFromServer();
-    // await loadItem('users');
-    // users = await getItem('users')
+    users = await loadItem('users');
     load();
     includeHTML();
 }
+
+// async function uploadStuff() {
+//     await setItem('prios', prios);
+//     await setItem('categories', categories);
+//     await setItem('contacts', contacts);
+//     await setItem('tasks', tasks);
+// }
 
 async function setItem(key, input) {
     let value = JSON.stringify(input);
@@ -54,9 +137,9 @@ async function loadItem(item) {
 /**
  * This function loads user data from local storage or initializes an empty array if no data is found.
  */
-async function saveItem(item) {
-    return JSON.parse(backend.setItem(item));
-}
+// async function saveItem(item) {
+//     return JSON.parse(backend.setItem(item));
+// }
 
 // function saveUsers() {
 //     setItem('users', JSON.stringify(users))

@@ -67,9 +67,11 @@ function renderTaskview(id) {
  */
 function renderCategory(id) {
   let category = document.getElementById("taskcategory");
-  category.innerHTML = tasks[id].category.categoryName;
+  let categoryID = tasks[id].category;
+  let categoryData = categories[categoryID]
+  category.innerHTML = categoryData.categoryName;
   category.className = "";
-  category.classList.add(tasks[id].category.categoryColor);
+  category.classList.add(categoryData.categoryColor);
 }
 
 
@@ -253,7 +255,7 @@ function displayCurrentTaskInEditForm() {
   document.getElementById("date").value = currentDate;
   renderSelectedDate();
   selectPrioBtn(currentPrio);
-  setCategory(currentCategory.categoryName, currentCategory.categoryColor);
+  setCategory(currentCategory);
   for (let i = 0; i < currentAssignees.length; i++) {
     const contactID = getContactsObjIndex(currentAssignees[i])
     if (contacts[contactID].isActive) {
@@ -297,7 +299,7 @@ async function editTask(i) {
   task.status = currentStatus;
   tasks[i] = task;
 
-  await saveItem('tasks');
+  await setItem('tasks', tasks);
   displayPopupMsg("taskupdated");
   setTimeout(closeTaskview, 2000);
   renderTasksToBoard();

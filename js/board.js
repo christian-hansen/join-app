@@ -2,7 +2,6 @@
  * It downloads data from the server, then loads it into the local storage, then includes the HTML templates, then renders the tasks to the board.
  */
 async function initBoard() {
-  await downloadFromServer();
   users = await loadItem('users');
   categories = await loadItem('categories');
   prios = await loadItem('prios');
@@ -73,7 +72,7 @@ function renderMoveMenu(taskid) {
  */
 async function changeTaskStatus(taskid, status) {
     tasks[taskid].status = status;
-    await saveItem('tasks');
+    await setItem('tasks', tasks);
     renderMoveMenu(taskid);
   }
 
@@ -126,7 +125,7 @@ function cancelTaskDeletion() {
  */
 async function deleteTask(i) {
     tasks[i].status = 4;
-    await saveItem('tasks');
+    await setItem('tasks', tasks);
     displayPopupMsg("taskdeleted");
     setTimeout(closeTaskview, 2000);
     renderTasksToBoard();
@@ -139,7 +138,7 @@ async function deleteTask(i) {
  */
 async function toggleSubtaskCheckboxEdit(i) {
     toggleSubtaskCheckbox(i);
-    await saveItem('tasks');
+    await setItem('tasks', tasks);
     nonCheckSubsNew();
   }
 
@@ -151,7 +150,7 @@ async function toggleSubtaskCheckboxEdit(i) {
  */
 async function deleteSubTaskEdit(i, selectedTask) {
     deleteSubTask(i);
-    await saveItem('tasks');
+    await setItem('tasks', tasks);
     displayPopupMsg("subtaskdeleted");
     renderSubTasksTaskview(selectedTask);
     setTimeout(hidePopupMsg, 2000);
