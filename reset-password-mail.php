@@ -2,12 +2,10 @@
 
 ########### CONFIG ###############
 
-
-
 $recipient = $_POST['email'];
 $_POST['message'] = 'To reset your password, please click the link below and follow the constructions! 
                     Please note, that you use the same browser as the one you used to request.
-                    https://gruppenarbeit-join-465.developerakademie.net/html/reset_password.html';
+                    https://christian-hansen.developerakademie.net/join/html/reset_password.html';
 $redirect = 'index.html';
 
 ########### CONFIG END ###########
@@ -44,8 +42,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case ("POST"): //Send the email;
         header("Access-Control-Allow-Origin: *");
 
-        $subject = "Contact From JOIN-PROJECT";
-        $headers = "From:  noreply@join-project.com";
+        $subject = "Contact From JOIN-PROJECT-GROUP-465";
+        $headers = "From:  noreply@developerakademie.com";
     
         mail($_POST['email'], $subject, $_POST['message'], $headers);
         header("Location: " . $redirect); 

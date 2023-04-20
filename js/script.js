@@ -4,92 +4,6 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 let users = [];
 let activeUser = [];
 
-// let prios = [
-//     {
-//     id: 1,
-//     prioName: 'Urgent',
-//     icon: '../assets/img/prioBtn1.png'
-//     },
-//     {
-//     id: 1,
-//     prioName: 'Medium',
-//     icon: '../assets/img/prioBtn2.png'
-//     },
-//     {
-//     id: 2,
-//     prioName: 'Low',
-//     icon: '../assets/img/prioBtn3.png'
-//     },
-// ];
-// let categories = [
-//     {
-//     categoryID: 0,
-//     categoryName: 'Sales',
-//     categoryColor: 'pink',
-//     categoryIsActive: true
-//     },
-//     {
-//     categoryID: 1,
-//     categoryName: 'Backoffice',
-//     categoryColor: 'mintgreen',
-//     categoryIsActive: true
-//     },
-//     {
-//     categoryID: 2,
-//     categoryName: 'Design',
-//     categoryColor: 'orange',
-//     categoryIsActive: true
-//     },
-//     {
-//     categoryID: 3,
-//     categoryName: 'Support & Service',
-//     categoryColor: 'red',
-//     categoryIsActive: true
-//     }];
-// let contacts = [
-//     {
-//     id: 0, 
-//     contactName: 'George Steinbrenner', 
-//     email: 'george@yankees.com', 
-//     phone: '11178787878', 
-//     isActive: false, 
-//     color: "lightblue"
-//     },
-//     {
-//     id: 1, 
-//     contactName: "Paul O'Neill", 
-//     email: 'paul@21.com', 
-//     phone: '212 221313', 
-//     isActive: true, 
-//     color: "red"
-//     },
-//     {
-//     id: 2, 
-//     contactName: 'Derek Jeter', 
-//     email: 'derek@legend2.com', 
-//     phone: '222 2222', 
-//     isActive: true, 
-//     color: "lightblue"
-//     },
-// ];
-// let tasks = [
-//     {id: 0,
-//     title: 'Create new product brochure',
-//     description: 'The brochure should present our product in the best way with high quality photos',
-//     prio: 2, 
-//     dueDate: '2023-05-06',
-//     category: 2,
-//     assignee:[0,7],
-//     subtasks:[
-//         {
-//         checked: false,
-//         description: 'Print brochure'
-//         }
-//     ],
-//     status: 0
-//     }
-// ]
-
 /**
  * It downloads the users from the server, then it loads the users from the local storage, then it
  * includes the HTML.
@@ -100,13 +14,17 @@ async function init() {
     includeHTML();
 }
 
-// async function uploadStuff() {
-//     await setItem('prios', prios);
-//     await setItem('categories', categories);
-//     await setItem('contacts', contacts);
-//     await setItem('tasks', tasks);
-// }
-
+/**
+ * This function sets an item in a remote storage by sending a POST request with a key, value, and
+ * token.
+ * @param key - The key is a string that represents the name of the item being stored in the storage
+ * system. It is used to retrieve the item later.
+ * @param input - The input parameter is the data that needs to be stored in the key-value pair in the
+ * storage. It can be any valid JSON data type such as an object, array, string, number, boolean, or
+ * null. The input parameter will be converted to a JSON string using the JSON.stringify() method
+ * @returns The `setItem` function is returning a Promise that resolves to the result of calling
+ * `res.json()` on the response from the `fetch` request.
+ */
 async function setItem(key, input) {
     let value = JSON.stringify(input);
     const payload = { key, value, token: STORAGE_TOKEN };
@@ -114,6 +32,15 @@ async function setItem(key, input) {
     .then(res => res.json());
 }
 
+/**
+ * The function retrieves data from a storage API using a key and token.
+ * @param key - The key parameter is a string that represents the unique identifier for the data that
+ * needs to be retrieved from the storage.
+ * @returns An asynchronous function named `getItem` is being returned. This function takes a `key`
+ * parameter and uses it to construct a URL with a `STORAGE_URL` and `STORAGE_TOKEN` variable. It then
+ * uses the `fetch` function to make a GET request to the constructed URL and returns a Promise that
+ * resolves to the JSON response. The response is then parsed and if the `data`
+ */
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
@@ -133,25 +60,6 @@ async function loadItem(item) {
         console.error('Loading error:', e);
     }
 }
-
-/**
- * This function loads user data from local storage or initializes an empty array if no data is found.
- */
-// async function saveItem(item) {
-//     return JSON.parse(backend.setItem(item));
-// }
-
-// function saveUsers() {
-//     setItem('users', JSON.stringify(users))
-// }
-
-// function saveTasks() {
-//     setItem('tasks',JSON.stringify(tasks));
-// }
-
-// function saveTasks() {
-//     setItem('tasks',JSON.stringify(tasks));
-// }
 
 
 

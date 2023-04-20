@@ -209,9 +209,7 @@ function resetCurrentCategories() {
  */
 function renderTaskToBoardHTML(task, i) {
   let categoryID = task.category;
-  // console.log(categoryID);
   let category = categories[categoryID];
-  // console.log(category);
   return `<div class="boardtask" ondragstart="startDragging(${task.id})" draggable="true" onclick="openTaskview(${i})">
               <div class="boardtask-taskcategory ${category.categoryColor}">
                   ${category.categoryName}
