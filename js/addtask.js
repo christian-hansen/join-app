@@ -40,7 +40,7 @@ async function createTask() {
   task.status = currentStatus;
   tasks.push(task);
   await saveItem('tasks');
-  await saveUsers();
+  await setItem('users', JSON.stringify(users));
 }
 
 

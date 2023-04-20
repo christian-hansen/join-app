@@ -6,7 +6,9 @@ let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', '
  * 
  */
 async function init_login() {
-    await downloadFromServer();
+    // await downloadFromServer();
+    // users = await loadItem('users');
+    // await setItem('users', users);
     users = await loadItem('users');
     load();
     rememberload();
@@ -127,7 +129,7 @@ async function registNewAccount() {
             animationCounter: 0
         };
         users.push(account);
-        await saveUsers();
+        await setItem('users', JSON.stringify(users));
         setTimeout(() => popup.classList.add("d-none"), 3000);
         clearInput();
     }
@@ -248,7 +250,7 @@ async function changePw() {
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == currentUser) {users[i].password = activeUser[0].password;}
     }
-    await saveUsers();
+    await setItem('users', JSON.stringify(users));
     remove();
 }
 

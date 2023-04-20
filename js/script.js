@@ -1,4 +1,14 @@
-let users = [];
+const STORAGE_TOKEN = '95EI500XAI6O6E54SZ91QWQF8312TGEEM3NXYY3N';
+const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+
+let users = [{
+id: 0,
+userName: 'Guest User',
+email: 'guest@guestemail.com',
+password: 'guest1234',
+color:'',
+animationCounter: 0
+}];
 let activeUser = [];
 
 
@@ -7,17 +17,38 @@ let activeUser = [];
  * includes the HTML.
  */
 async function init() {
-    await downloadFromServer();
-    await loadItem('users');
+    // await downloadFromServer();
+    // await loadItem('users');
+    // users = await getItem('users')
     load();
     includeHTML();
+}
+
+async function setItem(key, input) {
+    let value = JSON.stringify(input);
+    const payload = { key, value, token: STORAGE_TOKEN };
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
+    .then(res => res.json());
+}
+
+async function getItem(key) {
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    return fetch(url).then(res => res.json()).then(res => {
+        if (res.data) { 
+            return res.data.value;
+        } throw `Could not find data with key "${key}".`;
+    });
 }
 
 /**
  * This function loads user data from local storage or initializes an empty array if no data is found.
  */
 async function loadItem(item) {
-    return JSON.parse(backend.getItem(item)) || [];
+    try {
+    return JSON.parse(await getItem(item));
+    } catch(e){
+        console.error('Loading error:', e);
+    }
 }
 
 /**
@@ -26,6 +57,20 @@ async function loadItem(item) {
 async function saveItem(item) {
     return JSON.parse(backend.setItem(item));
 }
+
+// function saveUsers() {
+//     setItem('users', JSON.stringify(users))
+// }
+
+// function saveTasks() {
+//     setItem('tasks',JSON.stringify(tasks));
+// }
+
+// function saveTasks() {
+//     setItem('tasks',JSON.stringify(tasks));
+// }
+
+
 
 /**
  * This function adds the Header & Footer HTML.
