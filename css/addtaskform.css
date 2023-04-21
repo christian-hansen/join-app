@@ -229,6 +229,7 @@
   
   .dropdown-check-list .anchor {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     cursor: pointer;
     padding: 11px 0px 11px 0px;
@@ -286,6 +287,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 11px 21px 11px 21px;
+    /* height: 25px; */
     background-color: white;
     color: darkgray
   }
@@ -608,6 +610,7 @@
         display: none !important;
       }
     
+
       .formline {
         border: 1px solid #d1d1d1;
         height: 100%;
@@ -637,6 +640,15 @@
         column-gap: 30px;
         padding-right: 15px;
         font-size: 21px;
+      }
+
+      #subtask-input,
+      #subtask-placeholder {
+        height: 22px
+      }
+
+      .dropdown-check-list .anchor {
+        min-height: 22px;
       }
 
       .category-item .dot {

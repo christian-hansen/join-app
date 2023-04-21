@@ -7,6 +7,7 @@ let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', '
  */
 async function init_login() {
     users = await loadItem('users');
+    console.log(users);
     load();
     rememberload();
     render();

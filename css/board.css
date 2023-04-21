@@ -463,6 +463,7 @@ progress::-webkit-progress-value {
 @media (min-width: 900px) {
     .boardtask {
         width: 250px;
+        min-height: 235px;
     }
 }
 
