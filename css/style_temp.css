@@ -23,7 +23,7 @@ h1 {
     width: 100%;
 }
 
-.sidbarNav {
+.sidebarNav {
     display: none;
 }
 
@@ -159,11 +159,32 @@ div.logMenue ul a {
     color: #CDCDCD;
 } 
 
+.iconWidth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+}
+
+.footerNav > div {
+    width: 25%;
+    cursor: pointer;
+}
+
+.textcenter {
+    text-align: center;
+}
+
 @media (min-width: 428px) {}
 
 /* For desktop: */
 @media only screen and (min-width: 768px) {
 
+
+    .iconWidth {
+        height: auto;
+        width: 26px;
+    }
     .centralContainer {
         display: flex;
         flex-direction: row;
@@ -174,14 +195,14 @@ div.logMenue ul a {
         font-size: 61px;
       }
 
-    .sidbarNav {
+    .sidebarNav {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         color: #CDCDCD;
         background-color: #2A3647;
         position: fixed;
-        width: 200px;
+        width: 232px;
         height: 100vh;
         left: 0px;
         top: 0px;
@@ -205,11 +226,11 @@ div.logMenue ul a {
         display: flex;
         flex-direction: row;
         align-items: center;
+        gap: 22px;
         justify-content: flex-start;
-        gap: 20px;
         padding: 18px 0 18px 40px;
         margin-bottom: 10px;
-        font-size: 14px;
+        font-size: 16px;
         cursor: pointer;
     }
 
@@ -218,9 +239,7 @@ div.logMenue ul a {
         color: #fff;
     }
 
-    .iconWidth {
-        max-width: 28px;
-    }
+
 
     .infos {
         display: flex;
@@ -236,7 +255,7 @@ div.logMenue ul a {
         gap: 20px;
         padding: 18px 0 18px 40px;
         margin-bottom: 180px;
-        font-size: 14px;
+        font-size: 16px;
         cursor: pointer;
     }
 
@@ -285,7 +304,7 @@ div.logMenue ul a {
     }
 
     .contentContainer {
-        padding: 100px 50px 20px 280px;
+        padding: 100px 50px 20px 312px;
     }
 
     .content {

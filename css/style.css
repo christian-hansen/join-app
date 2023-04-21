@@ -279,7 +279,7 @@ input::placeholder {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
 
-#back-arrow {
+#back-arrow, #back-arrow-pw {
     position: absolute;
     left: 37.17px;
     top: 41.51px;
@@ -334,6 +334,11 @@ input::placeholder {
     position: relative;
     top: 23px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.forgotpw-top {
+    display: flex;
+    align-items: center;
 }
 
 .forgotten-password-area p {
@@ -592,7 +597,7 @@ input::placeholder {
         padding: 35px 0px 35px 0px;
     }
 
-    #back-arrow {
+    #back-arrow, #back-arrow-pw {
         left: 13.17px;
         top: 14.51px;
         z-index: 2;
