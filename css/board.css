@@ -433,6 +433,10 @@ progress::-webkit-progress-value {
         display: none !important;
     }
 
+    .boardcontainer {
+        margin-top: 100px;
+    }
+
 }
 
 @media (min-width: 451px) {
@@ -450,7 +454,7 @@ progress::-webkit-progress-value {
     .boardcontainer {
         gap: 20px;
         padding-right: 10px;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
 
