@@ -455,9 +455,7 @@ progress::-webkit-progress-value {
         margin-top: 100px;
     }
 
-    .boardsection  {
-        width: auto;
-    }
+
 
 }
 
@@ -486,6 +484,10 @@ progress::-webkit-progress-value {
     .boardtask {
         width: 250px;
         min-height: 235px;
+    }
+
+    .boardsection  {
+        width: auto;
     }
 }
 
