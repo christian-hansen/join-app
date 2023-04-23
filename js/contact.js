@@ -185,14 +185,49 @@ async function editContact(i) {
 async function deleteContact(i) {
     contacts[i].isActive = false;
     await saveContactData();
+    showContactDeleteSuccess();
+    setTimeout(hideSuccess, 2000);
+    setTimeout(backToList, 2500);
+    setTimeout(clearSingleContact, 2500);
     renderContactList();
 }
 
-function openDeleteContactMsg() {
-    //
+
+/**
+ * It unhides the "deletemsgcontainer". It also renders the delete buttons in the delete message container.
+ * @param i - the index of the contact in the array
+ */
+function openDeleteContactMsg(i) {
+    document.getElementById("deletemsgcontainer").classList.remove("d-none");
+    document.getElementById("deletemsg").innerHTML = renderContactDeleteBtns(i);
 }
 
 
+/**
+ * It hides the delete message.
+ */
+function cancelContactDeletion() {
+    document.getElementById("deletemsgcontainer").classList.add("d-none");
+  }
+
+
+/**
+ * The function clears the content of an HTML element with the ID "singleData".
+ */
+function clearSingleContact() {
+    document.getElementById("singleData").innerHTML = "";  
+}
+
+/**
+ * `showContactDeleteSuccess()` is a function that removes the `d-none` class from the `dialog` element, clears the `dialog` element's innerHTML, and then adds the `showSuccessBlock()` function's return value to the
+ * `dialog` element's innerHTML
+ */
+function showContactDeleteSuccess() {
+    cancelContactDeletion();
+    document.getElementById('dialog').classList.remove('d-none');
+    document.getElementById('dialog').innerHTML = '';
+    document.getElementById('dialog').innerHTML += showContactDeleteBlock();
+}
 
 
 /**

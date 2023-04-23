@@ -191,7 +191,23 @@ function showSuccessBlock() {
      <div id="dialogContact" class="dialog-bg" onclick="closeModal()">
         <div id="sucessInfo" class="sucessInfoContainer">
             <div class="successInfoText">
-                <span>Contact sucessfully created</span>
+                <span>Contact successfully created.</span>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+/**
+ * It returns a string of HTML code that is used to display a success message to the user
+ * @returns A string of HTML code.
+ */
+function showContactDeleteBlock() {
+    return /*html*/ `
+     <div id="dialogContact" class="dialog-bg" onclick="closeModal()">
+        <div id="sucessInfo" class="sucessInfoContainer">
+            <div class="successInfoText">
+                <span>Contact successfully deleted.</span>
             </div>
         </div>
     </div>
