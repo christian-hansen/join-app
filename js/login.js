@@ -136,8 +136,7 @@ async function registerNewAccount() {
 }
 
 /**
- * When the user clicks the button with the id of 'close-popup-signup-exist', the function will add the
- * class of 'd-none' to the element with the id of 'popup-signup'.
+ * When the user clicks the button with the id of 'close-popup-signup-exist', the function will add the class of 'd-none' to the element with the id of 'popup-signup'.
  */
 function closePopupSignUpExist() {
     let popupexist = document.getElementById('popup-signup');
@@ -145,8 +144,7 @@ function closePopupSignUpExist() {
 }
 
 /**
- * When the user clicks the button, remove the class 'd-none' from the element with the id
- * 'popup-signup'.
+ * When the user clicks the button, remove the class 'd-none' from the element with the id 'popup-signup'.
  */
 function showPopUpSignUpExist() {
     let popupexist = document.getElementById('popup-signup');
@@ -168,9 +166,7 @@ function clearInput() {
 }
 
 /**
- * Thats the Login function for registred Users.
- * It checks if the user exists in the database, if not, it shows an error message, if it does, it
- * saves the user to the activeUser array and redirects to the summary page.
+ * Thats the Login function for registred Users. It checks if the user exists in the database, if not, it shows an error message, if it does, it saves the user to the activeUser array and redirects to the summary page.
  */
 async function login() {
     let email = document.getElementById('login-email');
@@ -196,8 +192,7 @@ async function login() {
 }
 
 /**
- * If the checkbox is checked, save the login info to the remember array, otherwise clear the remember
- * array.
+ * If the checkbox is checked, save the login info to the remember array, otherwise clear the remember array.
  * @param checkbox - the checkbox element
  * @param rememberlogin - The value of the input field.
  */
@@ -213,9 +208,7 @@ function checkForCheckbox(checkbox, rememberlogin) {
 }
 
 /**
- * This function is only for Guests without registration.
- * If the user's email and password match the email and password of a user in the users array, then the
- * activeUser array is set to the user and the user is redirected to the summary page.
+ * This function is only for Guests without registration. If the user's email and password match the email and password of a user in the users array, then the activeUser array is set to the user and the user is redirected to the summary page.
  */
 async function guestLogin() {
     let email = document.getElementById('login-email');
@@ -232,10 +225,7 @@ async function guestLogin() {
 }
 
 /**
- * It takes the value of the first input and the second input, compares them, and if they are the same,
- * it changes the password of the active user to the value of the first input.
- * After them, it check the activeUser and the user in Backend,  compares them, and if they are the same,
- * it changes the password of the user in Backend to the value activeUser´s password.
+ * It takes the value of the first input and the second input, compares them, and if they are the same, it changes the password of the active user to the value of the first input. After them, it check the activeUser and the user in Backend,  compares them, and if they are the same, it changes the password of the user in Backend to the value activeUser´s password.
  */
 async function changePw() {
     let input1 = document.getElementById('first-password');
@@ -255,8 +245,7 @@ async function changePw() {
 }
 
 /**
- * If the checkbox is checked, then if the remember variable is empty, return false, otherwise, set the
- * email and password values to the email and password values in the remember variable.
+ * If the checkbox is checked, then if the remember variable is empty, return false, otherwise, set the email and password values to the email and password values in the remember variable.
  * 
  */
 function rememberMe() {
@@ -275,8 +264,7 @@ function rememberMe() {
 }
 
 /**
- * It takes the variable remember, which is an array, and turns it into a string, then saves it to
- * local storage.
+ * It takes the variable remember, which is an array, and turns it into a string, then saves it to local storage.
  */
 function remembersave() {
     let rememberAsText = JSON.stringify(remember);
@@ -284,8 +272,7 @@ function remembersave() {
 }
 
 /**
- * If there is a value in localStorage with the key 'remember', then parse it as JSON and assign it to
- * the variable 'remember'.
+ * If there is a value in localStorage with the key 'remember', then parse it as JSON and assign it to the variable 'remember'.
  */
 function rememberload() {
     let rememberAsText = localStorage.getItem('remember');
@@ -300,8 +287,7 @@ function rememberClear() {
 }
 
 /**
- * If the input value is not empty, add the class 'd-none' to the lock icon and remove the class
- * 'd-none' from the unvisible icon and label.
+ * If the input value is not empty, add the class 'd-none' to the lock icon and remove the class 'd-none' from the unvisible icon and label.
  */
 function changeIcon() {
     let input = document.getElementById('login-password');
@@ -316,9 +302,7 @@ function changeIcon() {
 }
 
 /**
- * This function makes the password = visible.
- * If the type of the element with the id "login-password" is "password", then change the type to
- * "text", otherwise change the type to "password".
+ * This function makes the password = visible. If the type of the element with the id "login-password" is "password", then change the type to "text", otherwise change the type to "password".
  */
 function showPw() {
     let typ = document.getElementById('login-password');

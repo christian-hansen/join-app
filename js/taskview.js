@@ -293,7 +293,7 @@ async function editTask(i) {
   task.description = currentDescription;
   task.prio = currentPrio;
   task.dueDate = currentDate;
-  task.category = currentCategory;
+  task.category = currentCategory.categoryID;
   task.assignee = currentAssignees;
   task.subtasks = currentSubTasks;
   task.status = currentStatus;
@@ -334,18 +334,6 @@ function renderOkBtnContainer(i) {
   btncontainer.classList.remove("d-none");
   btncontainer.innerHTML = okBtnContainerHTML(i);
 }
-
-
-/**
- * It clears the HTML of the four columns of the board.
- */
-function clearBoardColumns() {
-  document.getElementById("todo").innerHTML = "";
-  document.getElementById("inprogress").innerHTML = "";
-  document.getElementById("awaitingfeedback").innerHTML = "";
-  document.getElementById("done").innerHTML = "";
-}
-
 
 /**
  * Deactivates scrolling' depending on the path and the window size.

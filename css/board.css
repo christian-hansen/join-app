@@ -148,6 +148,7 @@ h1 {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
+    width: 100%;
 
 }
 
@@ -398,6 +399,23 @@ progress::-webkit-progress-value {
     border-radius: 10px;
 }
 
+.notasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 0px;
+    gap: 10px;
+    background: #D1D1D1;
+    border: 1px dashed #A8A8A8;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: #A8A8A8;
+    line-height: 120%;
+    min-width: 250px;
+    width: inherit;
+}
+
 @media (max-width: 370px) {
     .boardtask {
         min-width: auto;
@@ -435,6 +453,10 @@ progress::-webkit-progress-value {
 
     .boardcontainer {
         margin-top: 100px;
+    }
+
+    .boardsection  {
+        width: auto;
     }
 
 }
@@ -510,6 +532,7 @@ progress::-webkit-progress-value {
         min-width: 22%;
         padding-right: 10px;
         padding-left: 10px;
+        
     }
 
 

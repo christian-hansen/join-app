@@ -5,8 +5,7 @@ let colors = ['orange', 'red', 'applegreen', 'magenta', 'lightblue', 'mintgreen'
 
 
 /** 
- * This function sort the array by the way with case-sensitive comparison 
- * If a is less than b, return -1. If a is greater than b, return 1. Otherwise, return 0.
+ * This function sort the array by the way with case-sensitive comparison. If a is less than b, return -1. If a is greater than b, return 1. Otherwise, return 0.
  * @param a - The first string to compare.
  * @param b - The second string to compare.
  * @returns -1, 0, or 1
@@ -43,9 +42,7 @@ async function saveContactData() {
 }
 
 /**
- * We're looping through the contacts array, and for each contact, we're getting the first letter of
- * the contact's name, and if that letter isn't already in the alphabet array, we're adding it to the
- * alphabet array
+ * We're looping through the contacts array, and for each contact, we're getting the first letter of the contact's name, and if that letter isn't already in the alphabet array, we're adding it to the alphabet array
  */
 function renderContactList() {
     alphabet.length = 0;
@@ -69,9 +66,7 @@ function renderContactList() {
 
 
 /**
- * For each letter in the alphabet, add a letter to the contact list, then for each contact in the
- * contacts array, if the first letter of the contact's name matches the current letter in the
- * alphabet, add the contact to the contact list
+ * For each letter in the alphabet, add a letter to the contact list, then for each contact in the contacts array, if the first letter of the contact's name matches the current letter in the alphabet, add the contact to the contact list
  * @param contactListItem - the element that will contain the list of contacts
  */
 function renderContactListItems(contactListItem) {
@@ -97,11 +92,7 @@ function renderContactListItems(contactListItem) {
 
 
 /**
- * It takes the index of the contact in the array, and then uses that index to get the contact object
- * from the array. It then splits the contact name into an array of words, and then uses the reduce
- * method to get the first letter of each word, and then joins them together into a string. It then
- * converts that string to uppercase, and then uses that string to create the HTML for the contact
- * details box
+ * It takes the index of the contact in the array, and then uses that index to get the contact object from the array. It then splits the contact name into an array of words, and then uses the reduce method to get the first letter of each word, and then joins them together into a string. It then converts that string to uppercase, and then uses that string to create the HTML for the contact details box.
  * @param i - the index of the contact in the contacts array
  */
 function renderContactDetails(i) {
@@ -116,8 +107,7 @@ function renderContactDetails(i) {
 
 
 /**
- * It takes a single contact object, adds it to the contacts array, saves the contacts array to local
- * storage, closes the modal, renders the contacts, and shows a success message
+ * It takes a single contact object, adds it to the contacts array, saves the contacts array to local storage, closes the modal, renders the contacts, and shows a success message.
  * @param singleContact - the contact object that was created in the newContact function
  */
 async function newContactRender(singleContact) {
@@ -134,8 +124,7 @@ async function newContactRender(singleContact) {
 
 
 /**
- * It takes the values from the input fields, creates a new object with those values, and then calls
- * the function newContactRender() with the new object as an argument
+ * It takes the values from the input fields, creates a new object with those values, and then calls the function newContactRender() with the new object as an argument
  */
 function newContact() {
     let randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -155,9 +144,7 @@ function newContact() {
 
 
 /**
- * It takes the index of the contact to be edited, gets the contact from the contacts array, gets the
- * values from the input fields, updates the contact with the new values, saves the contacts array to
- * the backend, closes the modal and renders the contacts
+ * It takes the index of the contact to be edited, gets the contact from the contacts array, gets the values from the input fields, updates the contact with the new values, saves the contacts array to the backend, closes the modal and renders the contacts
  * @param i - The index of the contact in the contacts array.
  */
 async function editContact(i) {
@@ -178,8 +165,7 @@ async function editContact(i) {
 
 
 /**
- * It deletes a contact from the contacts array, clears the singleData div, and then re-renders the
- * contact list
+ * It deletes a contact from the contacts array, clears the singleData div, and then re-renders the contact list.
  * @param i - The index of the contact to delete.
  */
 async function deleteContact(i) {
@@ -219,8 +205,7 @@ function clearSingleContact() {
 }
 
 /**
- * `showContactDeleteSuccess()` is a function that removes the `d-none` class from the `dialog` element, clears the `dialog` element's innerHTML, and then adds the `showSuccessBlock()` function's return value to the
- * `dialog` element's innerHTML
+ * `showContactDeleteSuccess()` is a function that removes the `d-none` class from the `dialog` element, clears the `dialog` element's innerHTML, and then adds the `showSuccessBlock()` function's return value to the `dialog` element's innerHTML.
  */
 function showContactDeleteSuccess() {
     cancelContactDeletion();
@@ -231,8 +216,7 @@ function showContactDeleteSuccess() {
 
 
 /**
- * It removes the class 'd-none' from the element with the id 'listAllContacts' and removes the class
- * 'block' from the element with the id 'descriptionContainer'
+ * It removes the class 'd-none' from the element with the id 'listAllContacts' and removes the class 'block' from the element with the id 'descriptionContainer'
  */
 function backToList() {
     document.getElementById('listAllContacts').classList.remove('d-none');
@@ -242,7 +226,7 @@ function backToList() {
 
 
 /**
- * It removes the class 'contactSelected' from all contacts, then adds it to the contact with the index i
+ * It removes the class 'contactSelected' from all contacts, then adds it to the contact with the index i.
  * @param i - the index of the contact in the contacts array
  */
 function markSelectedContact(i) {
@@ -275,12 +259,7 @@ function contactShowDetails(i) {
 
 
 /**
- * It takes the index of the contact in the contacts array, and then uses that index to get the contact
- * object from the array. It then takes the contact name and splits it into an array of words, and then
- * uses the reduce method to create an acronym of the contact's name. It then removes the class of
- * d-none from the dialog div, and then sets the innerHTML of the dialog div to the modalEditContact
- * function, which is passed the index of the contact, the contact object, and the acronym. It then
- * focuses on the input field.
+ * It takes the index of the contact in the contacts array, and then uses that index to get the contact object from the array. It then takes the contact name and splits it into an array of words, and then uses the reduce method to create an acronym of the contact's name. It then removes the class of d-none from the dialog div, and then sets the innerHTML of the dialog div to the modalEditContact function, which is passed the index of the contact, the contact object, and the acronym. It then focuses on the input field.
  * @param i - the index of the contact in the contacts array
  */
 function openEditContact(i) {
@@ -294,11 +273,13 @@ function openEditContact(i) {
 }
 
 
+/**
+ * The function opens a new contact modal and sets focus on the input field.
+ */
 function openNewContact() {
     document.getElementById('dialog').classList.remove('d-none');
     document.getElementById('dialog').innerHTML = '';
     document.getElementById('dialog').innerHTML += modalNewContact();
-    /*  document.getElementById('newContactName').focus(); */
     focusInput();
 }
 
@@ -312,9 +293,7 @@ function focusInput() {
 
 
 /**
- * `showSuccess()` is a function that removes the `d-none` class from the `dialog` element, clears the
- * `dialog` element's innerHTML, and then adds the `showSuccessBlock()` function's return value to the
- * `dialog` element's innerHTML
+ * `showSuccess()` is a function that removes the `d-none` class from the `dialog` element, clears the `dialog` element's innerHTML, and then adds the `showSuccessBlock()` function's return value to the `dialog` element's innerHTML
  */
 function showSuccess() {
     document.getElementById('dialog').classList.remove('d-none');
@@ -324,8 +303,7 @@ function showSuccess() {
 
 
 /**
- * The function hides a success message by adding a 'd-none' class to the element with the ID 'dialog'
- * and clearing its inner HTML.
+ * The function hides a success message by adding a 'd-none' class to the element with the ID 'dialog' and clearing its inner HTML.
  */
 function hideSuccess() {
     document.getElementById('dialog').classList.add('d-none');
@@ -347,10 +325,8 @@ function handleKeqUpName(event) {
 }
 
 /**
- * If the user presses the enter key, prevent the default action of the enter key, and focus on the
- * next input field.
- * @param event - The event object is a JavaScript object that contains information about the event
- * that occurred.
+ * If the user presses the enter key, prevent the default action of the enter key, and focus on the next input field.
+ * @param event - The event object is a JavaScript object that contains information about the event that occurred.
  * @returns false.
  */
 function handleKeqUpMail(event) {
@@ -362,11 +338,8 @@ function handleKeqUpMail(event) {
 }
 
 /**
- * If the user presses the enter key, then prevent the default action of the enter key, and focus on
- * the create button.
- * @param event - The event object is a JavaScript object that contains useful information about the
- * event, such as the element that the event occurred on, the x and y coordinates of the event, and
- * more.
+ * If the user presses the enter key, then prevent the default action of the enter key, and focus on the create button.
+ * @param event - The event object is a JavaScript object that contains useful information about the event, such as the element that the event occurred on, the x and y coordinates of the event, and more.
  * @returns false.
  */
 function handleKeqUpPhone(event) {
@@ -413,10 +386,7 @@ function showScroll() {
 
 
 /**
- * "If the user clicks on the dropdown menu, don't close the menu."
- * 
- * The event.stopPropagation() method stops the event from bubbling up the DOM tree, preventing any
- * parent handlers from being notified of the event
+ * "If the user clicks on the dropdown menu, don't close the menu." The event.stopPropagation() method stops the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event
  * @param event - The event object.
  */
 function doNotClose(event) {

@@ -1,3 +1,5 @@
+let boardColumns = ['todo', 'inprogress', 'awaitingfeedback', 'done']
+
 /**
  * It downloads data from the server, then loads it into the local storage, then includes the HTML templates, then renders the tasks to the board.
  */
@@ -82,22 +84,41 @@ async function changeTaskStatus(taskid, status) {
  */
 function renderTasksToBoard() {
     clearBoardColumns();
-    for (let i = 0; i < tasks.length; i++) {
-      const task = tasks[i];
-      if (task.status === 0) {
-        document.getElementById("todo").innerHTML += renderTaskToBoardHTML(task, i);
-      } else if (task.status === 1) {
-        document.getElementById("inprogress").innerHTML += renderTaskToBoardHTML(task, i);
-      } else if (task.status === 2) {
-        document.getElementById("awaitingfeedback").innerHTML += renderTaskToBoardHTML(task, i);
-      } else if (task.status === 3) {
-          document.getElementById("done").innerHTML += renderTaskToBoardHTML(task, i);
-      }
-      nonCheckSubsNew();
-      assignViewIcons();
-      showPrioToTaskViewBoard();}
-  }
+    renderTasksToColumns();
+    renderFallBackToColums();
+    nonCheckSubsNew();
+    assignViewIcons();
+    showPrioToTaskViewBoard();
+}
 
+
+function renderTasksToColumns() {
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    if (task.status === 0) {
+      document.getElementById("todo").innerHTML += renderTaskToBoardHTML(task, i);
+    } else if (task.status === 1) {
+      document.getElementById("inprogress").innerHTML += renderTaskToBoardHTML(task, i);
+    } else if (task.status === 2) {
+      document.getElementById("awaitingfeedback").innerHTML += renderTaskToBoardHTML(task, i);
+    } else if (task.status === 3) {
+        document.getElementById("done").innerHTML += renderTaskToBoardHTML(task, i);
+    }
+}
+}
+
+
+function renderFallBackToColums() {
+  for (let i = 0; i < boardColumns.length; i++) {
+    const boardColumn = document.getElementById(boardColumns[i]);
+    if (boardColumn.innerHTML === '') {
+      boardColumn.innerHTML = `
+      <div class="notasks">No tasks in progress</div>
+      `;
+    }
+  }
+  
+}
 
 /**
  * It hides the "taskmenu" and unhides the "deletemsgcontainer". It also renders the delete buttons in the delete message container.
@@ -176,6 +197,20 @@ function hideDeleteMsgContainer() {
     }
   }
 
+/**
+ * The function prevents the event from propagating further.
+ * @param event - The event parameter is an object that contains information about the event that triggered the function. It can be used to access properties such as the type of event, the target element, and any additional data associated with the event. In this specific function, the event parameter is used to prevent the default behavior of
+ */
   function doNotClose(event) {
     event.stopPropagation();
+}
+
+/**
+ * It clears the HTML of the four columns of the board.
+ */
+function clearBoardColumns() {
+  document.getElementById("todo").innerHTML = "";
+  document.getElementById("inprogress").innerHTML = "";
+  document.getElementById("awaitingfeedback").innerHTML = "";
+  document.getElementById("done").innerHTML = "";
 }
