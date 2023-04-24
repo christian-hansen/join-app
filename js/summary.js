@@ -53,8 +53,7 @@ function greetTime() {
     let greetTimeMobile = document.getElementById('greet-time-mobile');
     let greetTimeBottom = document.getElementById('greet-time-bottom');
     let date = new Date();
-    // let time = date.getHours();
-    let time = 16;
+    let time = date.getHours();
     if (time < 12) {
         greetTime.innerHTML = 'Good Morning,';
         greetTimeBottom.innerHTML = 'Good Morning,';

@@ -211,8 +211,7 @@ function renderTaskToBoardHTML(task, i) {
   let categoryID = task.category;
   let category = categories[categoryID];
   return `<div class="boardtask" ondragstart="startDragging(${task.id})" draggable="true" onclick="openTaskview(${i})">
-              <div class="boardtask-taskcategory ${category.categoryColor}">
-                  ${category.categoryName}
+              <div class="boardtask-taskcategory ${category.categoryColor}">${category.categoryName}
               </div>
               <div style="width: 100%;"><b><div class="boardtask-task-titel">${task.title}</div></b></div>
               <div style="width: 100%;">
