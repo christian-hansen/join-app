@@ -61,16 +61,17 @@ function showPopUpPw() {
     let popup = document.getElementById('popup');
     let user = users.find(u => u.email == inputmail.value);
     let guest = users.find(u => u.email == 'guest@guestemail.com');
-    let action="https://christian-hansen.developerakademie.net/join/reset-password-mail.php"
     if (user) {
-        if (user == guest) {showPopupNotFound();} else {
+        if (user == guest) {
+            showPopupNotFound();
+        } 
+        else {
             popup.classList.remove('d-none');
             activeUser = [];
             activeUser.push(user);
-            form.action = action;
             save();
             setTimeout(() => popup.classList.add("d-none"), 3000);
-            setTimeout(() => window.location.href = "../index.html", 3000)
+            setTimeout(() => window.location.href = "./index.html", 3000)
         }
     } else {showPopupNotFound();}
     inputmail.value = '';
@@ -84,7 +85,7 @@ async function showPopUpChangedPw() {
     popup.classList.remove('d-none');
     await changePw();
     setTimeout(() => popup.classList.add("d-none"), 3000);
-    setTimeout(() => window.location.href = "../index.html", 3000);
+    setTimeout(() => window.location.href = "./index.html", 3000);
 }
 
 /**
@@ -112,7 +113,6 @@ async function registerNewAccount() {
     let password = document.getElementById('password').value;
     let popup = document.getElementById('popup');
     let color = colors[Math.floor(Math.random() * colors.length)];
-    let action="https://christian-hansen.developerakademie.net/join/signup-send_mail.php"
 
     let user = users.find(u => u.email == email);
     if (user) {
@@ -128,9 +128,9 @@ async function registerNewAccount() {
             animationCounter: 0
         };
         users.push(account);
-        form.action = action;
         await setItem('users', users);
         setTimeout(() => popup.classList.add("d-none"), 3000);
+        // setTimeout(() => window.location.href = "./index.html", 3000)
         clearInput();
     }
 }

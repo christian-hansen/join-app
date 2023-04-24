@@ -64,7 +64,7 @@
             <label for="check-for-sign-up"><img id="back-arrow" src="assets/img/Vectorarrow-left.svg"></label>
             <h1 class="headline">Sign up</h1>
             <div class="underline"></div>
-            <form id="form-signup" onsubmit="registerNewAccount(); return false" method="post">
+            <form id="formsignup" onsubmit="registerNewAccount(); return false" action="https://christian-hansen.developerakademie.net/join/signup-send_mail.php" method="post">
                 <div class="login-input"><input type="text" id="name" placeholder="Name" required><img
                         src="assets/img/VectornameIcon.svg"></div>
                 <div class="login-input"><input type="email" name="email" id="email" placeholder="Email" required><img
@@ -76,12 +76,11 @@
         </div>
 
         <div class="forgotten-password-area">
-            <label for="check-for-forgotten-password"><img id="back-arrow-pw"
-                    src="assets/img/Vectorarrow-left.svg"></label>
+            <label for="check-for-forgotten-password"><img id="back-arrow-pw" src="assets/img/Vectorarrow-left.svg"></label>
             <h1 class="headline">I forgot my password</h1>
             <div class="underline"></div>
             <p>Don't worry! We will send you an email with the instructions to reset your password.</p>
-            <form id="form" onsubmit="showPopUpPw(); return false" method="post">
+            <form id="form" onsubmit="showPopUpPw(); return false" action="https://christian-hansen.developerakademie.net/join/reset-password-mail.php" method="post">
                 <div class="login-input"><input name="email" type="email" id="forgot-email" placeholder="Email"
                         required><img src="assets/img/Vector.png"></div>
                 <button type="submit" id="btn-email">Send me the email</button>
