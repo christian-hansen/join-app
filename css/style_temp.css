@@ -8,6 +8,13 @@ body {
     background-color: #F5F5F5;
 }
 
+.footerNav > a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    display: inherit;
+}
+
 h1 {
     font-size: 47px;
     line-height: 100%;

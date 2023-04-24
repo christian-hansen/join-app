@@ -55,18 +55,19 @@ function greetTime() {
     let date = new Date();
     // let time = date.getHours();
     let time = 16;
-    console.log(time);
-    if (time < 11) {
+    if (time < 12) {
         greetTime.innerHTML = 'Good Morning,';
         greetTimeBottom.innerHTML = 'Good Morning,';
         greetTimeMobile.innerHTML = 'Good Morning,';
-    } else if (time >= 11 && time < 17) {
-        greetTime.innerHTML = 'Hello,';
+    }
+    else if (time > 12 && time < 17) {
+        greetTime.innerHTML = 'Hello';
         greetTimeBottom.innerHTML = 'Hello,';
         greetTimeMobile.innerHTML = 'Hello,';
-    } else {
+    }
+    else if (time >= 17 && time < 24) {
         greetTime.innerHTML = 'Good Evening,';
-        greetTimeBottom.innerHTML.innerHTML = 'Good Evening,';
+        greetTimeBottom.innerHTML = 'Good Evening,';
         greetTimeMobile.innerHTML = 'Good Evening,';
     }
 }

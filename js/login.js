@@ -61,6 +61,8 @@ function showPopUpPw() {
     let popup = document.getElementById('popup');
     let user = users.find(u => u.email == inputmail.value);
     let guest = users.find(u => u.email == 'guest@guestemail.com');
+    // let action = "reset-password-mail.php";
+    // let method = "post";
     if (user) {
         if (user == guest) {
             showPopupNotFound();
@@ -70,8 +72,13 @@ function showPopUpPw() {
             activeUser = [];
             activeUser.push(user);
             save();
-            setTimeout(() => popup.classList.add("d-none"), 3000);
-            setTimeout(() => window.location.href = "./index.html", 3000)
+            setTimeout(() => {
+                // form.formAction = action;
+                // form.method = method;
+                // console.log(form.formAction, form.method);
+                popup.classList.add("d-none");
+                window.location.href = "./index.html";
+        }, 3000);
         }
     } else {showPopupNotFound();}
     inputmail.value = '';
@@ -113,6 +120,8 @@ async function registerNewAccount() {
     let password = document.getElementById('password').value;
     let popup = document.getElementById('popup');
     let color = colors[Math.floor(Math.random() * colors.length)];
+    let action = "https://christian-hansen.developerakademie.net/join/signup-send_mail.php";
+    let method = "post";
 
     let user = users.find(u => u.email == email);
     if (user) {
@@ -129,7 +138,12 @@ async function registerNewAccount() {
         };
         users.push(account);
         await setItem('users', users);
-        setTimeout(() => popup.classList.add("d-none"), 3000);
+        setTimeout(() => {
+            popup.classList.add("d-none");
+            formsignup.action = action;
+            formsignup.method = method;
+            console.log(formsignup.action, formsignup.method);
+        }, 3000);
         // setTimeout(() => window.location.href = "./index.html", 3000)
         clearInput();
     }
@@ -220,7 +234,7 @@ async function guestLogin() {
         activeUser = [];
         activeUser.push(user);
         save();
-        window.location.href = "../html/summary.html";
+        window.location.href = "./html/summary.html";
     }
 }
 
