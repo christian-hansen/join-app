@@ -113,7 +113,7 @@ function renderFallBackToColums() {
     const boardColumn = document.getElementById(boardColumns[i]);
     if (boardColumn.innerHTML === '') {
       boardColumn.innerHTML = `
-      <div class="notasks">No tasks in progress</div>
+      <div class="notasks">No tasks in this column</div>
       `;
     }
   }
