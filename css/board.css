@@ -440,6 +440,25 @@ progress::-webkit-progress-value {
     }
 }
 
+@media (min-width: 451px) {
+
+    .hidetablet {
+        display: none;
+    }
+
+    .plus-icon-top {
+        width: 130px;
+        padding: 18px 10px 18px 10px;
+        gap: 10px;
+    }
+
+    .boardcontainer {
+        gap: 20px;
+        padding-right: 10px;
+        margin-top: 50px;
+    }
+}
+
 @media (min-width: 600px) {
     .boardsection {
       width:  calc(50% - 20px)
@@ -495,27 +514,6 @@ progress::-webkit-progress-value {
 
 }
 
-@media (min-width: 451px) {
-
-    .hidetablet {
-        display: none;
-    }
-
-    .plus-icon-top {
-        width: 130px;
-        padding: 18px 10px 18px 10px;
-        gap: 10px;
-    }
-
-    .boardcontainer {
-        gap: 20px;
-        padding-right: 10px;
-        margin-top: 50px;
-    }
-
-
-}
-
 @media (min-width: 900px) {
     .boardtask {
         width: auto;
@@ -553,7 +551,6 @@ progress::-webkit-progress-value {
         flex-direction: row-reverse;
     }
 
-
     .board-top {
         grid-template-areas: 'firstline firstline firstline';
         grid-template-columns: calc(95% - 230px - 145px - 45px) 225px 245px;
@@ -563,7 +560,6 @@ progress::-webkit-progress-value {
     .boardtopitem1 {
         grid-column: 1;
         grid-row: 1;
-
     }
 
     .boardtopitem2 {
@@ -577,10 +573,10 @@ progress::-webkit-progress-value {
     }
 
     .boardsection {
+        width: calc(50% - 40px);
         min-width: 22%;
         padding-right: 10px;
         padding-left: 10px;
-        
     }
 
 
@@ -606,8 +602,6 @@ progress::-webkit-progress-value {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        /* grid-template-columns: 24.5% 24.5% 
-        24.5% 24.5%; */
         gap: 20px;
         padding-right: 30px;
 
