@@ -203,7 +203,7 @@ function openEditForm() {
  * It opens a modal form that includes the AddTask form..
  */
 function openAddTaskForm() {
-  if (window.location.pathname != "/html/contacts.html") {
+  if (selectedPage !== 'contacts') {
   deactivateScrolling();}
     else if (selectedPage === 'contacts' && window.innerHeight > 750 && window.innerWidth < 767) {
       document.documentElement.style.overflow = 'scroll';

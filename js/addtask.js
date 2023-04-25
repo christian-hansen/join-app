@@ -229,11 +229,9 @@ function setAssignee(id) {
     let setUser = id;
     currentAssignees.push(setUser);
     checkBox("assigneebox", id);
-    openDropdownList('assignees-dropdown');
   } else {
     currentAssignees.splice(getAssigneeIndex(id), 1);
     uncheckBox("assigneebox", id);
-    openDropdownList('assignees-dropdown');
   }
   renderCurrentAssigneesList();
 }
@@ -418,5 +416,6 @@ function addDropdownListener() {
   document.getElementById('addTaskForm').addEventListener("click", () => {
     closeDropdownList('assignees-dropdown');
     closeDropdownList('categories-dropdown');
+    dropdownIsOpen = false;
   });
 }

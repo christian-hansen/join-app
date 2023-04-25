@@ -1,4 +1,5 @@
 let activeContactIDs = []
+let dropdownIsOpen = false;
 
 /**
  * This function renders the categories, contacts, subtasks, and today's date to the form.
@@ -202,22 +203,48 @@ function uncheckBox(id, i) {
  */
 function openDropdownList(dropdownID) {
   doNotClose(event);
-  let dropdown = document.getElementById(dropdownID);
-  if (dropdown.id === "categories-dropdown") {
-    if (!dropdown.classList.contains("visible")) {
-      dropdown.classList.add("visible");}
-    else {
-      closeDropdownList(dropdownID);
+  if (dropdownIsOpen) {
+    closeDropdownList(dropdownID);
+  }
+  else {
+    let dropdown = document.getElementById(dropdownID);
+    if (dropdown.id === "categories-dropdown") {
+      if (!dropdown.classList.contains("visible")) {
+        openDropdown(dropdownID)
+      }
+      else {
+        closeDropdownList(dropdownID);
+      }
     }
-  }
-  if (dropdown.id === "assignees-dropdown") {
-    dropdown.classList.add("visible");
-  }
+    if (dropdown.id === "assignees-dropdown") {
+      openDropdown(dropdownID)
+    }
+  } 
 }
 
+
+/**
+ * The function closes a dropdown list by removing the "visible" class from its corresponding HTML
+ * element.
+ * @param dropdownID - The parameter "dropdownID" is a string that represents the ID of the dropdown
+ * element that needs to be closed.
+ */
 function closeDropdownList(dropdownID) {
 let dropdown = document.getElementById(dropdownID);
 dropdown.classList.remove("visible");
+dropdownIsOpen = false;
+}
+
+
+/**
+ * The function opens a dropdown menu by adding a "visible" class to the corresponding HTML element.
+ * @param dropdownID - The parameter `dropdownID` is a string that represents the ID of the dropdown
+ * element that needs to be opened.
+ */
+function openDropdown(dropdownID) {
+  let dropdown = document.getElementById(dropdownID);
+  dropdown.classList.add("visible");
+  dropdownIsOpen = true;
 }
 
 /**
@@ -259,7 +286,7 @@ function displayCreateBtnHeader() {
   }
   if (selectedPage === 'addTask') {
   document.getElementById("create-btn-top").classList.remove("d-none");}
-  if (selectedPage === 'contacts' && window.innerWidth < 767) {
+  if (selectedPage === 'board' && window.innerWidth < 767) {
     document.getElementById("create-btn-top").classList.remove("d-none");
   }
 }
@@ -313,6 +340,16 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
+/**
+ * The function prevents a dropdown from closing when an event occurs.
+ * @param event - The event parameter is an object that represents an event that has occurred, such as
+ * a mouse click or a key press. It contains information about the event, such as the type of event,
+ * the target element, and any data associated with the event. In this case, the event parameter is
+ * used to
+ */
+function doNotCloseDropdown(event) {
+  event.stopImmediatePropagation()
+}
 
 /**
  * The function will redirect to the board.html page.
