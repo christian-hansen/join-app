@@ -8,6 +8,7 @@ let currentStatus = 0;
 let taskValidation = false;
 let categoryCreationValidation = false;
 
+
 /**
  * It downloads data from the server, parses it, initializes the form, loads the data, includes the HTML, and displays the create button in the header.
  */
@@ -21,6 +22,7 @@ async function initAddTask() {
   load();
   await includeHTML();
   displayCreateBtnHeader();
+  addDropdownListener();
 }
 
 /**
@@ -108,6 +110,7 @@ function resetFormHTML() {
   document.getElementById("description").value = "";
   document.getElementById("date").value = "";
   resetFormValidation();
+  renderTodayDueDate();
   renderSelectedDate();
   resetCurrentCategories();
   resetCurrentAssignees();
@@ -203,11 +206,10 @@ function renderSelectedDate() {
  */
 function setCategory(id) {
   currentCategory = categories[id];
-  // currentCategory.categoryName = str;
-  // currentCategory.categoryColor = color;
   document.getElementById("categoryselection").innerHTML =
     categorySelectionHTML(currentCategory);
   document.getElementById("categoryselection").innerHTML += `<img class="arrow" src="../assets/img/dropdown.png">`;
+  // closeDropdownList('categories-dropdown');
 }
 
 
@@ -222,21 +224,24 @@ function setAssignee(id) {
     let setUser = id;
     currentAssignees.push(setUser);
     checkBox("assigneebox", id);
+    openDropdownList('assignees-dropdown');
   } else {
     currentAssignees.splice(getAssigneeIndex(id), 1);
     uncheckBox("assigneebox", id);
+    openDropdownList('assignees-dropdown');
   }
   renderCurrentAssigneesList();
 }
-
 
 /**
  * It takes the list of current assignees and unchecks the checkboxes that correspond to them.
  */
 function resetCurrentAssignees() {
   document.getElementById("assigneesList").classList.add("d-none");
-  for (let i = 0; i < currentAssignees.length; i++) {
-    uncheckBox("assigneebox", i);
+  closeDropdownList('assignees-dropdown');
+  for (let i = 0; i < activeContactIDs.length; i++) {
+    let id = activeContactIDs[i];
+    uncheckBox("assigneebox", id);
   }
 }
 
@@ -313,6 +318,7 @@ async function addCategory() {
     categories.push(newCategory);
     await setItem('categories', categories);;
     closeNewCategoryInput();
+    setCategory(categories.length - 1);
     renderCategoriesToForm();
   }
 }
@@ -397,4 +403,15 @@ function resetNewCategory() {
 function renderNewCategory() {
   let preview = document.getElementById("category-preview");
   preview.innerHTML = `<div>${newCategoryName}</div><div class="dot ${newCategoryColor}"></div>`;
+}
+
+/**
+ * The function adds a click event listener to the "addTaskForm" element and closes the
+ * "assignees-dropdown" and "categories-dropdown" dropdown lists.
+ */
+function addDropdownListener() {
+  document.getElementById('addTaskForm').addEventListener("click", () => {
+    closeDropdownList('assignees-dropdown');
+    closeDropdownList('categories-dropdown');
+  });
 }

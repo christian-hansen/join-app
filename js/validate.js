@@ -119,7 +119,6 @@ function newCategoryNameErrorMsg() {
 function checkNewCategoryNameAvailability() {
 const result = categories.find(({categoryName}) => categoryName === newCategoryName)
 if (result !== undefined) {
-    console.log(newCategoryName);
     return false;
 } else {
     return true;

@@ -185,6 +185,8 @@ function getPrioText(prio) {
  */
 function openEditForm() {
   let task = tasks[selectedTask];
+  addEditDropdownListener();
+  getActiveContactIDs();
   renderEditFormElements();
   renderCategoriesToForm();
   renderContactsToForm();
@@ -209,6 +211,8 @@ function openAddTaskForm() {
     }
   document.getElementById("modal").classList.remove("d-none");
   document.getElementById("formbuttons").classList.remove("d-none");
+  addEditDropdownListener();
+  getActiveContactIDs();
   displayCreateBtnHeader();
   renderEditFormElements();
   document.getElementById("formtophead").innerHTML = "Add Task";
@@ -388,4 +392,15 @@ function renderMinDueDateToEdit() {
 
   minDate = today;
   document.getElementById("date").setAttribute('min', today);
+}
+
+/**
+ * The function adds a click event listener to the "addTaskForm" element and closes the
+ * "assignees-dropdown" and "categories-dropdown" dropdown lists.
+ */
+function addEditDropdownListener() {
+  document.getElementById('editTaskForm').addEventListener("click", () => {
+    closeDropdownList('assignees-dropdown');
+    closeDropdownList('categories-dropdown');
+  });
 }

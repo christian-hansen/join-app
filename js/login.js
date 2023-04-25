@@ -7,7 +7,6 @@ let colors = ['pink', 'mintgreen', 'orange', 'lightblue', 'red', 'applegreen', '
  */
 async function init_login() {
     users = await loadItem('users');
-    console.log(users);
     load();
     rememberload();
     render();
@@ -115,8 +114,6 @@ async function registerNewAccount() {
     let password = document.getElementById('password').value;
     let popup = document.getElementById('popup');
     let color = colors[Math.floor(Math.random() * colors.length)];
-    let action = "https://christian-hansen.developerakademie.net/join/signup-send_mail.php";
-    let method = "post";
 
     let user = users.find(u => u.email == email);
     if (user) {
@@ -135,9 +132,6 @@ async function registerNewAccount() {
         await setItem('users', users);
         setTimeout(() => {
             popup.classList.add("d-none");
-            formsignup.action = action;
-            formsignup.method = method;
-            console.log(formsignup.action, formsignup.method);
         }, 3000);
         clearInput();
     }

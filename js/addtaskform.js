@@ -1,13 +1,15 @@
+let activeContactIDs = []
+
 /**
  * This function renders the categories, contacts, subtasks, and today's date to the form.
  */
 async function initForm() {
+  getActiveContactIDs();
   renderCategoriesToForm();
   renderContactsToForm();
   renderSubTasksList();
   renderTodayDueDate();
 }
-
 
 /**
  * It takes the categories array and renders it to the form.
@@ -19,11 +21,22 @@ function renderCategoriesToForm() {
 
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
-
     categorySelect.innerHTML += categoryListItemHTML(category);
   }
 }
 
+/**
+ * The function retrieves the IDs of active contacts from an array of contacts.
+ */
+function getActiveContactIDs() {
+  for (let i = 0; i < contacts.length; i++) {
+    const contactID = contacts[i].id;
+    const contactIsActive = contacts[i].isActive;
+    if (contactIsActive) {
+    activeContactIDs.push(contactID);
+  }
+  }
+}
 
 /**
  * For each contact in the contacts array, add a new option to the assigneeSelect element.
@@ -182,19 +195,30 @@ function uncheckBox(id, i) {
 }
 
 
+
 /**
- * If the dropdown is not visible, make it visible. If it is visible, make it not visible.
- * @param dropdownID - the ID of the dropdown list you want to open.
+ * This is a JavaScript function that opens and closes dropdown lists based on their IDs.
+ * @param dropdownID - The ID of the dropdown list element that needs to be opened or closed.
  */
 function openDropdownList(dropdownID) {
+  doNotClose(event);
   let dropdown = document.getElementById(dropdownID);
-  if (!dropdown.classList.contains("visible")) {
+  if (dropdown.id === "categories-dropdown") {
+    if (!dropdown.classList.contains("visible")) {
+      dropdown.classList.add("visible");}
+    else {
+      closeDropdownList(dropdownID);
+    }
+  }
+  if (dropdown.id === "assignees-dropdown") {
     dropdown.classList.add("visible");
   }
-  else {dropdown.classList.remove("visible");
-}
 }
 
+function closeDropdownList(dropdownID) {
+let dropdown = document.getElementById(dropdownID);
+dropdown.classList.remove("visible");
+}
 
 /**
  * The function takes a string of first and last name, splits the string into an array of words, then reduces the array into a string of initials.
@@ -279,6 +303,14 @@ function displayPopupMsg(action) {
 function hidePopupMsg() {
   document.getElementById("popupMsg").innerHTML = "";
   document.getElementById("popupMsg").classList.add("d-none");
+}
+
+/**
+ * "If the user clicks on the dropdown menu, don't close the menu." The event.stopPropagation() method stops the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event
+ * @param event - The event object.
+ */
+function doNotClose(event) {
+  event.stopPropagation();
 }
 
 

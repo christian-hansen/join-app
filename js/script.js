@@ -4,6 +4,7 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 let users = [];
 let activeUser = [];
 
+
 /**
  * It downloads the users from the server, then it loads the users from the local storage, then it
  * includes the HTML.

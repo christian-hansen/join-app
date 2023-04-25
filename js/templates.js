@@ -5,7 +5,7 @@
  */
 function categoryListItemHTML(category) {
   if (category.categoryIsActive) {
-    return `<div class="category-item" onclick="setCategory('${category.categoryID}', '${category.categoryName}', '${category.categoryColor}')"><div>${category.categoryName}</div><div class="dot ${category.categoryColor}"</div></div>`;
+    return `<div class="category-item" onclick="setCategory('${category.categoryID}')"><div>${category.categoryName}</div><div class="dot ${category.categoryColor}"</div></div>`;
   }
   
 }
@@ -127,7 +127,7 @@ function editBtnContainerHTML(i) {
   <div class="buttonwhite" onclick="openMoveMenu(${i})">Move</div>
   <div class="buttonwhite" onclick="openEditForm(${i})">Edit</div>
   <div class="buttonwhite" onclick="openDeleteForm(${i})">Delete</div>  
-  <div class="buttonwhite" onclick="closeTaskview()">To Board</div>
+  <div class="buttonwhite" onclick="closeTaskview()">Close</div>
 </div>
 <div id="edit-btn" class="edit-btn" onclick="openTaskSubMenu()"><img src="../assets/img/edit.png" alt=""></div>`;
 }
