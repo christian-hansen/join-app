@@ -35,7 +35,7 @@
 
             <!-- Content -->
             <div class="content">
-                <div class="contentContainer scrollboard">
+                <div class="contentContainer">
 
                     <!-- Hier den Seiteninhalt eingeben -->
                     <div class="joinheadline hidedesk">Kanban Project Management Tool</div>
@@ -55,10 +55,10 @@
 
 
                     <!-- Columns start here -->
-                    <div id="board" class="boardcontainer">
+                    <div id="board" class="boardcontainer scrollX">
 
                         <!-- Column "To do" starts here -->
-                        <div class="boardsection">
+                        <div class="boardsection scroll">
                             <div class="boardsectiontop">
                                 <div>To do</div>
                                 <img><img class="plus-icon" src="../assets/img/plus.png" onclick="addTaskOnBoard(0)">
@@ -67,7 +67,7 @@
                         </div>
 
                         <!-- Column "In Progress" starts here -->
-                        <div class="boardsection">
+                        <div class="boardsection scroll">
                             <div class="boardsectiontop">
                                 <div>In progress</div>
                                 <div><img class="plus-icon" src="../assets/img/plus.png"  onclick="addTaskOnBoard(1)"></div>
@@ -76,7 +76,7 @@
                         </div>
 
                         <!-- Column "Awaiting feedback" starts here -->
-                        <div class="boardsection">
+                        <div class="boardsection scroll">
                             <div class="boardsectiontop">
                                 <div>Awaiting Feedback</div>
                                 <div><img class="plus-icon" src="../assets/img/plus.png"  onclick="addTaskOnBoard(2)"></div>
@@ -84,7 +84,7 @@
                             <div id="awaitingfeedback" ondrop="moveTo(2); removehighlightDragArea('awaitingfeedback')" ondragleave="removehighlightDragArea('awaitingfeedback')" ondragover="allowDrop(event); highlightDragArea('awaitingfeedback')"></div>
                         </div>
                         <!-- Column "Done" starts here -->
-                        <div class="boardsection">
+                        <div class="boardsection scroll">
                             <div class="boardsectiontop">
                                 <div>Done</div>
                                 <div><img class="plus-icon" src="../assets/img/plus.png"  onclick="addTaskOnBoard(3)"></div>
