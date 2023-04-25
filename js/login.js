@@ -61,8 +61,6 @@ function showPopUpPw() {
     let popup = document.getElementById('popup');
     let user = users.find(u => u.email == inputmail.value);
     let guest = users.find(u => u.email == 'guest@guestemail.com');
-    // let action = "reset-password-mail.php";
-    // let method = "post";
     if (user) {
         if (user == guest) {
             showPopupNotFound();
@@ -73,9 +71,6 @@ function showPopUpPw() {
             activeUser.push(user);
             save();
             setTimeout(() => {
-                // form.formAction = action;
-                // form.method = method;
-                // console.log(form.formAction, form.method);
                 popup.classList.add("d-none");
                 window.location.href = "./index.html";
         }, 3000);
@@ -144,7 +139,6 @@ async function registerNewAccount() {
             formsignup.method = method;
             console.log(formsignup.action, formsignup.method);
         }, 3000);
-        // setTimeout(() => window.location.href = "./index.html", 3000)
         clearInput();
     }
 }
