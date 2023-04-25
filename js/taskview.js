@@ -1,5 +1,4 @@
 let selectedTask;
-let selectedPage;
 
 /**
  * It opens a modal window with a task in it

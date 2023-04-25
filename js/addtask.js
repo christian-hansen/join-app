@@ -68,7 +68,11 @@ async function getTask() {
   if (taskValidation === true) {
     await createTask();
     displayPopupMsg("taskadded");
-    setTimeout(goToBoard, 2000);
+      if (selectedPage !== 'board') {
+          setTimeout(goToBoard, 2000);}
+      else {{
+          setTimeout(closeTaskview, 2000);}
+    }
   } else {
     validateTextField("Title");
     validateTextField("Description");

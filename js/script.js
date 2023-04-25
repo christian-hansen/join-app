@@ -1,6 +1,7 @@
 const STORAGE_TOKEN = '95EI500XAI6O6E54SZ91QWQF8312TGEEM3NXYY3N';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+let selectedPage;
 let users = [];
 let activeUser = [];
 

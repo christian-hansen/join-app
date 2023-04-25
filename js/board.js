@@ -146,11 +146,11 @@ function cancelTaskDeletion() {
  * @param i - the index of the task in the array
  */
 async function deleteTask(i) {
-    tasks[i].status = 4;
-    await setItem('tasks', tasks);
-    displayPopupMsg("taskdeleted");
-    setTimeout(closeTaskview, 2000);
-    renderTasksToBoard();
+  tasks[i].status = 4;
+  await setItem('tasks', tasks);
+  displayPopupMsg("taskdeleted");
+  setTimeout(closeTaskview, 2000);
+  renderTasksToBoard();
   }
 
 
