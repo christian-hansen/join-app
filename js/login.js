@@ -189,7 +189,7 @@ async function login() {
         activeUser.push(user);
         checkForCheckbox(checkbox, rememberlogin);
         save();
-        window.location.href = "../html/summary.html";
+        window.location.href = "./html/summary.html";
     }
 }
 
