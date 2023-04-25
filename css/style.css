@@ -558,7 +558,7 @@ input::placeholder {
     }
 
     .login {
-        height: 530px;
+        height: 75%;
         width: 320px;
         border-radius: 30px;
         padding: 35px 0px 35px 0px;
