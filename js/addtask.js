@@ -13,6 +13,7 @@ let categoryCreationValidation = false;
  * It downloads data from the server, parses it, initializes the form, loads the data, includes the HTML, and displays the create button in the header.
  */
 async function initAddTask() {
+  setPage('addTask');
   users = await loadItem('users');
   categories = await loadItem('categories');
   prios = await loadItem('prios');

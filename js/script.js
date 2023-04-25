@@ -181,3 +181,9 @@ function renderContactDeleteBtns(i) {
     return `<div>Are you sure you want to delete this contact?</div>
     <div class="deletemsgbtns"><div onclick="cancelContactDeletion()">No</div><div class="alerthover" onclick="deleteContact(${i})">Yes</div></div>`
   }
+
+  
+function setPage(pagename) {
+    selectedPage = '';
+    selectedPage = pagename;
+  }

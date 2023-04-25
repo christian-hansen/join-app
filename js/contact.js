@@ -22,6 +22,7 @@ function compareStrings(a, b) {
  * @returns the result of the function compareStrings.
  */
 async function renderContacts() {
+    setPage('contacts');
     categories = await loadItem('categories');
     prios = await loadItem('prios');
     tasks = await loadItem('tasks');

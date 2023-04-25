@@ -4,6 +4,7 @@ let boardColumns = ['todo', 'inprogress', 'awaitingfeedback', 'done']
  * It downloads data from the server, then loads it into the local storage, then includes the HTML templates, then renders the tasks to the board.
  */
 async function initBoard() {
+  setPage('board');
   users = await loadItem('users');
   categories = await loadItem('categories');
   prios = await loadItem('prios');
@@ -214,3 +215,4 @@ function clearBoardColumns() {
   document.getElementById("awaitingfeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
 }
+

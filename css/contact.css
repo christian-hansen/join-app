@@ -434,7 +434,7 @@ line-height: 120%;
 .scroll {
     overflow-y: auto;
     scroll-behavior: smooth;
-
+    overflow-x: hidden;
 }
 
 .scroll::-webkit-scrollbar {
