@@ -312,45 +312,6 @@ function hideSuccess() {
 
 
 /**
- * If the user presses the enter key while in the name field, the focus is moved to the email field.
- * @param event - The event object is automatically passed to the function by the browser.
- * @returns false.
- */
-function handleKeqUpName(event) {
-    if (event.keyCode == 13) {
-        event.preventDefault();
-        document.getElementById('newMail').focus();
-        return false;
-    }
-}
-
-/**
- * If the user presses the enter key, prevent the default action of the enter key, and focus on the next input field.
- * @param event - The event object is a JavaScript object that contains information about the event that occurred.
- * @returns false.
- */
-function handleKeqUpMail(event) {
-    if (event.keyCode == 13) {
-        event.preventDefault();
-        document.getElementById('newPhone').focus();
-        return false;
-    }
-}
-
-/**
- * If the user presses the enter key, then prevent the default action of the enter key, and focus on the create button.
- * @param event - The event object is a JavaScript object that contains useful information about the event, such as the element that the event occurred on, the x and y coordinates of the event, and more.
- * @returns false.
- */
-function handleKeqUpPhone(event) {
-    if (event.keyCode == 13) {
-        event.preventDefault();
-        document.getElementById('create').focus();
-        return false;
-    }
-}
-
-/**
  * If the user presses the enter key, don't do anything
  * @param event - The event object.
  * @returns false.

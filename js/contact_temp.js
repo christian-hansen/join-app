@@ -168,12 +168,12 @@ function modalNewContact() {
                     <img src="../assets/img/close-black.png">
                 </div>
                 <form class="contactForm" onsubmit="newContact(); return false;">
-                    <input required onkeydown="handleKeqUpName(event)" id="newContactName" class="contactForms editFormName" type="text" minlength="5" placeholder="Name" autofocus>
-                    <input required onkeydown="handleKeqUpMail(event)" id="newMail" class="contactForms editFormMail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
-                    <input required onkeydown="handleKeqUpPhone(event)" id="newPhone" class="contactForms editFormPhone" type="tel" minlength="8" placeholder="Phone">
+                    <input required id="newContactName" class="contactForms editFormName" type="text" minlength="4" placeholder="Name" autofocus>
+                    <input required id="newMail" class="contactForms editFormMail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email">
+                    <input required id="newPhone" class="contactForms editFormPhone" type="tel" minlength="8" placeholder="Phone">
                     <div class="buttonArrange">
                         <div class="editButtonCancel hidemobile" onclick="closeModal()">Cancel<img src="../assets/img/contact-cancel.png"></div>
-                        <div id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate" onclick="newContact()">Create contact<img src="../assets/img/contact-check.png"></div>
+                        <button id="create" onkeydown="handleKeqUpCreate(event)" type="submit" class="editButtonCreate" onsubmit="newContact()">Create contact<img src="../assets/img/contact-check.png"></button>
                     </div>
                 </form>
             </div>

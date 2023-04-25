@@ -228,6 +228,7 @@ button.editButtonCancel {
     margin-top: 20px;
     padding: 18px 10px;
     gap: 14px;
+    cursor: pointer;
 }
 
 .sucessInfoContainer {
